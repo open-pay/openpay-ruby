@@ -4,8 +4,7 @@ $: << "../../lib/OpenPay/"
 
 
 require 'factory_girl'
-require 'RestUtils'
-require 'OpenPay'
+require 'open_pay'
 require 'Factories'
 require 'rspec'
 require 'rspec-expectations'
@@ -13,7 +12,6 @@ require 'json_spec'
 
 
 
-include RestUtils
 include OpenPay
 
 

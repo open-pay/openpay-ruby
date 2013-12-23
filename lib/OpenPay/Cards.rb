@@ -1,27 +1,56 @@
-require 'OpenPayResource'
+require 'open_pay_resource'
 
 class Cards < OpenPayResource
 
 
-  def get_card(id)
-     get(id)
+
+
+  def list(creation,before,after,offset=0,limit=10)
+
   end
 
 
-  def add_card(card,customer=nil)
-    if customer
-      customers=api_hook.create(:customers)
-      customer=customers.get(customer)['id']
 
-      add(card,"#{customer}/cards")
-
-
+  def get(card='',customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.get_card(customer_id,card)
     else
-      add(card)
+      super card
     end
   end
 
 
+
+  def create(card,customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.create_card(customer_id,card)
+    else
+      super card
+    end
+  end
+
+
+  def delete(card,customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.delete_card(customer_id,card)
+    else
+      super card
+    end
+  end
+
+
+
+  def all(customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.all_cards(customer_id)
+    else
+      super   ''
+    end
+  end
 
 
 

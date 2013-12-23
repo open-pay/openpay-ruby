@@ -1,5 +1,6 @@
 require 'open_pay_resource'
 
-class Fees < OpenPayResource
 
+
+class Payouts < OpenPayResource
 end

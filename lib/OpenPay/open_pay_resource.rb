@@ -1,4 +1,3 @@
-require 'RestUtils'
 
 
 #TODO , return JSON and HASH
@@ -7,17 +6,17 @@ require 'RestUtils'
 
 class OpenPayResource
 
-  include RestUtils
 
   attr_accessor :api_hook
 
   def initialize(merchant_id,private_key,production=false)
      @merchant_id=merchant_id
      @private_key=private_key
-     @base_url=DEV_BASE
+     @base_url=OpenPayApi::base_url(production)
      @errors=false
     @production=production
     @timeout=90
+    @api_hook=nil
   end
 
 
@@ -36,12 +35,21 @@ class OpenPayResource
 
   #TODO, we wil require to use an array since there are resources with nested resources
   def url(args='')
+     p args
+     @base_url+"#{@merchant_id}/"+ self.class.name.to_s.downcase+ '/'+args
+  end
+
+
+  def list(args='')
     @base_url+ "#{@merchant_id}/"+ self.class.name.to_s.downcase+"/"+args
   end
 
 
  def get(args='')
-   LOG.info("GET Resource URL:#{url}")
+
+
+   LOG.info("#{self.class.name.downcase}:")
+   LOG.info("   GET Resource URL:#{url(args)}")
    res=RestClient::Request.new(
         :method => :get,
         :url => url(args),
@@ -57,17 +65,26 @@ class OpenPayResource
     json_out=res.execute
   rescue  RestClient::ResourceNotFound => e
       warn e.http_body
-      return nil
+      raise e
   end
    #TODO ver como puedo  sacar le status
    @status_last_call=res
+
+   #TODO , poner el return del json
+  # if message.is_a?(Hash)
+   #  json= hash2json message
+  # else
+   #  json=message
+   #end
+
+
    JSON[json_out]
  end
 
 
 
   def each
-    get.each do |line|
+    all.each do |line|
       yield line
     end
   end
@@ -90,7 +107,8 @@ class OpenPayResource
 
  def delete(args)
 
-   LOG.info("DELETE Resource URL:#{url(args)}")
+   LOG.info("#{self.class.name.downcase}:")
+   LOG.info("    DELETE  URL:#{url(args)}")
 
   RestClient::Request.new(
        :method => :delete,
@@ -115,8 +133,9 @@ class OpenPayResource
     end
 
 
+    LOG.info("#{self.class.name.downcase}:")
 
-    LOG.info "POST  Resource URL:#{url}"
+    LOG.info "   POST URL:#{url(args)}"
     LOG.info "   json: #{json}"
 
     begin
@@ -132,6 +151,8 @@ class OpenPayResource
                        :json => json}
       ) .execute
     rescue  RestClient::BadRequest  => e
+
+      #TODO vamos a regresar exception
        warn e.http_body
        @errors=true
        return JSON.parse  e.http_body
@@ -157,7 +178,7 @@ class OpenPayResource
     end
 
 
-    LOG.info "PUT  Resource URL:#{url}"
+    LOG.info "PUT URL:#{url}"
     LOG.info "   json: #{json}"
 
     begin
@@ -187,7 +208,6 @@ class OpenPayResource
   alias_method :all, :get
   alias_method :list, :get
   alias_method :update, :put
-  alias_method  :add , :post
   alias_method  :create , :post
 
 

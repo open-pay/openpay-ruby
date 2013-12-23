@@ -9,8 +9,14 @@ describe Cards do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @openpay=OpenPayApi.new(@merchant_id,@private_key)
+    @openpay=OpenPayApi.new(@merchant_id, @private_key)
     @cards=@openpay.create(:cards)
+    @customers=@openpay.create(:customers)
+
+  end
+
+  after(:all) do
+    @openpay.create(:customers).delete_all!
 
   end
 
@@ -18,171 +24,310 @@ describe Cards do
 
 
 
+  describe '.create' do
 
-  describe '.hash2json' do
+    it 'creates  merchant card' do
+
+      card_hash = FactoryGirl.build(:valid_card)
+      cards=@cards.create(card_hash)
+      expect(cards).to be_a(Hash)
+
+      id=cards['id']
 
 
-    it 'converts a ruby hash into a json string' do
-      card_hash = FactoryGirl.build(:valid_card,holder_name:  'Juan')
-      json=@cards.hash2json(card_hash)
-      expect(json).to have_json_path('holder_name')
-      expect(json).to have_json_path('expiration_year')
-      expect(json).to have_json_path('bank_code')
+      name='Vicente Olmos'
+
+      card=@cards.get(id)
+      expect(card['holder_name']).to match(name)
+      expect(card['card_number']).to match('1111')
+
+
+      @cards.delete(card['id'])
+
 
     end
 
 
+    it 'creates a customer card' do
 
-  end
+      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+
+      customers=@openpay.create(:customers)
+      customer_hash = FactoryGirl.build(:customer)
+      customer=customers.create(customer_hash)
+
+      cards=@cards.create(card_hash, customer['id'])
+      expect(cards).to be_a(Hash)
+
+      id=cards['id']
+
+      customer_cards=customers.all_cards(customer['id'])
+      expect(customer_cards.size).to be 1
+      expect(cards['holder_name']).to match 'Pepe'
+
+      stored_card=@cards.get(id , customer['id'] )
+      expect(stored_card['holder_name']).to match 'Pepe'
+      expect(stored_card['id']).to match id
 
 
 
-  describe '.json2hash' do
 
-
-    it 'converts json into a ruby hash' do
-      card_hash = FactoryGirl.build(:valid_card,holder_name:  'Pepe')
-      json=@cards.hash2json(card_hash)
-      jash=@cards.json2hash(json)
-      expect(jash).to be_a Hash
-      expect(jash['holder_name']).to match 'Pepe'
+      @cards.delete(id , customer['id'] )
 
 
     end
 
-  end
+
+    it 'fails when trying to create an existing card' do
+      customers=@openpay.create(:customers)
+
+      customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Perez')
+      customer=customers.create(customer_hash)
+
+      card_hash = FactoryGirl.build(:valid_card)
+      @cards.create(card_hash)
+      expect { @cards.create(card_hash) }.to raise_error(RestClient::Conflict)
+    end
 
 
-
-
-
-  describe '.add' do
-
-      it 'adds a card to merchant' do
-
-        card_hash = FactoryGirl.build(:valid_card)
-        cards=@cards.add_card(card_hash)
-        expect(cards).to be_a(Hash)
-
-        id=cards['id']
-
-
-        name='Rodrigo Bermejo'
-
-        card=@cards.get_card(id)
-        expect(card['holder_name']).to match(name)
-        expect(card['card_number']).to match('1111')
-
-      end
-
-
-
-      it 'adds a card to customer' do
-
-        card_hash = FactoryGirl.build(:valid_card)
-
-        customers=@openpay.create(:customers)
-        customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Perez')
-        customer=customers.post(customer_hash)
-        id=customer['id']
-        card=@cards.add_card(card_hash,id)
-
-
-
-
-
-
-
-      end
-
-
-     it 'fails when trying to create an existing card' do
-       card_json = FactoryGirl.build(:valid_card)
-       expect { @cards.post(card_json) }.to  raise_error(RestClient::Conflict)
-     end
 
     it 'fails when using an expired card' do
-      card_json = FactoryGirl.build(:expired_card)
-     expect { @cards.post(card_json) }.to raise_error( RestClient::PaymentRequired )
+      card_hash = FactoryGirl.build(:expired_card)
+      expect { @cards.create(card_hash) }.to raise_error(RestClient::PaymentRequired)
     end
 
 
     it 'fails when using a stolen card' do
       card_json = FactoryGirl.build(:valid_card, card_number: '4000000000000119')
-      expect { @cards.post(card_json) }.to raise_error( RestClient::PaymentRequired )
+      expect { @cards.create(card_json) }.to raise_error(RestClient::PaymentRequired)
 
     end
 
   end
-
 
 
   describe '.each' do
 
-  it 'list all existing cards' do
-    @cards.each do |card|
-      p card
+    it 'list all existing merchant cards' do
+      @cards.each do |card|
+        expect(card['expiration_year']).to match '14'
+      end
     end
-   end
 
 
   end
-
 
 
   describe '.delete' do
 
-    it 'deletes an existing card' do
+    it 'deletes any existing card' do
 
-     @cards.each do |card|
-         @cards.delete(card['id'])
+      @cards.each do |card|
+        @cards.delete(card['id'])
       end
 
+
+
+
+
+    end
+
+
+
+    it 'fails to deletes a non existing card' do
+
+      expect { @cards.delete('1111111')  }.to raise_exception(RestClient::ResourceNotFound)
+
+
+    end
+
+
+
+    it  'deletes a customer card' do
+
+
+
+      customers=@openpay.create(:customers)
+      customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Paez')
+      customer=customers.create(customer_hash)
+
+      card_hash = FactoryGirl.build(:valid_card)
+
+      card=@cards.create(card_hash, customer['id'])
+      expect(card['holder_name']).to match 'Vicente Olmos'
+
+
+      @cards.delete(card['id'],customer['id'])
+
+    end
+
+
+    it 'fails to deletes a non existing  customer card' do
+
+      expect { @cards.delete('1111111','1111')  }.to raise_exception(RestClient::ResourceNotFound)
+
+
     end
 
 
   end
 
 
+  describe '.get' do
 
 
-
-
-
-
-
-
-  describe '.get_card' do
-
-    it ' gets an existing card'  do
+    it ' gets an existing  merchant card' do
       bank_name='DESCONOCIDO'
-      card_json = FactoryGirl.build(:valid_card)
+      card_hash = FactoryGirl.build(:valid_card)
 
-      card=@cards.post(card_json)
+      card=@cards.create(card_hash)
       id=card['id']
-      expect(@cards.get_card(id)['bank_name']).to match bank_name
+
+      #pass just a single parameter for getting merchant cards
+      stored_card = @cards.get(id)
+      bank=stored_card['bank_name']
+      expect(bank).to match bank_name
+      @cards.delete(id)
 
     end
 
-  end
+
+    it 'fails when getting a non existing card' do
+
+       expect { @cards.get('11111')  }.to  raise_exception(RestClient::ResourceNotFound)
 
 
- describe '.all' do
+    end
 
-   it 'list all the customers' do
-     expect(@cards.all.size).to be 1
+
+
+    it ' gets an existing  customer card' do
+
+      bank_name='DESCONOCIDO'
+      customer_hash = FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      card_hash = FactoryGirl.build(:valid_card)
+
+      card=@cards.create(card_hash, customer['id'])
+      id=card['id']
+
+      #two parameters  for getting customer cards
+      stored_cards = @cards.get( id , customer['id'])
+      bank=stored_cards['bank_name']
+      expect(bank).to match bank_name
+      @cards.delete(id , customer['id'])
+
+    end
+
+
+    it 'fails when getting a non existing customer card' do
+
+      expect { @cards.get('11111','1111')  }.to  raise_exception(RestClient::ResourceNotFound)
+
    end
 
- end
+
+  end
+
+
+
+  describe '.all' do
+
+    it 'list all merchant cards' do
+
+
+      expect(@cards.all.size).to be   0
+
+      card_hash = FactoryGirl.build(:valid_card)
+
+      card=@cards.create(card_hash)
+      id=card['id']
+
+      expect(@cards.all.size).to be   1
+
+      @cards.delete(id)
+
+    end
+
+
+    it 'list all customer cards' do
+
+
+      customer_hash = FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      expect(@cards.all(customer['id']).size).to be   0
+
+
+      card_hash = FactoryGirl.build(:valid_card)
+
+      card=@cards.create(card_hash, customer['id'])
+      id=card['id']
+
+
+      expect(@cards.all(customer['id']).size).to be   1
+
+      @cards.delete(id , customer['id'])
+
+    end
+
+
+    it 'list cards for a non exisiting  customer'   do
+
+      begin
+      expect(@cards.all('111111').size).to be   0
+      rescue => e
+
+        expect(e.http_status).to be 404
+        expect(e.json_body.kind_of?(Hash))
+      end
+
+
+    end
 
 
 
 
-  describe  '.delete_all' do
+
+  end
+
+
+
+  describe '.list' do
+
+  it 'list the merchant cards using a filter' do
+
+     pending
+    #creation[gte]=yyyy-mm-dd
+    #creation[lte]=yyyy-mm-dd
+    #offset=0&
+    #limit=10
+   # @cards.list('2000-01-01','2000-01-01',0,10)
+
+
+
+  end
+
+
+  it 'list the customer cards using a filter' do
+     pending
+  end
+
+
+
+
+  end
+
+
+
+
+
+  describe '.delete_all' do
 
     it 'raise an exception when used on Production' do
 
-      @openpayprod=OpenPayApi.new(@merchant_id,@private_key,true)
+      @openpayprod=OpenPayApi.new(@merchant_id, @private_key, true)
       cust=@openpayprod.create(:customers)
       expect { cust.delete_all! }.to raise_error
 
@@ -197,15 +342,7 @@ describe Cards do
     end
 
 
-
-
   end
-
-
-
-
-
-
 
 
 end

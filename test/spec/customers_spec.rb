@@ -55,7 +55,7 @@ describe Customers do
     it 'deletes an existing customer' do
       customer_hash = FactoryGirl.build(:customer, name: :delete_me)
 
-      customer=@customers.post(customer_hash)
+      customer=@customers.create(customer_hash)
       id=customer['id']
       @customers.delete(id)
       expect(@customers.get(id)).to be nil
@@ -70,7 +70,7 @@ describe Customers do
       name='get_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
 
-      customer=@customers.post(customer_hash)
+      customer=@customers.create(customer_hash)
       id=customer['id']
       expect( @customers.get(id)['name'] ).to match name
     end
@@ -86,7 +86,7 @@ describe Customers do
       name='get_customer_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
 
-      customer=@customers.post(customer_hash)
+      customer=@customers.create(customer_hash)
       id=customer['id']
       expect(@customers.get_customer(id)['name']).to match name
     end
@@ -110,7 +110,7 @@ describe Customers do
       name='customer_update_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
 
-      customer=@customers.post(customer_hash)
+      customer=@customers.create(customer_hash)
       id=customer['id']
 
       name='new_name'
@@ -123,16 +123,16 @@ describe Customers do
 
 
 
-  describe '.add_card' do
+  describe '.create_card' do
 
-    it 'adds a card to an existing customer' do
-      name='add_card_test'
+    it 'creates  a card for an existing customer' do
+      name='create_card_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
       card_hash = FactoryGirl.build(:valid_card,holder_name:  'Juan')
 
 
       customer=@customers.create(customer_hash)
-      @customers.add_card(customer['id'],card_hash)
+      @customers.create_card(customer['id'],card_hash)
       expect( @customers.all_cards(customer['id']).size ).to be 1
 
 
@@ -143,7 +143,21 @@ describe Customers do
   end
 
 
-  describe 'all_cards' do
+  describe '.all_cards' do
+
+    it 'list all cards for a given customer'  do
+
+      @customers.each do |customer|
+          customer['phone_number']
+      end
+
+    end
+
+
+  end
+
+
+  describe '.each_card' do
 
     it 'list all cards for a given customer'  do
       pending
@@ -153,9 +167,21 @@ describe Customers do
   end
 
 
-  describe 'each_card' do
 
-    it 'list all cards for a given customer'  do
+
+
+  describe '.get_bank_account'    do
+
+     it 'get a bank account'  do
+       pending
+     end
+
+  end
+
+
+  describe '.create_bank_account'    do
+
+    it 'creates a bank account'  do
       pending
     end
 
@@ -168,7 +194,7 @@ describe Customers do
   describe '.all' do
 
     it 'list all the customers' do
-      expect(@customers.all.size).to be 4
+      expect(@customers.all.size).to be 5
     end
 
 

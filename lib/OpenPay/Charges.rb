@@ -1,4 +1,4 @@
-require 'OpenPayResource'
+require 'open_pay_resource'
 
 class Charges < OpenPayResource
 

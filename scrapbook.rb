@@ -2,7 +2,7 @@ $: << "lib/OpenPay/"
 $: << "./lib/"
 $: << "test"
 
-require 'OpenPay'
+require 'open_pay'
 require 'Factories'
 require 'pp'
 
@@ -32,8 +32,11 @@ cards=opa.create(:cards)
 cards.delete_all!
 
 
-customer=customers.post(customer)
-customers.add_card(customer['id'],card_hash)
+customer=customers.create(customer)
+
+
+cards.create_card(card_hash)
+#customers.add_card(customer['id'],card_hash)
 customers.each_card(customer['id']) do |card|
    p card
 end

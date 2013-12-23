@@ -1,5 +1,4 @@
 require 'open_pay_resource'
 
-class Fees < OpenPayResource
-
+class Plans  < OpenPayResource
 end

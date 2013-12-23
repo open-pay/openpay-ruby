@@ -1,5 +1,10 @@
 require 'logger'
-require 'ResourceFactory'
+require 'resource_factory'
+require 'base64'
+require 'rest-client'
+require 'uri'
+
+
 
 
 
@@ -8,7 +13,18 @@ LOG= Logger.new(STDOUT)
 
 class OpenPayApi
 
-  #by default the testing envirionment is used
+
+  #API Endpoints
+  API_DEV="https://sandbox-api.openpay.mx/v1/"
+  API_PROD='https://api.openpay.mx'
+
+
+
+
+
+
+
+  #by default the testing environment is used
   # need to c
   def initialize(merchant_id, private_key,production=false)
     @merchant_id=merchant_id
@@ -24,6 +40,15 @@ class OpenPayApi
     #TODO we may move it to the initialize method
     klass.api_hook=self
     klass
+  end
+
+
+  def OpenPayApi::base_url(production)
+    if production
+      API_PROD
+    else
+      API_DEV
+    end
   end
 
 
