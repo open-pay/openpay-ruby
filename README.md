@@ -96,10 +96,10 @@ A su vez las respuestas en caso de necesitasrlas en json puedas transformarlas j
 
 
 
-## Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
+### Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
 
 
-###Argumentos
+####Argumentos
 Dado que algunos recursos pueden formar parte del establecimiento o de los clientes,
 los metodos listados disponen de un argumento opcional el cual acepta el id del cliente,
 de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la operacion sera aplicada a nivel establecimiento.
@@ -110,22 +110,22 @@ de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la ope
           #nivel cliente
           open_pay_resource.create(object_id,customer_id)
 
-###Metodos
+####Metodos
 
-####create
+#####create
 
    Crea el recurso dado
 
      open_pay_resource.create(object_id,customer_id=nil)
 
-####get
+#####get
 
    Obtiene el objeto de un recurso dado
 
       open_pay_resource.get(object_id,customer_id=nil)
 
 
-####delete
+#####delete
 
    Borra un una instancia de un recurso
 
@@ -133,19 +133,19 @@ de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la ope
         open_pay_resource.delete(object_id,customer_id=nil)
 
 
-####delete_all
+#####delete_all
 
    Borra todas las  instancia de un recurso   (disponible solo en algunos metodos y en ambiente de pruebas)
 
          open_pay_resource.delete_all(customer_id=nil)
 
 
-####all
-
+#####all
+   Regresa un Array con todas  las  instancia de un recurso
      open_pay_resource.all(customer_id=nil)
-####each
-
-     open_pay_resource.each(customer_id=nil)
+#####each
+   Regresa un Bloque con todas  las  instancia de un recurso
+      open_pay_resource.each(customer_id=nil)
 
 
 ## Excepciones/Errores
@@ -184,8 +184,6 @@ Al generarse una exepcion se genera tambien un warning, si tienes acceso a la co
 
 ## Mas informacion
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+###Para todos los ejemplos de uso recomiendo mirar los casos de prueba bajo el folder test/spec
+
+1.  http://docs.openpay.mx/
