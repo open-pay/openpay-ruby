@@ -71,14 +71,14 @@ O instalala tu mismo:
                 :city=>"Queretaro"}}
 
 
-#### Aqui se demustra como se crea una tarjeta a nivel establecimiento, un hash se pasa como argumento y a su vez un hash regresa como parte de la respuesta
+Aqui se demustra como se crea una tarjeta a nivel establecimiento, un hash se pasa como argumento y a su vez un hash regresa como parte de la respuesta
                  cards=openpay.create(:cards)
 
                  #creates merchant card
                  response_hash=cards.create(card_hash)
 
 
-#### Si recibes tus mensajes directo en json , puedes transformarlo justo antes de pasarlo como argumento en forma de Hash
+Si recibes tus mensajes directo en json , puedes transformarlo justo antes de pasarlo como argumento en forma de Hash
 
              cards_json='{"bank_name":"visa","holder_name":"Vicente Olmos","expiration_month":"09",
              "card_number":"4111111111111111","expiration_year":"14","bank_code":"bmx","cvv2":"111",
@@ -86,7 +86,7 @@ O instalala tu mismo:
 
              cards.create(JSON[cards_json])
 
-#### A su vez las respuestas en caso de necesitasrlas en json puedas transformarlas justo al recibirlas
+A su vez las respuestas en caso de necesitasrlas en json puedas transformarlas justo al recibirlas
 
               response_json=cards.create(JSON[cards_json]).to_json
 
@@ -96,7 +96,7 @@ O instalala tu mismo:
 
 
 
-### Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
+## Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
 
 Dado que algunos recursos pueden formar parte del establecimiento o de los clientes,
 los metodos listados disponen de un argumento opcional el cual acepta el id del cliente,
