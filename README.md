@@ -98,6 +98,8 @@ A su vez las respuestas en caso de necesitasrlas en json puedas transformarlas j
 
 ## Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
 
+
+###Argumentos
 Dado que algunos recursos pueden formar parte del establecimiento o de los clientes,
 los metodos listados disponen de un argumento opcional el cual acepta el id del cliente,
 de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la operacion sera aplicada a nivel establecimiento.
@@ -108,6 +110,7 @@ de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la ope
           #nivel cliente
           open_pay_resource.create(object_id,customer_id)
 
+###Metodos
 
 ####create
 
