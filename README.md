@@ -37,7 +37,7 @@ O instalala tu mismo:
     #Para utilizar el ambiente de produccion es necesario el tercer argumento puesto en true
     #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
-###El Objeto openpay actúa como una factoría de recursos rest , esta regresa un objeto que representa cada recurso
+###El Objeto openpay actúa como una factoría de recursos rest , esta regresa un objeto que representa cada recurso.
 
        bankaccounts=openpay.create(:bankaccounts)
        cards=openpay.create(:cards)
@@ -126,13 +126,12 @@ de esta forma esta función será aplicada a nivel cliente, y en su defecto la o
 
    Borra un una instancia de un recurso
 
-
         open_pay_resource.delete(object_id,customer_id=nil)
 
 
 #####delete_all
 
-   Borra todas las  instancia de un recurso   (disponible solo en algunos metodos y en ambiente de pruebas)
+   Borra todas las instancia de un recurso (disponible solo en algunos metodos y en ambiente de pruebas)
 
          open_pay_resource.delete_all(customer_id=nil)
 
@@ -141,7 +140,7 @@ de esta forma esta función será aplicada a nivel cliente, y en su defecto la o
    Regresa un Array con todas  las  instancia de un recurso
      open_pay_resource.all(customer_id=nil)
 #####each
-   Regresa un Bloque con todas  las  instancia de un recurso
+   Regresa un bloque con todas  las  instancia de un recurso
       open_pay_resource.each(customer_id=nil)
 
 
@@ -150,13 +149,13 @@ de esta forma esta función será aplicada a nivel cliente, y en su defecto la o
 #### Este Api utiliza como base la libreria de rest-client[1][2]
 Por lo cual hemos decidido utilizar su sistema de exepciones tal cual es.
 
-Para codigos de regreso del 200 al 207, una excepcion de tipo  RestClient::Response sera regresada
+Para codigos de regreso del 200 al 207, una excepcion de tipo  RestClient::Response sera regresada.
 
-Para codigos de regreso 301, 302 o 307, se hara un redirecionamiento si la peticion de GET o HEAD
+Para codigos de regreso 301, 302 o 307, se hara un redirecionamiento si la peticion de GET o HEAD.
 
-Para el codigo 303, se hara un redirecionamiento y el request sera transformado  en un GET
+Para el codigo 303, se hara un redirecionamiento y el request sera transformado  en un GET.
 
- Para otros casos  una RestClient::Exception con la  Respuesta sera lanzado; Una expcion expecifica sera lanzada para errores conocidos.
+ Para otros casos una RestClient::Exception con la Respuesta sera lanzado; Una expcion expecifica sera lanzada para errores conocidos.
 
        #En el caso de listar un objeto no existente una excepcion de tipo RestClient::ResourceNotFound sera lanzada
 
@@ -165,21 +164,14 @@ Para el codigo 303, se hara un redirecionamiento y el request sera transformado 
 Al generarse una exepcion se genera tambien un warning, si tienes acceso a la consola, podras ver ahi tus mensajes de errror en forma de warnings
 
 
-
-
-
-
-
-
-
 [1] https://github.com/rest-client/rest-client
 
-[2] http:/www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+[2] http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
 
 
-## Mas informacion
+## Mas Información
 
 Para todos los ejemplos de uso recomiendo mirar los casos de prueba bajo el folder test/spec
 
