@@ -4,7 +4,7 @@ Esta Gema permite utilizar el Rest API de OpenPay desde ruby.
 
 ## Documentacion completa en: http://docs.openpay.mx/
 
-## Instalacion
+## Instalación
 
    Adiciona estas lineas a tu gem file
 
@@ -24,7 +24,7 @@ O instalala tu mismo:
 ## Uso:
 
 
-###Inicializacion
+###Inicialización
     require 'OpenPay'
 
     #Tu llave de negocio y llave privada
@@ -37,7 +37,7 @@ O instalala tu mismo:
     #Para utilizar el ambiente de produccion es necesario el tercer argumento puesto en true
     #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
-###El Objeto openpay actua como una factoria de recursos rest , esta regresa un objeto que representa cada recurso
+###El Objeto openpay actúa como una factoría de recursos rest , esta regresa un objeto que representa cada recurso
 
        bankaccounts=openpay.create(:bankaccounts)
        cards=openpay.create(:cards)
@@ -51,6 +51,7 @@ O instalala tu mismo:
 
 
 ### Los recursos OpenPay aceptan Hash nativos de ruby
+
             require 'pp'
 
             pp card_hash
@@ -71,7 +72,9 @@ O instalala tu mismo:
                 :city=>"Queretaro"}}
 
 
-Aqui se demustra como se crea una tarjeta a nivel establecimiento, un hash se pasa como argumento y a su vez un hash regresa como parte de la respuesta
+
+Aquí se demuestra como se crea una tarjeta a nivel establecimiento, un hash se pasa como argumento y a su vez un hash regresa como parte de la respuesta
+
                  cards=openpay.create(:cards)
 
                  #creates merchant card
@@ -86,23 +89,17 @@ Si recibes tus mensajes directo en json , puedes transformarlo justo antes de pa
 
              cards.create(JSON[cards_json])
 
-A su vez las respuestas en caso de necesitasrlas en json puedas transformarlas justo al recibirlas
+A su vez las respuestas en caso de necesitarlas en json puedas transformarlas justo al recibirlas
 
               response_json=cards.create(JSON[cards_json]).to_json
-
-
-
-
-
-
 
 ### Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
 
 
 ####Argumentos
 Dado que algunos recursos pueden formar parte del establecimiento o de los clientes,
-los metodos listados disponen de un argumento opcional el cual acepta el id del cliente,
-de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la operacion sera aplicada a nivel establecimiento.
+los métodos listados disponen de un argumento opcional el cual acepta el id del cliente,
+de esta forma esta función será aplicada a nivel cliente, y en su defecto la operación será aplicada a nivel establecimiento.
 
          #nivel establecimiento
          open_pay_resource.create(object_id)
@@ -177,7 +174,7 @@ Al generarse una exepcion se genera tambien un warning, si tienes acceso a la co
 
 [1] https://github.com/rest-client/rest-client
 
-[2] http:/   www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+[2] http:/www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
 
