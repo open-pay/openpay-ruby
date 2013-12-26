@@ -105,10 +105,10 @@ los metodos listados disponen de un argumento opcional el cual acepta el id del 
 de esta forma esta funcion sera aplicada a nivel cliente, y en su defecto la operacion sera aplicada a nivel establecimiento.
 
          #nivel establecimiento
-          open_pay_resource.create(object_id)
+         open_pay_resource.create(object_id)
 
-          #nivel cliente
-          open_pay_resource.create(object_id,customer_id)
+         #nivel cliente
+         open_pay_resource.create(object_id,customer_id)
 
 ####Metodos
 
@@ -184,6 +184,6 @@ Al generarse una exepcion se genera tambien un warning, si tienes acceso a la co
 
 ## Mas informacion
 
-###Para todos los ejemplos de uso recomiendo mirar los casos de prueba bajo el folder test/spec
+Para todos los ejemplos de uso recomiendo mirar los casos de prueba bajo el folder test/spec
 
 1.  http://docs.openpay.mx/
