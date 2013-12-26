@@ -21,19 +21,19 @@ describe  Bankaccounts do
 
 
   after(:all) do
-    @customers.delete_all!
-    @bank_accounts.delete_all!
+    @customers.delete_all
+    @bank_accounts.delete_all
 
   end
 
   describe '.create' do
 
-    it 'creates  a bank account' do
+    it 'creates  a customer bank account' do
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
       account_hash=FactoryGirl.build(:bank_account)
-      bank=@bank_accounts.create(customer['id'],account_hash)
+      bank=@bank_accounts.create(account_hash,customer['id'],)
 
       bank_account=@bank_accounts.get(customer['id'],bank['id'])
       expect(bank_account['alias']).to match 'Cuenta principal'
@@ -56,22 +56,17 @@ describe  Bankaccounts do
 
   describe '.get' do
 
-    it 'get a given bank account' do
+    it 'get a given bank account for a given customer' do
 
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
       account_hash=FactoryGirl.build(:bank_account)
-      bank=@bank_accounts.create(customer['id'],account_hash)
+      bank=@bank_accounts.create(account_hash,customer['id'])
 
       bank_account=@bank_accounts.get(customer['id'],bank['id'])
       expect(bank_account['alias']).to match 'Cuenta principal'
       @bank_accounts.delete(customer['id'],bank['id'])
-
-
-
-
-
 
 
     end
@@ -87,13 +82,13 @@ describe  Bankaccounts do
   describe '.each' do
 
 
-    it 'iterator for  all bank accounts' do
+    it 'iterator for  all given customer bank accounts' do
 
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
       account_hash=FactoryGirl.build(:bank_account)
-      bank=@bank_accounts.create(customer['id'],account_hash)
+      bank=@bank_accounts.create(account_hash,customer['id'])
 
       @bank_accounts.each(customer['id']) do |bank_account|
 
@@ -102,6 +97,7 @@ describe  Bankaccounts do
       end
 
       @bank_accounts.delete(customer['id'],bank['id'])
+      @customers.delete(customer['id'])
 
     end
 
@@ -109,15 +105,41 @@ describe  Bankaccounts do
 end
 
 
+  describe '.list' do
+
+    it 'should list the bank accounts using a given filter' do
+       pending
+
+    end
+  end
+
+
 
   describe '.all' do
 
-    it 'list all bank accounts' do
+    it 'list all bank accounts for a given customer' do
 
-      pending
+         customer_hash= FactoryGirl.build(:customer)
+         customer=@customers.create(customer_hash)
+         expect(@bank_accounts.all(customer['id']).size).to be 0
+
+
+         account_hash=FactoryGirl.build(:bank_account)
+         bank=@bank_accounts.create(account_hash,customer['id'])
+         expect(@bank_accounts.all(customer['id']).size).to be 1
+
+         @bank_accounts.delete(customer['id'],bank['id'])
+         @customers.delete(customer['id'])
 
     end
 
+
+    it 'fails to list all bank accounts when a non existing customer is given' do
+
+      expect { @bank_accounts.all('11111') }.to raise_exception(RestClient::ResourceNotFound)
+
+
+    end
 
 
   end
@@ -129,16 +151,26 @@ end
 
   describe '.delete' do
 
-    it 'deletes  a given  bank accounts' do
+    it 'deletes  a given  bank account' do
 
-      pending
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+      expect(@bank_accounts.all(customer['id']).size).to be 0
+
+
+      account_hash=FactoryGirl.build(:bank_account)
+      bank=@bank_accounts.create(account_hash,customer['id'])
+      expect(@bank_accounts.all(customer['id']).size).to be 1
+
+      @bank_accounts.delete(customer['id'],bank['id'])
+      @customers.delete(customer['id'])
 
     end
 
 
-    it 'fails to delete  a given  bank accounts' do
+    it 'fails to delete  a non existing  bank accounts' do
 
-      pending
+         expect { @customers.delete('1111') }.to raise_exception  RestClient::ResourceNotFound
 
     end
 
@@ -146,18 +178,32 @@ end
 
 
 
-  describe '.delete_all!' do
+  describe '.delete_all' do
 
     it 'deletes all bank accounts' do
 
-      @bank_accounts.delete_all!
-      expect(@bank_accounts.all.size).to be 0
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      account_hash=FactoryGirl.build(:bank_account)
+
+      bank=@bank_accounts.create(account_hash,customer['id'])
+      expect(@bank_accounts.all(customer['id']).size).to be 1
+
+      @bank_accounts.delete_all(customer['id'])
+      expect(@bank_accounts.all(customer['id']).size).to be 0
+
 
     end
 
     it 'fails to deletes all bank accounts when used on PROD' do
 
-      pending
+      @openpayprod=OpenPayApi.new(@merchant_id, @private_key, true)
+      bank_accounts=@openpayprod.create(:bankaccounts)
+
+
+      expect { bank_accounts.delete_all('111111') }.to raise_exception   OpenPayError
+
 
     end
 

@@ -3,6 +3,7 @@ require 'resource_factory'
 require 'base64'
 require 'rest-client'
 require 'uri'
+require 'errors/open_pay_error'
 
 
 

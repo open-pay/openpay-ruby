@@ -6,13 +6,10 @@ require 'open_pay_resource'
 class Bankaccounts < OpenPayResource
 
 
-
-
-  def create(customer_id,bank_account)
+  def create(bank_account,customer_id)
     customers=@api_hook.create(:customers)
     customers.create_bank_account(customer_id,bank_account)
   end
-
 
 
   def get(customer_id='',bank_account=nil)
@@ -27,14 +24,10 @@ class Bankaccounts < OpenPayResource
   end
 
 
-  def delete(customer_id='',bank_account=nil)
+  def delete(customer_id,bank_account)
     customers=@api_hook.create(:customers)
+    customers.delete_bank_account(customer_id,bank_account)
 
-    if bank_account
-      customers.delete_bank_account(customer_id,bank_account)
-    else
-      customers.delete_bank_account(customer_id)
-    end
 
   end
 
@@ -46,6 +39,21 @@ class Bankaccounts < OpenPayResource
      end
 
   end
+
+
+  def all(customer_id)
+      customers=@api_hook.create(:customers)
+      customers.all_bank_accounts(customer_id)
+  end
+
+
+  def delete_all(customer_id)
+
+    customers=@api_hook.create(:customers)
+    customers.delete_all_bank_accounts(customer_id)
+
+  end
+
 
 
 

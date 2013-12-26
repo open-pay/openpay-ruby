@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["ronnie.bermejo.mx@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}
   spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.homepage      = "http://openpay.mx/"
+  spec.license       = "Apache"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

@@ -1,9 +1,4 @@
 
-
-#TODO , return JSON and HASH
-#TODO expose only named methods , no REST methods
-
-
 class OpenPayResource
 
 
@@ -33,9 +28,7 @@ class OpenPayResource
   end
 
 
-  #TODO, we wil require to use an array since there are resources with nested resources
   def url(args='')
-     p args
      @base_url+"#{@merchant_id}/"+ self.class.name.to_s.downcase+ '/'+args
   end
 
@@ -67,15 +60,6 @@ class OpenPayResource
       warn e.http_body
       raise e
   end
-   #TODO ver como puedo  sacar le status
-   @status_last_call=res
-
-   #TODO , poner el return del json
-  # if message.is_a?(Hash)
-   #  json= hash2json message
-  # else
-   #  json=message
-   #end
 
 
    JSON[json_out]
@@ -90,10 +74,10 @@ class OpenPayResource
   end
 
 
-  def delete_all!
+  def delete_all
 
     if env == :production
-      raise('This method is not supported on PRODUCTION')
+      raise OpenPayError ('This method is not supported on PRODUCTION')
     end
 
     each do |res|
@@ -156,7 +140,7 @@ class OpenPayResource
        warn e.http_body
        @errors=true
        return JSON.parse  e.http_body
-    rescue RestClient =>  e
+    rescue RestClient::Exception =>  e
         warn e.http_body
         @errors=true
         raise e

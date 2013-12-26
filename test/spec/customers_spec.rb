@@ -210,13 +210,13 @@ describe Customers do
 
       @openpayprod=OpenPayApi.new(@merchant_id,@private_key,true)
       cust=@openpayprod.create(:customers)
-      expect { cust.delete_all! }.to raise_error
+      expect { cust.delete_all }.to raise_error
 
 
     end
 
     it 'deletes all customer records' do
-     @customers.delete_all!
+     @customers.delete_all
      expect(@customers.all.size).to eq  0
     end
 

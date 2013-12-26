@@ -1,4 +1,5 @@
 require '../spec_helper'
+require 'pp'
 
 
 describe Cards do
@@ -29,6 +30,7 @@ describe Cards do
     it 'creates  merchant card' do
 
       card_hash = FactoryGirl.build(:valid_card)
+      pp card_hash
       cards=@cards.create(card_hash)
       expect(cards).to be_a(Hash)
 
@@ -177,7 +179,7 @@ describe Cards do
 
 
     it ' gets an existing  merchant card' do
-      bank_name='DESCONOCIDO'
+      bank_name='Banamex'
       card_hash = FactoryGirl.build(:valid_card)
 
       card=@cards.create(card_hash)
@@ -203,7 +205,7 @@ describe Cards do
 
     it ' gets an existing  customer card' do
 
-      bank_name='DESCONOCIDO'
+      bank_name='Banamex'
       customer_hash = FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
@@ -275,13 +277,9 @@ describe Cards do
 
     it 'list cards for a non exisiting  customer'   do
 
-      begin
-      expect(@cards.all('111111').size).to be   0
-      rescue => e
 
-        expect(e.http_status).to be 404
-        expect(e.json_body.kind_of?(Hash))
-      end
+      expect { @cards.all('111111') } .to raise_exception   RestClient::ResourceNotFound
+
 
 
     end
@@ -329,14 +327,15 @@ describe Cards do
 
       @openpayprod=OpenPayApi.new(@merchant_id, @private_key, true)
       cust=@openpayprod.create(:customers)
-      expect { cust.delete_all! }.to raise_error
+      expect { cust.delete_all }.to raise_error
 
 
     end
 
     it 'deletes all existing cards' do
 
-      @cards.delete_all!
+      @cards.delete_all
+
 
 
     end

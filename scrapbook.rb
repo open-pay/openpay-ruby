@@ -29,7 +29,7 @@ private_key='sk_92b25d3baec149e6b428d81abfe37006'
 opa=OpenPayApi.new(merchant_id, private_key)
 customers=opa.create(:customers)
 cards=opa.create(:cards)
-cards.delete_all!
+cards.delete_all
 
 
 customer=customers.create(customer)
