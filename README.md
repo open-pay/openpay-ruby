@@ -72,15 +72,15 @@ transfers=openpay.create(:transfers)
 
 According to the current version of the Openpay API the available resources are:
 
-*bankaccounts
-*cards
-*charges
-*customers
-*fees
-*payouts
-*plans
-*subscriptions
-*transfers
+- bankaccounts
+- cards
+- charges
+- customers
+- fees
+- payouts
+- plans
+- subscriptions
+- transfers
 
  Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
 
