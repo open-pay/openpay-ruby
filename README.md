@@ -1,9 +1,10 @@
 # openpay
 
 
-##Description:
+##Description
 
 Provides a ruby API to the Openpay REST API.
+
 For more information about Opepay vist: http://openpay.mx/
 
 For the full Openpay API documentation take a look at: http://docs.openpay.mx/
@@ -28,12 +29,16 @@ Or install it from the command line:
 
     * ruby 1.8.7 or higher
 
-## Usage:
+## Usage
 
 
-### Initialization:
+### Initialization
 ```ruby
 require 'openpay'
+
+#include Openpay module
+include Openpay
+
 
 #merchant and private key
 merchant_id='mywvupjjs9xdnryxtplq'
@@ -68,7 +73,36 @@ transfers=openpay.create(:transfers)
 
 
 
-### ruby hashes are used as the message format
+
+
+### Implementation
+ Each resources depending its structure and available methods will have one or more of the  methods listed below.
+
+
+#### Arguments
+Given most resources  belong either to a merchant or a customer, the api was designed taking this in consideration, so:
+
+The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
+So if the just one argument is provided the action will be performed at the merchant level,
+but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
+
+ ```ruby
+#Merchant
+open_pay_resource.create(hash)
+
+#Customer
+open_pay_resource.create(hash,customer_id)
+ ```
+
+
+####  Methods Inputs/Outputs
+
+This api supports both ruby hashes and json strings as inputs and outputs.
+If a ruby hash is passed in as in input, a hash will be returned as the method function.
+if a json string is passed in as an input, a json string will be returned as the method function.
+
+
+Here you can see how the card hash representation looks like
 
 ```ruby
 require 'pp'
@@ -92,60 +126,44 @@ pp card_hash
 ```
 
 
-Below an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
+This excerpt from a specification demonstrates how you can use hashes and json strings
 
 ```ruby
-cards=openpay.create(:cards)
+ it 'creates a fee using a json message' do
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
 
-#creates merchant card
-response_hash=cards.create(card_hash)
+      #create customer card   , using factory girl to build the hash for us
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge=@charges.create(charge_hash, customer['id'])
+
+      #create customer fee , using json as input, we get json as ouput
+      fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
+      expect(@fees.create(fee_json)).to have_json_path('amount')
+
+    end
 ```
 
-If you want to use json instead, you can perform the transform prior the api call  as noted below:
- ```ruby
-cards_json='{"bank_name":"visa","holder_name":"Vicente Olmos","expiration_month":"09",
-"card_number":"4111111111111111","expiration_year":"14","bank_code":"bmx","cvv2":"111",
-"address":{"postal_code":"76190","state":"QRO","line1":"LINE1","line2":"LINE2","line3":"LINE3","country_code":"MX","city":"Queretaro"}}'
-
-cards.create(JSON[cards_json])
-```
-
-The same way, you can perform a transform after the api call.
- ```ruby
-response_json=cards.create(JSON[cards_json]).to_json
-```
-
-### Implementation
- Each resources depending its structure and available methods will have one or more of the  methods listed below.
 
 
-#### Arguments
-Given most resources  belong either to a merchant or a customer, the api was designed taking this in consideration, so:
-
-The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
-So if the just one argument is provided the action will be performed at the merchant level,
-but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
-
-
- ```ruby
-#Merchant
-open_pay_resource.create(hash)
-
-#Customer
-open_pay_resource.create(hash,customer_id)
- ```
 
 ####Methods
 
 This ruby API standardize the method names across all different resources using the create,get,update and delete verbs.
 For full method documentation take a look at:   http://docs.openpay.mx/
+
 (The test suite at test/spec is a good source of reference)
 
 #####create
 
    Creates the given resource
  ```ruby
-     open_pay_resource.create(object_id,customer_id=nil)
+     open_pay_resource.create(representation,customer_id=nil)
  ```
 
 
@@ -158,12 +176,12 @@ open_pay_resource.get(object_id,customer_id=nil)
 ```
 
 
-#####updates
+#####update
 
    Updates an instance of a given resource
 
 ```ruby
-open_pay_resource.get(object_id,customer_id=nil)
+open_pay_resource.update(representation,customer_id=nil)
 ```
 
 
