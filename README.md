@@ -29,21 +29,23 @@ Or install it from the command line:
 
 
 ### Initialization:
+    ```ruby
     require 'openpay'
 
     #merchant and private key
     merchant_id='mywvupjjs9xdnryxtplq'
     private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    #creamos factoria openpay  apuntando al ambiente de pruebas   (ambiente de pruebas por default)
-    #An openpay resource factory is created, development envirionment is used by default
+
+    #An openpay resource factory is created pointing  to the development environment
     openpay=OpenpayApi.new(merchant_id,private_key)
 
-    #Para utilizar el ambiente de produccion es necesario el tercer argumento puesto en true
+    #To enable production mode you should pass a third argument as true
     #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
-###El Objeto openpay actúa como una factoría de recursos rest , esta regresa un objeto que representa cada recurso.
+### The openpay factory instance is in charge to generate the required resources.
 
+       ```ruby
        bankaccounts=openpay.create(:bankaccounts)
        cards=openpay.create(:cards)
        charges=openpay.create(:charges)
@@ -54,9 +56,12 @@ Or install it from the command line:
        subscriptions=openpay.create(:subscriptions)
        transfers=openpay.create(:transfers)
 
+Each rest resource is represented by a class.   Resource class should be inzatiatied using the factory method as noted before.
 
-### Los recursos OpenPay aceptan Hash nativos de ruby
 
+### ruby hashes are used to
+
+            ```ruby
             require 'pp'
 
             pp card_hash
@@ -78,7 +83,7 @@ Or install it from the command line:
 
 
 
-Aquí se demuestra como se crea una tarjeta a nivel establecimiento, un hash se pasa como argumento y a su vez un hash regresa como parte de la respuesta
+Below is an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
 
                  cards=openpay.create(:cards)
 
@@ -86,15 +91,16 @@ Aquí se demuestra como se crea una tarjeta a nivel establecimiento, un hash se 
                  response_hash=cards.create(card_hash)
 
 
-Si recibes tus mensajes directo en json , puedes transformarlo justo antes de pasarlo como argumento en forma de Hash
+If you want to use json instead, you can perform the transform prior the api call  as noted below:
 
+             ```ruby
              cards_json='{"bank_name":"visa","holder_name":"Vicente Olmos","expiration_month":"09",
              "card_number":"4111111111111111","expiration_year":"14","bank_code":"bmx","cvv2":"111",
              "address":{"postal_code":"76190","state":"QRO","line1":"LINE1","line2":"LINE2","line3":"LINE3","country_code":"MX","city":"Queretaro"}}'
 
              cards.create(JSON[cards_json])
 
-A su vez las respuestas en caso de necesitarlas en json puedas transformarlas justo al recibirlas
+In the same way, you can perform a transform after the api call.
 
               response_json=cards.create(JSON[cards_json]).to_json
 
