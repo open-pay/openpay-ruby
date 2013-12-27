@@ -1,13 +1,16 @@
 # openpay
 
-Provides a ruby api to the Openpay Rest api.
 
-## Full documentation at: http://docs.openpay.mx/
+##Description:
+
+Provides a ruby API to the Openpay REST API.
+For more information about Opepay vist: http://openpay.mx/
+
+For the full Openpay API documentation take a look at: http://docs.openpay.mx/
 
 ## Installation
 
    Add the following line to your Gem file
-
 
    # gem install --source https://code.stripe.com stripe
 
@@ -60,7 +63,7 @@ plans=openpay.create(:plans)
 subscriptions=openpay.create(:subscriptions)
 transfers=openpay.create(:transfers)
 ```
- Each rest resource exposed in the rest Openpay API is represented by a class in the ruby API, being OpenpayResource the base class.
+ Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
 
 
 
@@ -132,14 +135,11 @@ open_pay_resource.create(hash)
 open_pay_resource.create(hash,customer_id)
  ```
 
-
-
-
-
-
 ####Methods
 
-This ruby API standardize the method names across all different resources using the create,get and delete verbs.
+This ruby API standardize the method names across all different resources using the create,get,update and delete verbs.
+For full method documentation take a look at:   http://docs.openpay.mx/
+(The test suite at test/spec is a good source of reference)
 
 #####create
 
@@ -156,6 +156,16 @@ This ruby API standardize the method names across all different resources using 
 ```ruby
 open_pay_resource.get(object_id,customer_id=nil)
 ```
+
+
+#####updates
+
+   Updates an instance of a given resource
+
+```ruby
+open_pay_resource.get(object_id,customer_id=nil)
+```
+
 
 
 #####delete
