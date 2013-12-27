@@ -71,16 +71,11 @@ describe Charges do
 
       #perform check
       stored_charge=@charges.get(charge['id'],customer['id'])
-      expect(stored_charge['amount']).to be_within(0.1).of(100)
+      expect(stored_charge['amount']).to be_within(0.1).of(1000)
 
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
-
-    end
-
-    it 'creates a new customer charge using the card method using a new card' do
-      pending
 
     end
 
@@ -324,10 +319,6 @@ describe Charges do
     end
 
 
-    it 'fails to refunds an non existing merchant charge' do
-      pending
-    end
-
 
 
     it 'refunds  an existing customer charge'  do
@@ -359,10 +350,6 @@ describe Charges do
 
 
 
-    end
-
-    it 'fails to refund an non existing customer charge' do
-      pending
     end
 
 

@@ -3,16 +3,13 @@ require '../spec_helper'
 
 describe Payouts do
 
-
-
-
-  before(:all) do
+   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
     @openpay=OpenPayApi.new(@merchant_id, @private_key)
-    @payout=@openpay.create(:payouts)
+    @payouts=@openpay.create(:payouts)
 
     @customers=@openpay.create(:customers)
     @cards=@openpay.create(:cards)
@@ -22,117 +19,120 @@ describe Payouts do
 
     @fees=@openpay.create(:fees)
 
-
-
   end
-
-
 
 
   describe '.create' do
 
     it 'creates a merchant payout' do
 
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'b4ravkgvpir9izop1faz',amount: 100)
+    payout_hash= FactoryGirl.build(:payout_card, destination_id: 'b4ravkgvpir9izop1faz',amount: 100)
 
-     p  payout=@payout.create(payout_hash)
-      expect(@payout.get(payout['id'])['amount']).to be_within(0.1).of(100)
-
-
-
+     payout=@payouts.create(payout_hash)
+     expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(100)
 
     end
 
 
-    it 'creates a merchant payout into a customer bank account' do
-
-      pending
-      #create new customer
-      customer_hash= FactoryGirl.build(:customer)
-      customer=@customers.create(customer_hash)
-
-      #create customer bankaccount
-      account_hash=FactoryGirl.build(:bank_account)
-      account=@bank_accounts.create(account_hash, customer['id'])
 
 
+      it 'creates a customer  payout using a card' do
+        #We need to charge 1st into the card we are going to use
 
-      payout_hash= FactoryGirl.build(:payout_bank_account, destination_id: account['id'],amount: 400)
-      #  payout_hash= FactoryGirl.build(:payout_card, destination_id: account['id'])
-
-     p payout=@payout.create(payout_hash)
-      expect(@payout.get(payout['id'])).to be_within(0.1).of(400)
-
-
-
-
-
-      #clenup
-      @cards.delete_all
-       @bank_accounts.delete_all(customer['id'])
-      @customers.delete_all
-
-
-
-    end
-
-      it 'creates a customer to customer payout' do
         #create new customer
         customer_hash= FactoryGirl.build(:customer)
         customer=@customers.create(customer_hash)
 
-        #create customer bankaccount
-        account_hash=FactoryGirl.build(:bank_account)
-        account=@bank_accounts.create(account_hash, customer['id'])
-
+        #create new customer card
+        card_hash=FactoryGirl.build(:valid_card)
+        card=@cards.create(card_hash, customer['id'])
 
         #create charge
-        charge_hash=FactoryGirl.build(:bank_charge, source_id:account['id'],order_id: account['id'])
+        charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
         charge=@charges.create(charge_hash,customer['id'])
 
-        #create  customer    2
-        customer_hash= FactoryGirl.build(:customer)
-        customer2=@customers.create(customer_hash)
+        payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'],amount: 400)
 
-        #create customer bankaccount 2
-        account_hash=FactoryGirl.build(:bank_account,clabe:  '072324523452346231' )
-        account2=@bank_accounts.create(account_hash, customer2['id'])
+        payout=@payouts.create(payout_hash,customer['id'])
+        expect(  @payouts.get(  payout['id'],customer['id'] )['amount']).to be_within(0.1).of(400)
 
-
-        #create charge
-        charge_hash2=FactoryGirl.build(:bank_charge, source_id:account2['id'],order_id: account2['id'])
-        charge=@charges.create(charge_hash2,customer['id'])
-
-
-        payout_hash= FactoryGirl.build(:payout_bank_account, destination_id: account2['id'],amount: 400)
-        #  payout_hash= FactoryGirl.build(:payout_card, destination_id: account['id'])
-
-        payout=@payout.create(payout_hash,customer2['id'])
-        expect(@payout.get(payout['id'])).to be_within(0.1).of(400)
-
-
-
-
-
-        #clenup
+       #clenup
         @cards.delete_all
         @bank_accounts.delete_all(customer['id'])
-        @customers.delete_all
-     end
+
+      end
+
+
+
+    it 'creates a customer  payout using a bank account' do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create new customer bank account
+      account_hash=FactoryGirl.build(:bank_account)
+      account=@bank_accounts.create(account_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: account['id'],amount: 400)
+
+      payout=@payouts.create(payout_hash,customer['id'])
+      expect(  @payouts.get(  payout['id'],customer['id'] )['amount']).to be_within(0.1).of(400)
+
+      #clenup
+      @cards.delete_all
+      @bank_accounts.delete_all(customer['id'])
+     # @customers.delete_all
+    end
+
 
 
   end
 
   describe '.get' do
 
-    it 'get a merchant payout' do
+    it 'gets a merchant payout' do
 
-             p   @payout.all
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'b4ravkgvpir9izop1faz',amount: 10)
+
+      payout=@payouts.create(payout_hash)
+      expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(10)
 
     end
 
-    it 'get  a customer payout' do
-      pending
+    it 'gets  a customer payout' do
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'],amount: 40)
+
+      payout=@payouts.create(payout_hash,customer['id'])
+
+      res=@payouts.get( payout['id'],customer['id'] )
+      expect(res['amount']).to be_within(0.1).of(40)
+
+      #clenup
+      @cards.delete_all
+      @bank_accounts.delete_all(customer['id'])
+      #@customers.delete_all
     end
 
 
@@ -141,11 +141,17 @@ describe Payouts do
   describe '.all' do
 
     it 'all merchant payouts' do
-      pending
+
+     expect(@payouts.all.size).to be_a Integer
+     expect(@payouts.all.last['transaction_type']) .to match 'payout'
+
+
     end
 
     it 'all customer payout' do
-      pending
+        @customers.each do |cust|
+             expect(@payouts.all(cust['id']).last['transaction_type'] ).to match 'payout'
+         end
     end
 
   end
@@ -154,11 +160,20 @@ describe Payouts do
   describe '.each' do
 
     it 'iterates over all merchant payouts' do
-      pending
+
+      @payouts.each do |pay|
+        expect(@payouts.get(pay['id'])['transaction_type'] ).to match 'payout'
+      end
+
     end
 
-    it 'iterates over  all customer payouts' do
-      pending
+    it 'iterates over a given customer payouts' do
+       a_customer=@customers.all.last
+       @payouts.each(a_customer['id'])do |pay|
+        expect(@payouts.get(pay['id'])['transaction_type'] ).to match 'payout'
+      end
+
+
     end
 
   end

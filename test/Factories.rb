@@ -125,8 +125,8 @@ FactoryGirl.define do
   factory :bank_account, class:Hash do
 
         holder_name  'Juan Perez'
-        clabe  '032180000118359719'
         self.alias  'Cuenta principal'
+        clabe  '032180000118359719'
 
         initialize_with { attributes }
 
@@ -137,10 +137,11 @@ FactoryGirl.define do
   factory :card_charge, class:Hash do
 
 
-        amount  "100"
+        amount  "1000"
         description "Cargo inicial a tarjeta"
         source_id "string"
         method  "card"
+        order_id 'required'
 
        initialize_with { attributes }
 
@@ -149,10 +150,10 @@ FactoryGirl.define do
 
   factory :bank_charge, class:Hash do
 
-
     amount  "10000"
     description "Cargo con banco"
     source_id "string"
+    order_id 'required'
     method  "bank_account"
 
     initialize_with { attributes }

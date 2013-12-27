@@ -17,12 +17,8 @@ describe Cards do
   end
 
   after(:all) do
-    @openpay.create(:customers).delete_all!
-
+    @openpay.create(:customers).delete_all
   end
-
-
-
 
 
   describe '.create' do
@@ -67,14 +63,11 @@ describe Cards do
       expect(customer_cards.size).to be 1
       expect(cards['holder_name']).to match 'Pepe'
 
-      stored_card=@cards.get(id , customer['id'] )
+      stored_card=@cards.get(id, customer['id'])
       expect(stored_card['holder_name']).to match 'Pepe'
       expect(stored_card['id']).to match id
 
-
-
-
-      @cards.delete(id , customer['id'] )
+      @cards.delete(id, customer['id'])
 
 
     end
@@ -92,7 +85,6 @@ describe Cards do
     end
 
 
-
     it 'fails when using an expired card' do
       card_hash = FactoryGirl.build(:expired_card)
       expect { @cards.create(card_hash) }.to raise_error(RestClient::PaymentRequired)
@@ -102,7 +94,6 @@ describe Cards do
     it 'fails when using a stolen card' do
       card_json = FactoryGirl.build(:valid_card, card_number: '4000000000000119')
       expect { @cards.create(card_json) }.to raise_error(RestClient::PaymentRequired)
-
     end
 
   end
@@ -123,31 +114,18 @@ describe Cards do
   describe '.delete' do
 
     it 'deletes any existing card' do
-
       @cards.each do |card|
         @cards.delete(card['id'])
       end
-
-
-
-
-
     end
-
 
 
     it 'fails to deletes a non existing card' do
-
-      expect { @cards.delete('1111111')  }.to raise_exception(RestClient::ResourceNotFound)
-
-
+      expect { @cards.delete('1111111') }.to raise_exception(RestClient::ResourceNotFound)
     end
 
 
-
-    it  'deletes a customer card' do
-
-
+    it 'deletes a customer card' do
 
       customers=@openpay.create(:customers)
       customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Paez')
@@ -158,16 +136,14 @@ describe Cards do
       card=@cards.create(card_hash, customer['id'])
       expect(card['holder_name']).to match 'Vicente Olmos'
 
-
-      @cards.delete(card['id'],customer['id'])
+      @cards.delete(card['id'], customer['id'])
 
     end
 
 
     it 'fails to deletes a non existing  customer card' do
 
-      expect { @cards.delete('1111111','1111')  }.to raise_exception(RestClient::ResourceNotFound)
-
+      expect { @cards.delete('1111111', '1111') }.to raise_exception(RestClient::ResourceNotFound)
 
     end
 
@@ -195,12 +171,8 @@ describe Cards do
 
 
     it 'fails when getting a non existing card' do
-
-       expect { @cards.get('11111')  }.to  raise_exception(RestClient::ResourceNotFound)
-
-
+      expect { @cards.get('11111') }.to raise_exception(RestClient::ResourceNotFound)
     end
-
 
 
     it ' gets an existing  customer card' do
@@ -215,38 +187,34 @@ describe Cards do
       id=card['id']
 
       #two parameters  for getting customer cards
-      stored_cards = @cards.get( id , customer['id'])
+      stored_cards = @cards.get(id, customer['id'])
       bank=stored_cards['bank_name']
       expect(bank).to match bank_name
-      @cards.delete(id , customer['id'])
+      @cards.delete(id, customer['id'])
 
     end
 
 
     it 'fails when getting a non existing customer card' do
-
-      expect { @cards.get('11111','1111')  }.to  raise_exception(RestClient::ResourceNotFound)
-
-   end
+      expect { @cards.get('11111', '1111') }.to raise_exception(RestClient::ResourceNotFound)
+    end
 
 
   end
-
 
 
   describe '.all' do
 
     it 'list all merchant cards' do
 
-
-      expect(@cards.all.size).to be   0
+      expect(@cards.all.size).to be 0
 
       card_hash = FactoryGirl.build(:valid_card)
 
       card=@cards.create(card_hash)
       id=card['id']
 
-      expect(@cards.all.size).to be   1
+      expect(@cards.all.size).to be 1
 
       @cards.delete(id)
 
@@ -255,11 +223,10 @@ describe Cards do
 
     it 'list all customer cards' do
 
-
       customer_hash = FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
-      expect(@cards.all(customer['id']).size).to be   0
+      expect(@cards.all(customer['id']).size).to be 0
 
 
       card_hash = FactoryGirl.build(:valid_card)
@@ -267,58 +234,42 @@ describe Cards do
       card=@cards.create(card_hash, customer['id'])
       id=card['id']
 
+      expect(@cards.all(customer['id']).size).to be 1
 
-      expect(@cards.all(customer['id']).size).to be   1
-
-      @cards.delete(id , customer['id'])
-
-    end
-
-
-    it 'list cards for a non exisiting  customer'   do
-
-
-      expect { @cards.all('111111') } .to raise_exception   RestClient::ResourceNotFound
-
-
+      @cards.delete(id, customer['id'])
 
     end
 
 
-
+    it 'list cards for a non existing  customer' do
+      expect { @cards.all('111111') }.to raise_exception RestClient::ResourceNotFound
+    end
 
 
   end
-
 
 
   describe '.list' do
 
-  it 'list the merchant cards using a filter' do
+    it 'list the merchant cards using a filter' do
 
-     pending
-    #creation[gte]=yyyy-mm-dd
-    #creation[lte]=yyyy-mm-dd
-    #offset=0&
-    #limit=10
-   # @cards.list('2000-01-01','2000-01-01',0,10)
-
-
-
-  end
+      pending
+      #creation[gte]=yyyy-mm-dd
+      #creation[lte]=yyyy-mm-dd
+      #offset=0&
+      #limit=10
+      # @cards.list('2000-01-01','2000-01-01',0,10)
 
 
-  it 'list the customer cards using a filter' do
-     pending
-  end
+    end
 
 
+    it 'list the customer cards using a filter' do
+      pending
+    end
 
 
   end
-
-
-
 
 
   describe '.delete_all' do
@@ -335,7 +286,6 @@ describe Cards do
     it 'deletes all existing cards' do
 
       @cards.delete_all
-
 
 
     end

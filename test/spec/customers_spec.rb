@@ -58,7 +58,7 @@ describe Customers do
       customer=@customers.create(customer_hash)
       id=customer['id']
       @customers.delete(id)
-      expect(@customers.get(id)).to be nil
+      expect { @customers.get(id) }.to raise_exception RestClient::ResourceNotFound
     end
 
   end

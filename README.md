@@ -37,18 +37,16 @@ merchant_id='mywvupjjs9xdnryxtplq'
 private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
 
-#An openpay resource factory is created pointing  to the development environment
+#An openpay resource factory instance is created out of the OpenpayApi, it  points to the development environment  by default.
 openpay=OpenpayApi.new(merchant_id,private_key)
 
-#To enable production mode you should pass a third argument as true
+#To enable production mode you should pass a third argument as true.
 #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
  ```
 
-
-
-### The openpay factory instance is in charge to generate the required resources.
-Each rest resource is represented by a class.Resource classes should be initialized using the factory method as described below.
+The openpay factory instance is in charge to generate the required resources through a factory method (create).
+Resource classes should be initialized using the factory method as described below.
 
  ```ruby
 #creating a instance for each available resource
@@ -62,6 +60,7 @@ plans=openpay.create(:plans)
 subscriptions=openpay.create(:subscriptions)
 transfers=openpay.create(:transfers)
 ```
+ Each rest resource exposed in the rest Openpay API is represented by a class in the ruby API, being OpenpayResource the base class.
 
 
 
@@ -134,6 +133,8 @@ open_pay_resource.create(object_id,customer_id)
 
 ####Methods
 
+This ruby API standardize the method names across all different resources using the create,get and delete verbs.
+
 #####create
 
    Creates the given resource
@@ -186,18 +187,11 @@ open_pay_resource.each(customer_id=nil)
 
 ## Exceptions/Errors
 
-#### Este Api utiliza como base la libreria de rest-client[1][2]
-Por lo cual hemos decidido utilizar su sistema de exepciones tal cual es.
+This API is built over the great rest-client gem.
+So our exceptions are based on their exception classes.
 
-Para codigos de regreso del 200 al 207, una excepcion de tipo  RestClient::Response sera regresada.
 
-Para codigos de regreso 301, 302 o 307, se hara un redirecionamiento si la peticion de GET o HEAD.
-
-Para el codigo 303, se hara un redirecionamiento y el request sera transformado  en un GET.
-
- Para otros casos una RestClient::Exception con la Respuesta sera lanzado; Una expcion expecifica sera lanzada para errores conocidos.
-
-       #En el caso de listar un objeto no existente una excepcion de tipo RestClient::ResourceNotFound sera lanzada
+    #En el caso de listar un objeto no existente una excepcion de tipo RestClient::ResourceNotFound sera lanzada
 
       expect { @cards.all('111111') } .to raise_exception   RestClient::ResourceNotFound
 
