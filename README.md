@@ -83,7 +83,7 @@ Each rest resource exposed in the rest Openpay API is represented by a class in 
 
 
 ### Implementation
- Each resources depending its structure and available methods will have one or more of the methods described under the methods subsection.
+ Each resource depending its structure and available methods will have one or more of the methods described under the methods subsection.
 
 
 #### Arguments
