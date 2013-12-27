@@ -29,57 +29,60 @@ Or install it from the command line:
 
 
 ### Initialization:
-    ```ruby
-    require 'openpay'
+```ruby
+require 'openpay'
 
-    #merchant and private key
-    merchant_id='mywvupjjs9xdnryxtplq'
-    private_key='sk_92b25d3baec149e6b428d81abfe37006'
+#merchant and private key
+merchant_id='mywvupjjs9xdnryxtplq'
+private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
 
-    #An openpay resource factory is created pointing  to the development environment
-    openpay=OpenpayApi.new(merchant_id,private_key)
+#An openpay resource factory is created pointing  to the development environment
+openpay=OpenpayApi.new(merchant_id,private_key)
 
-    #To enable production mode you should pass a third argument as true
-    #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
+#To enable production mode you should pass a third argument as true
+#openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
 ### The openpay factory instance is in charge to generate the required resources.
 
-       ```ruby
-       bankaccounts=openpay.create(:bankaccounts)
-       cards=openpay.create(:cards)
-       charges=openpay.create(:charges)
-       customers=openpay.create(:customers)
-       fees=openpay.create(:fees)
-       payouts=openpay.create(:payouts)
-       plans=openpay.create(:plans)
-       subscriptions=openpay.create(:subscriptions)
-       transfers=openpay.create(:transfers)
+bankaccounts=openpay.create(:bankaccounts)
+cards=openpay.create(:cards)
+charges=openpay.create(:charges)
+customers=openpay.create(:customers)
+fees=openpay.create(:fees)
+payouts=openpay.create(:payouts)
+plans=openpay.create(:plans)
+subscriptions=openpay.create(:subscriptions)
+transfers=openpay.create(:transfers)
+```
+
 
 Each rest resource is represented by a class.   Resource class should be inzatiatied using the factory method as noted before.
 
 
 ### ruby hashes are used to
 
-            ```ruby
-            require 'pp'
+```ruby
+require 'pp'
 
-            pp card_hash
-             {:bank_name=>"visa",
-              :holder_name=>"Vicente Olmos",
-              :expiration_month=>"09",
-              :card_number=>"4111111111111111",
-              :expiration_year=>"14",
-              :bank_code=>"bmx",
-              :cvv2=>"111",
-              :address=>
-               {:postal_code=>"76190",
-                :state=>"QRO",
-                :line1=>"LINE1",
-                :line2=>"LINE2",
-                :line3=>"LINE3",
-                :country_code=>"MX",
-                :city=>"Queretaro"}}
+pp card_hash
+ {:bank_name=>"visa",
+  :holder_name=>"Vicente Olmos",
+  :expiration_month=>"09",
+  :card_number=>"4111111111111111",
+  :expiration_year=>"14",
+  :bank_code=>"bmx",
+  :cvv2=>"111",
+  :address=>
+   {:postal_code=>"76190",
+    :state=>"QRO",
+    :line1=>"LINE1",
+    :line2=>"LINE2",
+    :line3=>"LINE3",
+    :country_code=>"MX",
+    :city=>"Queretaro"}}
+```
+
 
 
 
