@@ -95,33 +95,39 @@ Below is an example of how you can create a merchant card, a hash is passed as a
 
 
 If you want to use json instead, you can perform the transform prior the api call  as noted below:
+ ```ruby
+     cards_json='{"bank_name":"visa","holder_name":"Vicente Olmos","expiration_month":"09",
+     "card_number":"4111111111111111","expiration_year":"14","bank_code":"bmx","cvv2":"111",
+     "address":{"postal_code":"76190","state":"QRO","line1":"LINE1","line2":"LINE2","line3":"LINE3","country_code":"MX","city":"Queretaro"}}'
 
-             ```ruby
-             cards_json='{"bank_name":"visa","holder_name":"Vicente Olmos","expiration_month":"09",
-             "card_number":"4111111111111111","expiration_year":"14","bank_code":"bmx","cvv2":"111",
-             "address":{"postal_code":"76190","state":"QRO","line1":"LINE1","line2":"LINE2","line3":"LINE3","country_code":"MX","city":"Queretaro"}}'
-
-             cards.create(JSON[cards_json])
+     cards.create(JSON[cards_json])
+```
 
 In the same way, you can perform a transform after the api call.
+ ```ruby
+      response_json=cards.create(JSON[cards_json]).to_json
+```
 
-              response_json=cards.create(JSON[cards_json]).to_json
-
-### Cada recurso dependiendo sus estrucutra y metodos disponibles tendra cada uno de los metodos correspondientes:
+### Each resources depending its structure and available methods will have one or more of the following methods:
 
 
-####Argumentos
-Dado que algunos recursos pueden formar parte del establecimiento o de los clientes,
-los métodos listados disponen de un argumento opcional el cual acepta el id del cliente,
-de esta forma esta función será aplicada a nivel cliente, y en su defecto la operación será aplicada a nivel establecimiento.
+####Arguments
+Given most resources  belong either to merchant or a customer,m ost api methods have two arguments
+The first argument represent the json/hash object, while the second argument which is optional represents the customer_id .
+So if the just one argument is provided the action will be performed at the merchant level,
+but if the second argument is provided passing the customer_id it will be performed at the customer level
 
-         #nivel establecimiento
-         open_pay_resource.create(object_id)
 
-         #nivel cliente
-         open_pay_resource.create(object_id,customer_id)
+ ```ruby
 
-####Metodos
+     #Merchant
+     open_pay_resource.create(object_id)
+
+     #Customer
+     open_pay_resource.create(object_id,customer_id)
+ ```
+
+#####  Methods
 
 #####create
 
@@ -185,8 +191,8 @@ Al generarse una exepcion se genera tambien un warning, si tienes acceso a la co
 
 
 
-## Mas Información
+## More information
 
-Para todos los ejemplos de uso recomiendo mirar los casos de prueba bajo el folder test/spec
+For more use cases take a look at the test/spec folder
 
 1.  http://docs.openpay.mx/
