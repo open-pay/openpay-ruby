@@ -113,15 +113,15 @@ The same way, you can perform a transform after the api call.
 response_json=cards.create(JSON[cards_json]).to_json
 ```
 
-#### Implementation
- Each resources depending its structure and available methods will have one or more of the following methods:
+### Implementation
+ Each resources depending its structure and available methods will have one or more of the  methods listed below.
 
 
-##### Arguments
-Given most resources  belong either to merchant or a customer,m ost api methods have two arguments
-The first argument represent the json/hash object, while the second argument which is optional represents the customer_id .
+#### Arguments
+Given most resources  belong either to merchant or a customer most api methods have two arguments.
+The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
 So if the just one argument is provided the action will be performed at the merchant level,
-but if the second argument is provided passing the customer_id it will be performed at the customer level
+but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
 
 
  ```ruby
@@ -132,7 +132,7 @@ open_pay_resource.create(object_id)
 open_pay_resource.create(object_id,customer_id)
  ```
 
-#####  Methods
+####Methods
 
 #####create
 
