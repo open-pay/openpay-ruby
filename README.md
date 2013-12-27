@@ -3,10 +3,11 @@
 
 ##Description
 
-Provides a ruby API to the Openpay REST API.
+ruby client for Openpay API services (version 1.0.0)
+
+This is a client implementing the payment services for Openpay at openpay.mx
 
 For more information about Opepay vist: http://openpay.mx/
-
 For the full Openpay API documentation take a look at: http://docs.openpay.mx/
 
 ## Installation
@@ -68,15 +69,24 @@ plans=openpay.create(:plans)
 subscriptions=openpay.create(:subscriptions)
 transfers=openpay.create(:transfers)
 ```
+
+According to the current version of the Openpay API the available resources are:
+
+*bankaccounts
+*cards
+*charges
+*customers
+*fees
+*payouts
+*plans
+*subscriptions
+*transfers
+
  Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
 
 
-
-
-
-
 ### Implementation
- Each resources depending its structure and available methods will have one or more of the  methods listed below.
+ Each resources depending its structure and available methods will have one or more of the methods described under the methods subsection.
 
 
 #### Arguments
@@ -98,33 +108,8 @@ open_pay_resource.create(hash,customer_id)
 ####  Methods Inputs/Outputs
 
 This api supports both ruby hashes and json strings as inputs and outputs.
-If a ruby hash is passed in as in input, a hash will be returned as the method function.
-if a json string is passed in as an input, a json string will be returned as the method function.
-
-
-Here you can see how the card hash representation looks like
-
-```ruby
-require 'pp'
-
-pp card_hash
-{:bank_name=>"visa",
-:holder_name=>"Vicente Olmos",
-:expiration_month=>"09",
-:card_number=>"4111111111111111",
-:expiration_year=>"14",
-:bank_code=>"bmx",
-:cvv2=>"111",
-:address=>
-{:postal_code=>"76190",
-:state=>"QRO",
-:line1=>"LINE1",
-:line2=>"LINE2",
-:line3=>"LINE3",
-:country_code=>"MX",
-:city=>"Queretaro"}}
-```
-
+If a ruby hash is passed in as in input, a hash will be returned as the method output.
+if a json string is passed in as an input, a json string will be returned as the method function output.
 
 This excerpt from a specification demonstrates how you can use hashes and json strings
 
@@ -147,6 +132,29 @@ This excerpt from a specification demonstrates how you can use hashes and json s
       expect(@fees.create(fee_json)).to have_json_path('amount')
 
     end
+```
+
+Here you can see how the card hash representation looks like
+
+```ruby
+require 'pp'
+
+pp card_hash
+{:bank_name=>"visa",
+:holder_name=>"Vicente Olmos",
+:expiration_month=>"09",
+:card_number=>"4111111111111111",
+:expiration_year=>"14",
+:bank_code=>"bmx",
+:cvv2=>"111",
+:address=>
+{:postal_code=>"76190",
+:state=>"QRO",
+:line1=>"LINE1",
+:line2=>"LINE2",
+:line3=>"LINE3",
+:country_code=>"MX",
+:city=>"Queretaro"}}
 ```
 
 
@@ -188,7 +196,7 @@ open_pay_resource.update(representation,customer_id=nil)
 
 #####delete
 
-  Deletes an instance o
+  Deletes an instance of the given resource
 
 
 ```ruby
@@ -196,27 +204,29 @@ open_pay_resource.delete(object_id,customer_id=nil)
 ```
 
 
-#####delete_all
-
-   Borra todas las instancia de un recurso (disponible solo en algunos metodos y en ambiente de pruebas)
-
-
-```ruby
-open_pay_resource.delete_all(customer_id=nil)
-```
-
 
 #####all
-   Regresa un Array con todas  las  instancia de un recurso
+   Returns an array of all instances of a resource
 ```ruby
 open_pay_resource.all(customer_id=nil)
 ```
 
 #####each
-   Regresa un bloque con todas  las  instancia de un recurso
+   Returns a block for each instance resource
 ```ruby
 open_pay_resource.each(customer_id=nil)
  ```
+
+
+
+#####delete_all(available only under the development environment)
+
+   Deletes all instances of the given resource
+
+```ruby
+#in case this method is executed under the production environment an OpenpayException will be raised.
+open_pay_resource.delete_all(customer_id=nil)
+```
 
 
 ## Exceptions/Errors
