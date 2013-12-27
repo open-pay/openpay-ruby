@@ -1,38 +1,43 @@
-# OpenPay
+# openpay
 
-Esta Gema permite utilizar el Rest API de OpenPay desde ruby.
+Provides a ruby api to the Openpay Rest api.
 
-## Documentacion completa en: http://docs.openpay.mx/
+## Full documentation at: http://docs.openpay.mx/
 
-## Instalación
+## Installation
 
-   Adiciona estas lineas a tu gem file
+   Add the following line to your Gem file
 
-    gem 'OpenPay'
 
-Actualiza tu bundle:
+   # gem install --source https://code.stripe.com stripe
+
+    gem 'openpay'
+
+Update your bundle:
 
     $ bundle
 
-O instalala tu mismo:
+Or install it from the command line:
 
-    $ gem install OpenPay
+    $ gem install openpay
+
+##Requirements
+
+    * ruby 1.8.7 or higher
+
+## Usage:
 
 
+### Initialization:
+    require 'openpay'
 
-
-## Uso:
-
-
-###Inicialización
-    require 'OpenPay'
-
-    #Tu llave de negocio y llave privada
+    #merchant and private key
     merchant_id='mywvupjjs9xdnryxtplq'
     private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
     #creamos factoria openpay  apuntando al ambiente de pruebas   (ambiente de pruebas por default)
-    openpay=OpenPayApi.new(merchant_id,private_key)
+    #An openpay resource factory is created, development envirionment is used by default
+    openpay=OpenpayApi.new(merchant_id,private_key)
 
     #Para utilizar el ambiente de produccion es necesario el tercer argumento puesto en true
     #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
