@@ -43,7 +43,16 @@ openpay=OpenpayApi.new(merchant_id,private_key)
 #To enable production mode you should pass a third argument as true
 #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
 
+ ```
+
+
+
 ### The openpay factory instance is in charge to generate the required resources.
+Each rest resource is represented by a class.Resource classes should be initialized using the factory method as described below.
+
+ ```ruby
+
+
 
 bankaccounts=openpay.create(:bankaccounts)
 cards=openpay.create(:cards)
@@ -57,10 +66,9 @@ transfers=openpay.create(:transfers)
 ```
 
 
-Each rest resource is represented by a class.   Resource class should be inzatiatied using the factory method as noted before.
 
 
-### ruby hashes are used to
+### ruby hashes are used as the message format
 
 ```ruby
 require 'pp'
@@ -84,15 +92,14 @@ pp card_hash
 ```
 
 
+Below  an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
 
+```ruby
+ cards=openpay.create(:cards)
 
-Below is an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
-
-                 cards=openpay.create(:cards)
-
-                 #creates merchant card
-                 response_hash=cards.create(card_hash)
-
+ #creates merchant card
+ response_hash=cards.create(card_hash)
+```
 
 If you want to use json instead, you can perform the transform prior the api call  as noted below:
  ```ruby
@@ -103,7 +110,7 @@ If you want to use json instead, you can perform the transform prior the api cal
      cards.create(JSON[cards_json])
 ```
 
-In the same way, you can perform a transform after the api call.
+The same way, you can perform a transform after the api call.
  ```ruby
       response_json=cards.create(JSON[cards_json]).to_json
 ```
@@ -131,22 +138,29 @@ but if the second argument is provided passing the customer_id it will be perfor
 
 #####create
 
-   Crea el recurso dado
-
+   Creates the given resource
+ ```ruby
      open_pay_resource.create(object_id,customer_id=nil)
+ ```
+
 
 #####get
 
-   Obtiene el objeto de un recurso dado
+   Gets an instance of a  given resource
 
+ ```ruby
       open_pay_resource.get(object_id,customer_id=nil)
+ ```
 
 
 #####delete
 
-   Borra un una instancia de un recurso
+  Deletes an instance o
 
-        open_pay_resource.delete(object_id,customer_id=nil)
+
+```ruby
+     open_pay_resource.delete(object_id,customer_id=nil)
+ ```
 
 
 #####delete_all
@@ -158,10 +172,15 @@ but if the second argument is provided passing the customer_id it will be perfor
 
 #####all
    Regresa un Array con todas  las  instancia de un recurso
+```ruby
      open_pay_resource.all(customer_id=nil)
+ ```
+
 #####each
    Regresa un bloque con todas  las  instancia de un recurso
+```ruby
       open_pay_resource.each(customer_id=nil)
+ ```
 
 
 ## Excepciones/Errores
