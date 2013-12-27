@@ -31,34 +31,35 @@ describe Transfers do
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
-      #create bank account
-      account_hash=FactoryGirl.build(:bank_account)
-      account=@bank_accounts.create(customer['id'],account_hash)
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:bank_charge, source_id:account['id'],order_id: account['id'])
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
 
 
-      #create new customer
+      #create customer  2
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
-      #create bank account
-      account_hash2=FactoryGirl.build(:bank_account)
-      account2=@bank_accounts.create(customer2['id'],account_hash2)
-      #create charge
-      charge_hash=FactoryGirl.build(:bank_charge, source_id:account2['id'],order_id: account2['id'])
-      charge=@charges.create(charge_hash,customer['id'])
-
-
-
 
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
 
 
-    p  @transfers.create(customer['id'],customer_hash)
+      transfer=@transfers.create(customer_hash,customer['id'])
+      t=@transfers.get(transfer['id'],customer['id'])
+      expect(t['amount']).to be_within(0.1).of 12.5
+      expect(t['method']).to match 'customer'
+
+
+
+
+      #clanup
+      @cards.delete_all(customer['id'])
+
 
 
 
@@ -77,6 +78,50 @@ describe Transfers do
 
   describe 'get' do
 
+    it 'gets a customer transfer' do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+
+
+      #create customer  2
+      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer2=@customers.create(customer_hash)
+
+      #create new transfer
+      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+
+
+      transfer=@transfers.create(customer_hash,customer['id'])
+      t=@transfers.get(transfer['id'],customer['id'])
+      expect(t).to be_a Hash
+      expect(t['amount']).to be_within(0.1).of 12.5
+      expect(t['method']).to match 'customer'
+
+
+
+      #clanup
+      @cards.delete_all(customer['id'])
+
+    end
+
+
+
+    it 'fails to get a non existing transfer' do
+    expect {  p @transfers.get(11111,11111)  }.to raise_exception    RestClient::ResourceNotFound
+
+    end
+
 
   end
 
@@ -84,23 +129,94 @@ describe Transfers do
   describe '.each' do
 
 
+    it 'iterates over a given customer transfers'  do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+
+
+      #create customer  2
+      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer2=@customers.create(customer_hash)
+
+      #create new transfer
+      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      transfer=@transfers.create(customer_hash,customer['id'])
+
+
+      #iterates over transfers
+      @transfers.each(customer2['id'])  do |tran|
+
+        expect(tran['amount']).to be_within(0.1).of 12.5
+        expect(tran['method']).to match 'customer'
+
+      end
+
+      #clanup
+      @cards.delete_all(customer['id'])
+
+
+
+
+
+    end
+
+
+
   end
 
-  describe '.list' do
 
-
-
-  end
 
 
 
   describe '.all' do
 
 
+    it 'returns all customer transfers' do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+
+      #create customer  2
+      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer2=@customers.create(customer_hash)
+
+      #create new transfer
+      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      transfer=@transfers.create(customer_hash,customer['id'])
+
+
+      #returns all transfers
+     @transfers.all(customer2['id'])
+      expect(@transfers.all(customer2['id']).size ).to be 1
+
+      #cleanup
+      @cards.delete_all(customer['id'])
+
+    end
+
+
   end
-
-
-
 
 
 end

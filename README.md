@@ -37,19 +37,19 @@ merchant_id='mywvupjjs9xdnryxtplq'
 private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
 
-#An openpay resource factory instance is created out of the OpenpayApi, it  points to the development environment  by default.
+#An openpay resource factory instance is created out of the OpenpayApi
+#it  points to the development environment  by default.
 openpay=OpenpayApi.new(merchant_id,private_key)
 
 #To enable production mode you should pass a third argument as true.
 #openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
-
  ```
 
 The openpay factory instance is in charge to generate the required resources through a factory method (create).
 Resource classes should be initialized using the factory method as described below.
 
  ```ruby
-#creating a instance for each available resource
+#creating an instance for each available resource
 bankaccounts=openpay.create(:bankaccounts)
 cards=openpay.create(:cards)
 charges=openpay.create(:charges)
@@ -89,7 +89,7 @@ pp card_hash
 ```
 
 
-Below  an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
+Below an example of how you can create a merchant card, a hash is passed as an argument as well a hash is returned as part of the response.
 
 ```ruby
 cards=openpay.create(:cards)
@@ -117,7 +117,8 @@ response_json=cards.create(JSON[cards_json]).to_json
 
 
 #### Arguments
-Given most resources  belong either to merchant or a customer most api methods have two arguments.
+Given most resources  belong either to a merchant or a customer, the api was designed taking this in consideration, so:
+
 The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
 So if the just one argument is provided the action will be performed at the merchant level,
 but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
@@ -125,11 +126,16 @@ but if the second argument is provided passing the customer_id, the action will 
 
  ```ruby
 #Merchant
-open_pay_resource.create(object_id)
+open_pay_resource.create(hash)
 
 #Customer
-open_pay_resource.create(object_id,customer_id)
+open_pay_resource.create(hash,customer_id)
  ```
+
+
+
+
+
 
 ####Methods
 

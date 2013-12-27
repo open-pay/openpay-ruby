@@ -1,5 +1,4 @@
 require '../spec_helper'
-require 'pp'
 
 
 describe Cards do
@@ -26,7 +25,6 @@ describe Cards do
     it 'creates  merchant card' do
 
       card_hash = FactoryGirl.build(:valid_card)
-      pp card_hash
       cards=@cards.create(card_hash)
       expect(cards).to be_a(Hash)
 
@@ -283,9 +281,28 @@ describe Cards do
 
     end
 
-    it 'deletes all existing cards' do
+    it 'deletes all existing cards for a given customer' do
 
-      @cards.delete_all
+
+
+      customer_hash = FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      expect(@cards.all(customer['id']).size).to be 0
+
+
+      card_hash = FactoryGirl.build(:valid_card)
+
+      card=@cards.create(card_hash, customer['id'])
+      id=card['id']
+      expect(@cards.all(customer['id']).size).to be 1
+
+      #cleanup
+      @cards.delete_all(customer['id'])
+
+      #check
+      expect(@cards.all(customer['id']).size).to be 0
+
 
 
     end

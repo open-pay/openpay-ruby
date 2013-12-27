@@ -56,8 +56,8 @@ describe Payouts do
         payout=@payouts.create(payout_hash,customer['id'])
         expect(  @payouts.get(  payout['id'],customer['id'] )['amount']).to be_within(0.1).of(400)
 
-       #clenup
-        @cards.delete_all
+        #cleanup
+        @cards.delete_all(customer['id'])
         @bank_accounts.delete_all(customer['id'])
 
       end
@@ -87,8 +87,8 @@ describe Payouts do
       payout=@payouts.create(payout_hash,customer['id'])
       expect(  @payouts.get(  payout['id'],customer['id'] )['amount']).to be_within(0.1).of(400)
 
-      #clenup
-      @cards.delete_all
+      #cleanup
+      @cards.delete_all(customer['id'])
       @bank_accounts.delete_all(customer['id'])
      # @customers.delete_all
     end
@@ -121,7 +121,6 @@ describe Payouts do
       charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
-
       payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'],amount: 40)
 
       payout=@payouts.create(payout_hash,customer['id'])
@@ -129,8 +128,8 @@ describe Payouts do
       res=@payouts.get( payout['id'],customer['id'] )
       expect(res['amount']).to be_within(0.1).of(40)
 
-      #clenup
-      @cards.delete_all
+      #cleanup
+      @cards.delete_all(customer['id'])
       @bank_accounts.delete_all(customer['id'])
       #@customers.delete_all
     end
@@ -141,17 +140,36 @@ describe Payouts do
   describe '.all' do
 
     it 'all merchant payouts' do
-
      expect(@payouts.all.size).to be_a Integer
      expect(@payouts.all.last['transaction_type']) .to match 'payout'
-
-
     end
 
     it 'all customer payout' do
-        @customers.each do |cust|
-             expect(@payouts.all(cust['id']).last['transaction_type'] ).to match 'payout'
-         end
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create new customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'],amount: 40)
+
+      payout=@payouts.create(payout_hash,customer['id'])
+
+      res=@payouts.get( payout['id'],customer['id'] )
+      expect(res['amount']).to be_within(0.1).of(40)
+
+
+       expect(@payouts.all(customer['id']).last['transaction_type']).to match 'payout'
+
+      #cleanup
+      @cards.delete_all(customer['id'])
+      @bank_accounts.delete_all(customer['id'])
     end
 
   end
@@ -169,13 +187,10 @@ describe Payouts do
 
     it 'iterates over a given customer payouts' do
        a_customer=@customers.all.last
-       @payouts.each(a_customer['id'])do |pay|
-        expect(@payouts.get(pay['id'])['transaction_type'] ).to match 'payout'
-      end
-
-
+       @payouts.each(a_customer['id']) do |pay|
+          expect(@payouts.get(pay['id'],a_customer['id'])['transaction_type'] ).to match 'payout'
+       end
     end
-
   end
 
 

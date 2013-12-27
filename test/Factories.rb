@@ -156,6 +156,7 @@ FactoryGirl.define do
     order_id 'required'
     method  "bank_account"
 
+
     initialize_with { attributes }
 
 
