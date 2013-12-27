@@ -10,7 +10,7 @@ describe Transfers do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @openpay=OpenPayApi.new(@merchant_id, @private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
     @cards=@openpay.create(:cards)
     @charges=@openpay.create(:charges)

@@ -7,5 +7,5 @@ gem 'factory_girl'
 gem 'json_spec'
 
 
-# Specify your gem's dependencies in OpenPay.gemspec
+# Specify your gem's dependencies in Openpay.gemspec
 gemspec

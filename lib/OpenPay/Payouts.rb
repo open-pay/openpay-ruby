@@ -27,10 +27,23 @@ class Payouts < OpenPayResource
   end
 
 
+  def each(customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.each_payout(customer_id)  do |cust|
+         yield cust
+      end
+    else
+      all.each do |cust|
+        yield cust
+     end
+  end
+
+  end
 
 
 
-  #TODO al parecer no se puede hacer pagos al merchantid
+
   def create(payout, customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)

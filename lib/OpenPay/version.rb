@@ -1,3 +1,3 @@
-module OpenPay
-  VERSION = "0.0.8"
+module Openpay
+  VERSION = '1.0.0'
 end

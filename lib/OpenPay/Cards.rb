@@ -42,6 +42,12 @@ class Cards < OpenPayResource
   end
 
 
+  def delete_all(customer_id)
+      customers=@api_hook.create(:customers)
+      customers.delete_all_cards(customer_id)
+  end
+
+
 
   def all(customer_id=nil)
     if customer_id

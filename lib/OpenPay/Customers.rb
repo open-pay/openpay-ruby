@@ -88,12 +88,35 @@ class Customers < OpenPayResource
   end
 
 
+  def each_payout(customer_id)
+     all_payouts(customer_id).each do |pay|
+       yield pay
+     end
+  end
+
+
 
 
   #Transfers
   def create_transfer(customer_id,transfer)
     post(transfer,"#{customer_id}/transfers")
   end
+
+  def all_transfers(customer_id)
+    get("#{customer_id}/transfers/")
+  end
+
+  def get_transfer(customer_id,transfer_id)
+    get("#{customer_id}/transfers/#{transfer_id}")
+  end
+
+  def each_transfer(customer_id)
+    all_transfers(customer_id).each do |trans|
+      yield trans
+    end
+  end
+
+
 
 
   #Subscriptions
@@ -116,7 +139,6 @@ class Customers < OpenPayResource
     get("#{customer_id}/subscriptions/")
   end
 
-
   def each_subscription(customer_id)
     all_subscriptions(customer_id).each do |cust|
         yield cust
@@ -125,10 +147,12 @@ class Customers < OpenPayResource
 
 
   def delete_all_subscriptions(customer_id)
+    if env == :production
+      raise OpenPayError ('This method is not supported on PRODUCTION')
+    end
     all_subscriptions(customer_id).each do |sub|
       delete_subscription(customer_id,sub['id'])
     end
-
   end
 
 
@@ -142,6 +166,12 @@ class Customers < OpenPayResource
   def get_customer(customer_id)
     get(customer_id)
   end
+
+
+  def delete_customer(customer_id)
+    get(customer_id)
+  end
+
 
 
 
@@ -164,12 +194,20 @@ class Customers < OpenPayResource
   end
 
 
- def each_card(customer)
+  def delete_all_cards(customer_id)
+    if env == :production
+      raise OpenPayError ('This method is not supported on PRODUCTION')
+    end
+    each_card(customer_id) do |card|
+      delete_card(customer_id,card['id'])
+    end
+  end
 
+
+  def each_card(customer)
        get("#{customer}/cards").each do |card|
            yield card
        end
-
   end
 
 

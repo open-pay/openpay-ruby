@@ -27,8 +27,6 @@ class Bankaccounts < OpenPayResource
   def delete(customer_id,bank_account)
     customers=@api_hook.create(:customers)
     customers.delete_bank_account(customer_id,bank_account)
-
-
   end
 
 

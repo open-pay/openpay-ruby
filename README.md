@@ -24,7 +24,7 @@ Update your bundle:
 
 Or install it from the command line:
 
-    $ gem install openpay
+    $ gem install openpay-1.0.0.gem
 
 ##Requirements
 
@@ -36,9 +36,6 @@ Or install it from the command line:
 ### Initialization
 ```ruby
 require 'openpay'
-
-#include Openpay module
-include Openpay
 
 
 #merchant and private key
@@ -82,7 +79,7 @@ According to the current version of the Openpay API the available resources are:
 - subscriptions
 - transfers
 
- Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
+Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
 
 
 ### Implementation
@@ -111,7 +108,9 @@ This api supports both ruby hashes and json strings as inputs and outputs.
 If a ruby hash is passed in as in input, a hash will be returned as the method output.
 if a json string is passed in as an input, a json string will be returned as the method function output.
 
-This excerpt from a specification demonstrates how you can use hashes and json strings
+This code excerpt from a specification demonstrates how you can use hashes and json strings  interchangeably
+
+Methods without inputs will return a ruby hash.
 
 ```ruby
  it 'creates a fee using a json message' do
@@ -131,7 +130,7 @@ This excerpt from a specification demonstrates how you can use hashes and json s
       fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
       expect(@fees.create(fee_json)).to have_json_path('amount')
 
-    end
+  end
 ```
 
 Here you can see how the card hash representation looks like
@@ -165,7 +164,7 @@ pp card_hash
 This ruby API standardize the method names across all different resources using the create,get,update and delete verbs.
 For full method documentation take a look at:   http://docs.openpay.mx/
 
-(The test suite at test/spec is a good source of reference)
+The test suite at test/spec is a good source of reference.
 
 #####create
 

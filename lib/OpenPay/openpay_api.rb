@@ -6,13 +6,10 @@ require 'uri'
 require 'errors/open_pay_error'
 
 
-
-
-
 LOG= Logger.new(STDOUT)
 
 
-class OpenPayApi
+class OpenpayApi
 
 
   #API Endpoints
@@ -20,13 +17,7 @@ class OpenPayApi
   API_PROD='https://api.openpay.mx'
 
 
-
-
-
-
-
   #by default the testing environment is used
-  # need to c
   def initialize(merchant_id, private_key,production=false)
     @merchant_id=merchant_id
     @private_key=private_key
@@ -44,7 +35,7 @@ class OpenPayApi
   end
 
 
-  def OpenPayApi::base_url(production)
+  def OpenpayApi::base_url(production)
     if production
       API_PROD
     else

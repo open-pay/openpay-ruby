@@ -7,7 +7,7 @@ class OpenPayResource
   def initialize(merchant_id,private_key,production=false)
      @merchant_id=merchant_id
      @private_key=private_key
-     @base_url=OpenPayApi::base_url(production)
+     @base_url=OpenpayApi::base_url(production)
      @errors=false
     @production=production
     @timeout=90
@@ -50,7 +50,7 @@ class OpenPayResource
         :timeout => @timeout,
         :headers => {:accept => :json,
                      :content_type => :json,
-                     :user_agent => 'OpenPay/v1  Ruby-API',
+                     :user_agent => 'Openpay/v1  Ruby-API',
         }
     )
    json_out=nil
@@ -101,7 +101,7 @@ class OpenPayResource
        :timeout => @timeout,
        :headers => {:accept => :json,
                     :content_type => :json,
-                    :user_agent => 'OpenPay/v1  Ruby-API',
+                    :user_agent => 'Openpay/v1  Ruby-API',
        }
    ).execute
 
@@ -110,10 +110,14 @@ class OpenPayResource
 
   def post(message,args='')
 
+    return_hash=false
+
     if message.is_a?(Hash)
-        json= hash2json message
+      return_hash=true
+      json= hash2json message
     else
-       json=message
+      json=message
+      return_hash=false
     end
 
 
@@ -131,7 +135,7 @@ class OpenPayResource
           :payload => json,
           :headers => {:accept => :json,
                        :content_type => :json,
-                       :user_agent => 'OpenPay/v1  Ruby-API',
+                       :user_agent => 'Openpay/v1  Ruby-API',
                        :json => json}
       ) .execute
     rescue  RestClient::BadRequest  => e
@@ -146,7 +150,11 @@ class OpenPayResource
         raise e
      end
 
-   JSON.parse res
+    if return_hash
+      JSON.parse res
+    else
+      res
+    end
 
   end
 
@@ -154,11 +162,14 @@ class OpenPayResource
 
   def put (message,args='')
 
+    return_hash=false
 
     if message.is_a?(Hash)
+      return_hash=true
       json= hash2json message
     else
       json=message
+      return_hash=false
     end
 
 
@@ -174,7 +185,7 @@ class OpenPayResource
           :payload => json,
           :headers => {:accept => :json,
                        :content_type => :json,
-                       :user_agent => 'OpenPay/v1  Ruby-API',
+                       :user_agent => 'Openpay/v1  Ruby-API',
                        :json => json}
       ) .execute
     rescue   RestClient::BadRequest  => e
@@ -183,7 +194,12 @@ class OpenPayResource
       return JSON.parse  e.http_body
     end
 
-    JSON.parse res
+
+    if return_hash
+       JSON.parse res
+    else
+       res
+    end
 
   end
 

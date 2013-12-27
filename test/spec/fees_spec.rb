@@ -8,7 +8,7 @@ describe Fees do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @openpay=OpenPayApi.new(@merchant_id, @private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
     @cards=@openpay.create(:cards)
     @charges=@openpay.create(:charges)
@@ -52,6 +52,26 @@ describe Fees do
       #cleanup
       @cards.delete(card['id'], customer['id'])
       @customers.delete(customer['id'])
+
+    end
+
+
+    it 'creates a fee using a json message' do
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge=@charges.create(charge_hash, customer['id'])
+
+      #create customer fee
+      fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
+      expect(@fees.create(fee_json)).to have_json_path('amount')
 
     end
 

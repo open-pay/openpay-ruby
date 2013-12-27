@@ -9,7 +9,7 @@ describe Cards do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @openpay=OpenPayApi.new(@merchant_id, @private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @cards=@openpay.create(:cards)
     @customers=@openpay.create(:customers)
 
@@ -274,7 +274,7 @@ describe Cards do
 
     it 'raise an exception when used on Production' do
 
-      @openpayprod=OpenPayApi.new(@merchant_id, @private_key, true)
+      @openpayprod=OpenpayApi.new(@merchant_id, @private_key, true)
       cust=@openpayprod.create(:customers)
       expect { cust.delete_all }.to raise_error
 
