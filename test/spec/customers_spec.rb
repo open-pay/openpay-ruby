@@ -39,9 +39,19 @@ describe Customers do
       email='foo'
       customer_hash = FactoryGirl.build(:customer, email: email)
 
-      customer=@customers.create(customer_hash)
+      expect { @customers.create(customer_hash)}.to raise_exception OpenpayApiTransactionError
+
+
+      begin
+        @customers.create(customer_hash)
+      rescue  OpenpayApiTransactionError  => e
+        expect(e.http_code).to be 400
+        expect(e.description).to match 'email\' not a well-formed email address'
+
+      end
+
       expect(@customers.errors?).to be_true
-      expect(customer['description']).to match "'email' not a well-formed email address"
+
 
 
     end
@@ -58,7 +68,7 @@ describe Customers do
       customer=@customers.create(customer_hash)
       id=customer['id']
       @customers.delete(id)
-      expect { @customers.get(id) }.to raise_exception RestClient::ResourceNotFound
+      expect { @customers.get(id) }.to raise_exception OpenpayApiTransactionError
     end
 
   end
@@ -157,38 +167,6 @@ describe Customers do
   end
 
 
-  describe '.each_card' do
-
-    it 'list all cards for a given customer'  do
-      pending
-    end
-
-
-  end
-
-
-
-
-
-  describe '.get_bank_account'    do
-
-     it 'get a bank account'  do
-       pending
-     end
-
-  end
-
-
-  describe '.create_bank_account'    do
-
-    it 'creates a bank account'  do
-      pending
-    end
-
-
-  end
-
-
 
 
   describe '.all' do
@@ -202,23 +180,24 @@ describe Customers do
 
 
 
-  describe '.delete_all!' do
+  describe '.delete_all' do
 
 
+    it 'deletes all customer records' do
+      @customers.delete_all
+      expect(@customers.all.size).to be_a Integer
+    end
 
     it 'raise an exception when used on Production' do
 
       @openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
       cust=@openpayprod.create(:customers)
-      expect { cust.delete_all }.to raise_error
+      expect { cust.delete_all }.to raise_exception OpenpayException
 
 
     end
 
-    it 'deletes all customer records' do
-     @customers.delete_all
-     expect(@customers.all.size).to eq  0
-    end
+
 
   end
 

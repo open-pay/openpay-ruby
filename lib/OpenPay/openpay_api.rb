@@ -3,10 +3,14 @@ require 'resource_factory'
 require 'base64'
 require 'rest-client'
 require 'uri'
-require 'errors/open_pay_error'
+require 'errors/open_pay_exception'
 
 
 LOG= Logger.new(STDOUT)
+
+#change to Logger::DEBUG if need trace information
+#due the nature of the information, we recommend to never use a log file when in debug
+LOG.level=Logger::INFO
 
 
 class OpenpayApi

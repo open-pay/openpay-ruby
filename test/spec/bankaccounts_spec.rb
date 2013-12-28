@@ -1,9 +1,7 @@
-
 require '../spec_helper'
 
 
 describe  Bankaccounts do
-
 
 
   before(:all) do
@@ -15,15 +13,12 @@ describe  Bankaccounts do
     @bank_accounts=@openpay.create(:bankaccounts)
     @customers=@openpay.create(:customers)
 
-
   end
-
 
 
   after(:all) do
     @customers.delete_all
     @bank_accounts.delete_all
-
   end
 
   describe '.create' do
@@ -40,15 +35,7 @@ describe  Bankaccounts do
 
       @bank_accounts.delete(customer['id'],bank['id'])
 
-
-
-
-
-
-
-
     end
-
 
   end
 
@@ -68,14 +55,9 @@ describe  Bankaccounts do
       expect(bank_account['alias']).to match 'Cuenta principal'
       @bank_accounts.delete(customer['id'],bank['id'])
 
-
     end
 
-
-
   end
-
-
 
 
 
@@ -91,9 +73,7 @@ describe  Bankaccounts do
       bank=@bank_accounts.create(account_hash,customer['id'])
 
       @bank_accounts.each(customer['id']) do |bank_account|
-
           expect( bank_account['alias']).to match 'Cuenta principal'
-
       end
 
       @bank_accounts.delete(customer['id'],bank['id'])
@@ -109,7 +89,6 @@ end
 
     it 'should list the bank accounts using a given filter' do
        pending
-
     end
   end
 
@@ -123,7 +102,6 @@ end
          customer=@customers.create(customer_hash)
          expect(@bank_accounts.all(customer['id']).size).to be 0
 
-
          account_hash=FactoryGirl.build(:bank_account)
          bank=@bank_accounts.create(account_hash,customer['id'])
          expect(@bank_accounts.all(customer['id']).size).to be 1
@@ -133,20 +111,11 @@ end
 
     end
 
-
     it 'fails to list all bank accounts when a non existing customer is given' do
-
-      expect { @bank_accounts.all('11111') }.to raise_exception(RestClient::ResourceNotFound)
-
-
+      expect { @bank_accounts.all('11111') }.to raise_exception(OpenpayApiTransactionError)
     end
 
-
   end
-
-
-
-
 
 
   describe '.delete' do
@@ -169,13 +138,10 @@ end
 
 
     it 'fails to delete  a non existing  bank accounts' do
-
-         expect { @customers.delete('1111') }.to raise_exception  RestClient::ResourceNotFound
-
+         expect { @customers.delete('1111') }.to raise_exception  OpenpayApiTransactionError
     end
 
   end
-
 
 
   describe '.delete_all' do
@@ -187,7 +153,7 @@ end
 
       account_hash=FactoryGirl.build(:bank_account)
 
-      bank=@bank_accounts.create(account_hash,customer['id'])
+      @bank_accounts.create(account_hash,customer['id'])
       expect(@bank_accounts.all(customer['id']).size).to be 1
 
       @bank_accounts.delete_all(customer['id'])
@@ -201,8 +167,7 @@ end
       @openpayprod=OpenpayApi.new(@merchant_id, @private_key, true)
       bank_accounts=@openpayprod.create(:bankaccounts)
 
-
-      expect { bank_accounts.delete_all('111111') }.to raise_exception   OpenPayError
+      expect { bank_accounts.delete_all('111111') }.to raise_exception   OpenpayException
 
 
     end

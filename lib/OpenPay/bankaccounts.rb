@@ -47,6 +47,10 @@ class Bankaccounts < OpenPayResource
 
   def delete_all(customer_id)
 
+    if env == :production
+      raise OpenpayException.new('This method is not supported on PRODUCTION',false)
+    end
+
     customers=@api_hook.create(:customers)
     customers.delete_all_bank_accounts(customer_id)
 

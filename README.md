@@ -7,7 +7,7 @@ ruby client for Openpay API services (version 1.0.0)
 
 This is a client implementing the payment services for Openpay at openpay.mx
 
-For more information about Opepay vist: http://openpay.mx/
+For more information about Openpay vist: http://openpay.mx/
 For the full Openpay API documentation take a look at: http://docs.openpay.mx/
 
 ## Installation
@@ -83,28 +83,35 @@ Each rest resource exposed in the rest Openpay API is represented by a class in 
 
 
 ### Implementation
- Each resource depending its structure and available methods will have one or more of the methods described under the methods subsection.
+ Each resource depending of its structure and available methods, will have one or more of the methods described under the methods subsection.
 
 
 #### Arguments
-Given most resources  belong either to a merchant or a customer, the api was designed taking this in consideration, so:
+Given most resources belong, either to a merchant or a customer, the api was designed taking this in consideration, so:
 
 The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
-So if the just one argument is provided the action will be performed at the merchant level,
+So if  just one argument is provided the action will be performed at the merchant level,
 but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
+
+
+The following illustrates the api design.
 
  ```ruby
 #Merchant
-open_pay_resource.create(hash)
+hash_out=open_pay_resource.create(hash_in)
+json_out=open_pay_resource.create(json_in)
+
 
 #Customer
-open_pay_resource.create(hash,customer_id)
+hash_out=open_pay_resource.create(hash_in,customer_id)
+json_out=open_pay_resource.create(json_in,customer_id)
+
  ```
 
 
 ####  Methods Inputs/Outputs
 
-This api supports both ruby hashes and json strings as inputs and outputs.
+This api supports both ruby hashes and json strings as inputs and outputs. (See previous example)
 If a ruby hash is passed in as in input, a hash will be returned as the method output.
 if a json string is passed in as an input, a json string will be returned as the method function output.
 
@@ -133,7 +140,7 @@ Methods without inputs will return a ruby hash.
   end
 ```
 
-Here you can see how the card hash representation looks like
+Here you can see how the card hash representation looks like.
 
 ```ruby
 require 'pp'
@@ -157,6 +164,34 @@ pp card_hash
 ```
 
 
+Here how we construct the preceding hash using FactoryGirl.
+FactoryGirl is used in our test suite to facilitate hash construction,
+it may may help you at your final implementation if you decide to use hashes.
+(more examples at test/Factories.rb)
+
+```ruby
+
+FactoryGirl.define do
+  factory :valid_card, class:Hash do
+        bank_name  'visa'
+        holder_name 'Vicente Olmos'
+        expiration_month '09'
+        card_number '4111111111111111'
+        expiration_year '14'
+        bank_code 'bmx'
+        cvv2  '111'
+       address {{
+           postal_code: '76190',
+           state: 'QRO',
+           line1: 'LINE1',
+           line2: 'LINE2',
+           line3: 'LINE3',
+           country_code: 'MX',
+           city: 'Queretaro',
+       }}
+    initialize_with { attributes }
+  end
+```
 
 
 ####Methods
@@ -191,18 +226,13 @@ open_pay_resource.get(object_id,customer_id=nil)
 open_pay_resource.update(representation,customer_id=nil)
 ```
 
-
-
 #####delete
 
   Deletes an instance of the given resource
 
-
 ```ruby
 open_pay_resource.delete(object_id,customer_id=nil)
 ```
-
-
 
 #####all
    Returns an array of all instances of a resource
@@ -216,8 +246,6 @@ open_pay_resource.all(customer_id=nil)
 open_pay_resource.each(customer_id=nil)
  ```
 
-
-
 #####delete_all(available only under the development environment)
 
    Deletes all instances of the given resource
@@ -228,10 +256,30 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
-## Exceptions/Errors
+## Exceptions
 
-This API is built over the great rest-client gem.
-So our exceptions are based on their exception classes.
+This API generates 3 different Exception classes
+
+-OpenpayApiConnectionError
+-OpenpayApiError
+-OpenpayApiRequestError
+-  Openpay: 502 Bad Gateway
+-  RestClient::BadGateway: 502 Bad Gateway
+-Errno::EADDRINUSE: Address already in use - connect(2)
+-Errno::ETIMEDOUT: Operation timed out - connect(2)
+
+
+ #OpenSSL::SSL::SSLError: SSL_connect SYSCALL returned=5 errno=0 state=SSLv2/v3 read server hello A
+
+
+
+These exceptions have the following attributes:
+
+
+        #category  "request"
+        #description"  "email' not a well-formed email address"
+        #http_code":400"
+        #error_code":1001
 
 
     #En el caso de listar un objeto no existente una excepcion de tipo RestClient::ResourceNotFound sera lanzada
@@ -242,10 +290,7 @@ Al generarse una exepcion se genera tambien un warning, si tienes acceso a la co
 
 
 [1] https://github.com/rest-client/rest-client
-
 [2] http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-
-
 
 
 ## More information

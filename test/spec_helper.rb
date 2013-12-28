@@ -1,12 +1,8 @@
-$: << ".."
-$: << '../../lib/openpay/'
-
-
 require 'openpay'
 
 
 require 'factory_girl'
-require 'Factories'
+require '../Factories'
 require 'rspec'
 require 'rspec-expectations'
 require 'json_spec'

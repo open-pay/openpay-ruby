@@ -75,23 +75,31 @@ describe Cards do
       customers=@openpay.create(:customers)
 
       customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Perez')
-      customer=customers.create(customer_hash)
+      customers.create(customer_hash)
 
       card_hash = FactoryGirl.build(:valid_card)
       @cards.create(card_hash)
-      expect { @cards.create(card_hash) }.to raise_error(RestClient::Conflict)
+      expect { @cards.create(card_hash) }.to raise_error(OpenpayApiTransactionError)
     end
 
 
     it 'fails when using an expired card' do
       card_hash = FactoryGirl.build(:expired_card)
-      expect { @cards.create(card_hash) }.to raise_error(RestClient::PaymentRequired)
+      expect { @cards.create(card_hash) }.to raise_error(OpenpayApiTransactionError)
+      #extended check
+      begin
+        @cards.create(card_hash)
+      rescue OpenpayApiTransactionError =>   e
+        expect(e.description).to match 'The card has expired.'
+        expect(e.error_code).to be 3002
+      end
+
     end
 
 
     it 'fails when using a stolen card' do
       card_json = FactoryGirl.build(:valid_card, card_number: '4000000000000119')
-      expect { @cards.create(card_json) }.to raise_error(RestClient::PaymentRequired)
+      expect { @cards.create(card_json) }.to raise_error(OpenpayApiTransactionError)
     end
 
   end
@@ -119,7 +127,7 @@ describe Cards do
 
 
     it 'fails to deletes a non existing card' do
-      expect { @cards.delete('1111111') }.to raise_exception(RestClient::ResourceNotFound)
+      expect { @cards.delete('1111111') }.to raise_exception(OpenpayApiTransactionError)
     end
 
 
@@ -141,7 +149,7 @@ describe Cards do
 
     it 'fails to deletes a non existing  customer card' do
 
-      expect { @cards.delete('1111111', '1111') }.to raise_exception(RestClient::ResourceNotFound)
+      expect { @cards.delete('1111111', '1111') }.to raise_exception(OpenpayApiTransactionError)
 
     end
 
@@ -169,7 +177,7 @@ describe Cards do
 
 
     it 'fails when getting a non existing card' do
-      expect { @cards.get('11111') }.to raise_exception(RestClient::ResourceNotFound)
+      expect { @cards.get('11111') }.to raise_exception(OpenpayApiTransactionError)
     end
 
 
@@ -194,7 +202,7 @@ describe Cards do
 
 
     it 'fails when getting a non existing customer card' do
-      expect { @cards.get('11111', '1111') }.to raise_exception(RestClient::ResourceNotFound)
+      expect { @cards.get('11111', '1111') }.to raise_exception(OpenpayApiTransactionError)
     end
 
 
@@ -240,7 +248,7 @@ describe Cards do
 
 
     it 'list cards for a non existing  customer' do
-      expect { @cards.all('111111') }.to raise_exception RestClient::ResourceNotFound
+      expect { @cards.all('111111') }.to raise_exception OpenpayApiTransactionError
     end
 
 

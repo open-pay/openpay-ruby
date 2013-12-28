@@ -35,7 +35,7 @@ class Customers < OpenPayResource
   def delete_all_bank_accounts(customer)
 
     if env == :production
-      raise OpenPayError.new('This method is not supported on PRODUCTION')
+      raise OpenpayException.new('This method is not supported on PRODUCTION',false)
     end
 
     each_bank_account(customer) do |account|
