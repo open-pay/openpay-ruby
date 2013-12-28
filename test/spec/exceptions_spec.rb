@@ -98,7 +98,8 @@ describe 'Openpay Exceptions' do
 
 
   describe OpenpayApiConnectionError do
-    it 'raise an  OpenpayApiConnectionError when used credentials are invalid' do
+
+    it 'raise an OpenpayApiConnectionError when provided credentials are invalid' do
 
       @merchant_id='santa'
       @private_key='invalid'

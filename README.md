@@ -5,9 +5,9 @@
 
 ruby client for Openpay API services (version 1.0.0)
 
-This is a client implementing the payment services for Openpay at openpay.mx
+This is a ruby client implementing the payment services for Openpay at openpay.mx
 
-For more information about Openpay vist: http://openpay.mx/
+For more information about Openpay visit: http://openpay.mx/
 For the full Openpay API documentation take a look at: http://docs.openpay.mx/
 
 ## Installation
@@ -79,17 +79,18 @@ According to the current version of the Openpay API the available resources are:
 - subscriptions
 - transfers
 
-Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being OpenpayResource the base class.
+Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being **OpenpayResource** the base class.
 
 
 ### Implementation
  Each resource depending of its structure and available methods, will have one or more of the methods described under the methods subsection.
+ Below a short description about the implementation high level details. For detailed documentation take a look a the openpay api documentation.
 
 
 #### Arguments
 Given most resources belong, either to a merchant or a customer, the api was designed taking this in consideration, so:
 
-The first argument represent the json/hash object, while the second argument which is optional represents the customer_id.
+The first argument represent the json/hash object, while the second argument which is optional represents the **customer_id**.
 So if  just one argument is provided the action will be performed at the merchant level,
 but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
 
@@ -260,16 +261,35 @@ open_pay_resource.delete_all(customer_id=nil)
 
 This API generates 3 different Exception classes
 
--OpenpayApiConnectionError
--OpenpayApiError
--OpenpayApiRequestError
--  Openpay: 502 Bad Gateway
--  RestClient::BadGateway: 502 Bad Gateway
--Errno::EADDRINUSE: Address already in use - connect(2)
--Errno::ETIMEDOUT: Operation timed out - connect(2)
+- **OpenpayApiError**
+     Generic base api exception class, for generic api exceptions.
+
+     Example:
+
+ ```ruby
+
+         merchant_id='santa'
+         private_key='invalid'
+
+         openpay=OpenpayApi.new(@merchant_id, @private_key)
+         customers=@openpay.create(:customers)
 
 
- #OpenSSL::SSL::SSLError: SSL_connect SYSCALL returned=5 errno=0 state=SSLv2/v3 read server hello A
+          begin
+             @customers.get('23444422211')
+          rescue OpenpayApiConnectionError => e
+             expect(e.http_code).to be 401
+             expect(e.error_code).to be 1002
+             expect(e.description).to match 'The api key or merchant id are invalid.'
+             expect(e.json_body).to have_json_path('category')
+           end
+ ```
+
+- OpenpayApiConnectionError
+     - Connection Errors.
+     - Authentication Error.
+     - SSL Errors.
+- OpenpayApiRequestError
 
 
 
