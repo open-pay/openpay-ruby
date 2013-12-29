@@ -3,12 +3,15 @@
 
 ##Description
 
-ruby client for Openpay API services (version 1.0.0)
+ruby client for *Openpay API* services (version 1.0.0)
 
-This is a ruby client implementing the payment services for Openpay at openpay.mx
+This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
-For more information about Openpay visit: http://openpay.mx/
-For the full Openpay API documentation take a look at: http://docs.openpay.mx/
+For more information about Openpay visit:
+ - http://openpay.mx/
+
+For the full *Openpay API* documentation take a look at:
+ - http://docs.openpay.mx/
 
 ## Installation
 
@@ -163,11 +166,10 @@ pp card_hash   =>
 :city=>"Queretaro"}}
 ```
 
-Next, how we can construct  the preceding hash using FactoryGirl.
-
-FactoryGirl was used to build up our test suite, to facilitate hash construction.
+Next, how we can construct  the preceding hash using **FactoryGirl**.
+**FactoryGirl** was used to build up our test suite, to facilitate hash construction.
 It  may help you at as well at your final implementation if you decide to use hashes.
-(more examples at test/Factories.rb)
+(more examples at *test/Factories.rb*)
 
 ```ruby
 
@@ -198,9 +200,10 @@ FactoryGirl.define do
 
 This ruby API standardize the method names across all different resources using the *create*,*get*,*update* and *delete* verbs.
 
-For full method documentation take a look at:   http://docs.openpay.mx/
+For full method documentation take a look at:
+  - http://docs.openpay.mx/
 
-The test suite at test/spec is a good source of reference.
+The test suite at * test/spec* is a good source of reference.
 
 #####create
 
@@ -209,7 +212,6 @@ The test suite at test/spec is a good source of reference.
      open_pay_resource.create(representation,customer_id=nil)
  ```
 
-
 #####get
 
    Gets an instance of a  given resource
@@ -217,7 +219,6 @@ The test suite at test/spec is a good source of reference.
 ```ruby
 open_pay_resource.get(object_id,customer_id=nil)
 ```
-
 
 #####update
 
