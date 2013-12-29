@@ -1,16 +1,14 @@
-require 'OpenPay/version'
+#openpay version
+require 'openpay/version'
 
+#external dependencies
 require 'rest-client'
 require 'json'
 
 module Openpay
 
-  #exceptions
- require 'openpay/errors/open_pay_api_exception_factory'
-
-  require 'openpay/errors/open_pay_exception'
-  require 'openpay/errors/openpay_api_transaction_error'
-  require 'openpay/errors/openpay_api_connection_error'
+  #api setup / constants
+  require 'openpay/openpay_api'
 
   #base class
   require  'openpay/open_pay_resource'
@@ -27,8 +25,10 @@ module Openpay
   require 'openpay/transfers'
   require 'openpay/charges'
 
-  #api setup / constants
-  require 'openpay/openpay_api'
-
+  #exceptions
+  require 'openpay/errors/open_pay_api_exception_factory'
+  require 'openpay/errors/open_pay_exception'
+  require 'openpay/errors/openpay_api_transaction_error'
+  require 'openpay/errors/openpay_api_connection_error'
 
 end

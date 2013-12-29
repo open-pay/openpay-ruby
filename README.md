@@ -69,15 +69,15 @@ transfers=openpay.create(:transfers)
 
 According to the current version of the Openpay API the available resources are:
 
-- bankaccounts
-- cards
-- charges
-- customers
-- fees
-- payouts
-- plans
-- subscriptions
-- transfers
+- *bankaccounts*
+- *cards*
+- *charges*
+- *customers*
+- *fees*
+- *payouts*
+- *plans*
+- *subscriptions*
+- *transfers*
 
 Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being **OpenpayResource** the base class.
 
@@ -121,32 +121,31 @@ This code excerpt from a specification demonstrates how you can use hashes and j
 Methods without inputs will return a ruby hash.
 
 ```ruby
- it 'creates a fee using a json message' do
-      #create new customer
-      customer_hash= FactoryGirl.build(:customer)
-      customer=@customers.create(customer_hash)
+it 'creates a fee using a json message' do
+  #create new customer
+  customer_hash= FactoryGirl.build(:customer)
+  customer=@customers.create(customer_hash)
 
-      #create customer card   , using factory girl to build the hash for us
-      card_hash=FactoryGirl.build(:valid_card)
-      card=@cards.create(card_hash, customer['id'])
+  #create customer card   , using factory girl to build the hash for us
+  card_hash=FactoryGirl.build(:valid_card)
+  card=@cards.create(card_hash, customer['id'])
 
-      #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
-      charge=@charges.create(charge_hash, customer['id'])
+  #create charge
+  charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+  charge=@charges.create(charge_hash, customer['id'])
 
-      #create customer fee , using json as input, we get json as ouput
-      fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
-      expect(@fees.create(fee_json)).to have_json_path('amount')
-
-  end
+  #create customer fee , using json as input, we get json as ouput
+  fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
+  expect(@fees.create(fee_json)).to have_json_path('amount')
+end
 ```
 
 Here you can see how the card hash representation looks like.
 
 ```ruby
 require 'pp'
+pp card_hash   =>
 
-pp card_hash
 {:bank_name=>"visa",
 :holder_name=>"Vicente Olmos",
 :expiration_month=>"09",
@@ -164,10 +163,10 @@ pp card_hash
 :city=>"Queretaro"}}
 ```
 
+Next, how we can construct  the preceding hash using FactoryGirl.
 
-Here how we construct the preceding hash using FactoryGirl.
-FactoryGirl is used in our test suite to facilitate hash construction,
-it may may help you at your final implementation if you decide to use hashes.
+FactoryGirl was used to build up our test suite, to facilitate hash construction.
+It  may help you at as well at your final implementation if you decide to use hashes.
 (more examples at test/Factories.rb)
 
 ```ruby
@@ -195,9 +194,10 @@ FactoryGirl.define do
 ```
 
 
-####Methods
+####API Methods
 
-This ruby API standardize the method names across all different resources using the create,get,update and delete verbs.
+This ruby API standardize the method names across all different resources using the *create*,*get*,*update* and *delete* verbs.
+
 For full method documentation take a look at:   http://docs.openpay.mx/
 
 The test suite at test/spec is a good source of reference.
@@ -261,7 +261,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
 This API generates 3 different Exception classes
 
-- **OpenpayApiError**
+- *OpenpayApiError*
      Generic base api exception class, for generic api exceptions.
 
      Example:
@@ -285,14 +285,47 @@ This API generates 3 different Exception classes
            end
  ```
 
-- OpenpayApiConnectionError
+- *OpenpayApiConnectionError*
+
      - Connection Errors.
      - Authentication Error.
      - SSL Errors.
+
+      Example:
+ ```ruby
+
+         merchant_id='santa'
+         private_key='invalid'
+
+         openpay=OpenpayApi.new(@merchant_id, @private_key)
+         customers=@openpay.create(:customers)
+
+
+          begin
+             @customers.get('23444422211')
+          rescue OpenpayApiConnectionError => e
+             expect(e.http_code).to be 401
+             expect(e.error_code).to be 1002
+             expect(e.description).to match 'The api key or merchant id are invalid.'
+             expect(e.json_body).to have_json_path('category')
+           end
+ ```
+
 - OpenpayApiRequestError
 
-
-
+  ```ruby
+  email='foo'
+  customer_hash = FactoryGirl.build(:customer, email: email)
+  begin
+    @customers.create(customer_hash)
+  rescue OpenpayApiTransactionError => e
+    #should have the corresponding attributes coming from the json message
+    expect(e.http_code).to be 400
+    expect(e.error_code).to be 1001
+    expect(e.description).to match 'email\' not a well-formed email address'
+    expect(e.json_body).to have_json_path('category')
+  end
+  ```
 These exceptions have the following attributes:
 
 

@@ -75,7 +75,6 @@ describe 'Openpay Exceptions' do
       customers.create(customer_hash)
 
       card_hash = FactoryGirl.build(:valid_card)
-      @cards.create(card_hash)
       expect { @cards.create(card_hash) }.to raise_error(OpenpayApiTransactionError)
     end
 
