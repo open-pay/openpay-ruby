@@ -259,95 +259,99 @@ open_pay_resource.delete_all(customer_id=nil)
 
 ## Exceptions
 
-This API generates 3 different Exception classes
+This API generates 3 different Exception classes.
+Unknown or unhandled exceptions will be raised using their original exception class.
+
 
 - *OpenpayApiError*
      Generic base api exception class, for generic api exceptions.
 
-     Example:
+     -Internal server error(500 Internal Server Error)
 
- ```ruby
+    Example:
 
-         merchant_id='santa'
-         private_key='invalid'
-
-         openpay=OpenpayApi.new(@merchant_id, @private_key)
-         customers=@openpay.create(:customers)
-
-
-          begin
-             @customers.get('23444422211')
-          rescue OpenpayApiConnectionError => e
-             expect(e.http_code).to be 401
-             expect(e.error_code).to be 1002
-             expect(e.description).to match 'The api key or merchant id are invalid.'
-             expect(e.json_body).to have_json_path('category')
-           end
- ```
+     ```ruby
+          #production mode
+          openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
+          cust.delete_all # will raise an OpenpayException
+     ```
 
 - *OpenpayApiConnectionError*
+     Exception class for connection related issues. Errors happening prior  the server connection.
 
+     - Authentication Error (401 Unauthorized)
      - Connection Errors.
-     - Authentication Error.
      - SSL Errors.
 
-      Example:
- ```ruby
+    Example:
+     ```ruby
+     #invalid id and key
+     merchant_id='santa'
+     private_key='invalid'
 
-         merchant_id='santa'
-         private_key='invalid'
+     openpay=OpenpayApi.new(merchant_id, private_key)
+     customers=openpay.create(:customers)
 
-         openpay=OpenpayApi.new(@merchant_id, @private_key)
-         customers=@openpay.create(:customers)
+      begin
+         customers.get('23444422211')
+      rescue OpenpayApiConnectionError => e
+         e.http_code  #  => 401
+         e.error_code # => 1002
+         e.description# => 'The api key or merchant id are invalid.'
+         e.json_body #  {"category":"request","description":"The api key or merchant id are invalid.","http_code":401,"error_code":1002,"request_id":null}
+       end
+     ```
 
+- *OpenpayApiTransactionError*
+Errors happening after the initial connection has been initiated. Errors during transactions.
 
-          begin
-             @customers.get('23444422211')
-          rescue OpenpayApiConnectionError => e
-             expect(e.http_code).to be 401
-             expect(e.error_code).to be 1002
-             expect(e.description).to match 'The api key or merchant id are invalid.'
-             expect(e.json_body).to have_json_path('category')
-           end
- ```
+   - Bad Request (Malformed json,Invalid data)
+   - Unprocessable Entity (invalid data)
+   - Resource not found (404 Not Found)
 
-- OpenpayApiRequestError
+  Bad Request Example:
 
-  ```ruby
-  email='foo'
-  customer_hash = FactoryGirl.build(:customer, email: email)
-  begin
-    @customers.create(customer_hash)
-  rescue OpenpayApiTransactionError => e
-    #should have the corresponding attributes coming from the json message
-    expect(e.http_code).to be 400
-    expect(e.error_code).to be 1001
-    expect(e.description).to match 'email\' not a well-formed email address'
-    expect(e.json_body).to have_json_path('category')
-  end
+```ruby
+email='foo'
+customer_hash = FactoryGirl.build(:customer, email: email)
+begin
+    customers.create(customer_hash)
+rescue OpenpayApiTransactionError => e
+    e.http_code# => 400
+    e.error_code# => 1001
+    e.description# => 'email\' not a well-formed email address'
+end
   ```
-These exceptions have the following attributes:
+
+  Resource not found  Example:
+
+```ruby
+begin
+  #non existing customer
+  customers.delete('1111')
+rescue OpenpayApiTransactionError => e
+  e.http_code# => 404
+  e.error_code# =>1005
+  e.description# =>"The customer with id '1111' does not exist"
+end
+```
 
 
-        #category  "request"
-        #description"  "email' not a well-formed email address"
-        #http_code":400"
-        #error_code":1001
+###These exceptions have the following attributes:
 
+- category
+- description
+- http_code
+- error_code
+- json_message
 
-    #En el caso de listar un objeto no existente una excepcion de tipo RestClient::ResourceNotFound sera lanzada
-
-      expect { @cards.all('111111') } .to raise_exception   RestClient::ResourceNotFound
-
-Al generarse una exepcion se genera tambien un warning, si tienes acceso a la consola, podras ver ahi tus mensajes de errror en forma de warnings
-
-
-[1] https://github.com/rest-client/rest-client
-[2] http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+For more information about categories, descriptions and codes take a look at:
+http://docs.openpay.mx/#errores
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
 ## More information
 
-For more use cases take a look at the test/spec folder
+For more use cases take a look at the *test/spec* folder
 
 1.  http://docs.openpay.mx/

@@ -4,8 +4,7 @@ class OpenpayExceptionFactory
 
   def   OpenpayExceptionFactory::create(exception)
 
-
-    LOG.debug("exception.class: #{exception.class}")
+    LOG.warn("An exception has been raised (original exception class: #{exception.class})")
 
     case exception
 
@@ -13,37 +12,39 @@ class OpenpayExceptionFactory
       #malformed jason, invalid data, invalid request
       when   RestClient::BadRequest , RestClient::ResourceNotFound ,
                    RestClient::Conflict , RestClient::PaymentRequired
+
             oe=OpenpayApiTransactionError.new exception.http_body
-            LOG.warn exception.http_body
+            LOG.warn "-OpenpayApiTransactionError: #{exception.http_body}"
             @errors=true
             raise  oe
+      #connection, timeouts, network related errors
       when Errno::EADDRINUSE , Errno::ETIMEDOUT ,OpenSSL::SSL::SSLError
+        #since this execeptions are not based on the rest api exeptions
+        #we do not have the json message so we just build the exception
+        #with the original exception message set in e.description and e.message
         oe=OpenpayApiConnectionError.new(exception.message,false)
         LOG.warn exception.http_body
         @errors=true
         raise  oe
+      #badgateway-connection error, invalid credentials
       when  RestClient::BadGateway, RestClient::Unauthorized
             oe=OpenpayApiConnectionError.new exception.http_body
             LOG.warn exception.http_body
             @errors=true
             raise  oe
-        when  RestClient::Exception
+
+      when  RestClient::Exception
+
             oe=OpenpayApiTransactionError.new exception.http_body
             LOG.warn exception.http_body
             @errors=true
              raise  oe
+
       else
         #We won't hide unknown exceptions , those should be raised
+        LOG.warn exception.message
         raise exception
-
     end
-
-
-
-
-
-
-
   end
 
 
