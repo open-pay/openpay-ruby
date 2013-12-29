@@ -29,7 +29,7 @@ Or install it from the command line:
 
     $ gem install openpay-1.0.0.gem
 
-##Requirements
+###Requirements
 
     * ruby 1.8.7 or higher
 
@@ -95,7 +95,7 @@ Given most resources belong, either to a merchant or a customer, the api was des
 
 The first argument represent the json/hash object, while the second argument which is optional represents the **customer_id**.
 So if  just one argument is provided the action will be performed at the merchant level,
-but if the second argument is provided passing the customer_id, the action will be performed at the customer level.
+but if the second argument is provided passing the **customer_id**, the action will be performed at the customer level.
 
 
 The following illustrates the api design.
@@ -167,8 +167,8 @@ pp card_hash   =>
 ```
 
 Next, how we can construct  the preceding hash using **FactoryGirl**.
-**FactoryGirl** was used to build up our test suite, to facilitate hash construction.
-It  may help you at as well at your final implementation if you decide to use hashes.
+**FactoryGirl** was used in our test suite to facilitate hash construction.
+It  may help you  as well at your final implementation if you decide to use hashes.
 (more examples at *test/Factories.rb*)
 
 ```ruby
@@ -203,7 +203,7 @@ This ruby API standardize the method names across all different resources using 
 For full method documentation take a look at:
   - http://docs.openpay.mx/
 
-The test suite at * test/spec* is a good source of reference.
+The test suite at *test/spec* is a good source of reference.
 
 #####create
 
@@ -258,14 +258,14 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
-## Exceptions
+#### Exceptions
 
 This API generates 3 different Exception classes.
 
 
 -  **OpenpayApiError**: Generic base api exception class, for generic api exceptions.
 
-     - Internal ser ver error (500 Internal Server Error)
+     - Internal server error (500 Internal Server Error)
 
     Example:
 
@@ -275,7 +275,7 @@ This API generates 3 different Exception classes.
       cust.delete_all # will raise an OpenpayException
      ```
 
--  **OpenpayApiConnectionError** :Exception class for connection related issues. Errors happening prior  the server connection.
+-  **OpenpayApiConnectionError**: Exception class for connection related issues, errors happening prior  the server connection.
 
      - Authentication Error (401 Unauthorized)
      - Connection Errors.
@@ -300,7 +300,7 @@ This API generates 3 different Exception classes.
        end
      ```
 
-- **OpenpayApiTransactionError**: Errors happening after the initial connection has been initiated. Errors during transactions.
+- **OpenpayApiTransactionError**: Errors happening after the initial connection has been initiated, errors during transactions.
 
    - Bad Request (Malformed json,Invalid data)
    - Unprocessable Entity (invalid data)

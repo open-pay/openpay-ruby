@@ -100,16 +100,16 @@ describe 'Openpay Exceptions' do
 
     it 'raise an OpenpayApiConnectionError when provided credentials are invalid' do
 
-      @merchant_id='santa'
-      @private_key='invalid'
+      merchant_id='santa'
+      private_key='invalid'
 
-      @openpay=OpenpayApi.new(@merchant_id, @private_key)
-      @customers=@openpay.create(:customers)
-      expect { @customers.delete('1111') }.to raise_exception  OpenpayApiConnectionError
+      openpay=OpenpayApi.new(merchant_id, private_key)
+      customers=openpay.create(:customers)
+      expect { customers.delete('1111') }.to raise_exception  OpenpayApiConnectionError
 
 
       begin
-        @customers.delete('1111')
+        customers.delete('1111')
       rescue OpenpayApiConnectionError => e
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 401
