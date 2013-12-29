@@ -260,25 +260,21 @@ open_pay_resource.delete_all(customer_id=nil)
 ## Exceptions
 
 This API generates 3 different Exception classes.
-Unknown or unhandled exceptions will be raised using their original exception class.
 
 
-- *OpenpayApiError*
+-  **OpenpayApiError**: Generic base api exception class, for generic api exceptions.
 
-     Generic base api exception class, for generic api exceptions.
-
-     -Internal server error(500 Internal Server Error)
+     - Internal ser ver error (500 Internal Server Error)
 
     Example:
 
      ```ruby
-          #production mode
-          openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
-          cust.delete_all # will raise an OpenpayException
+      #production mode
+      openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
+      cust.delete_all # will raise an OpenpayException
      ```
 
-- *OpenpayApiConnectionError*
-     Exception class for connection related issues. Errors happening prior  the server connection.
+-  **OpenpayApiConnectionError** :Exception class for connection related issues. Errors happening prior  the server connection.
 
      - Authentication Error (401 Unauthorized)
      - Connection Errors.
@@ -303,14 +299,13 @@ Unknown or unhandled exceptions will be raised using their original exception cl
        end
      ```
 
-- *OpenpayApiTransactionError*
-Errors happening after the initial connection has been initiated. Errors during transactions.
+- **OpenpayApiTransactionError**: Errors happening after the initial connection has been initiated. Errors during transactions.
 
    - Bad Request (Malformed json,Invalid data)
    - Unprocessable Entity (invalid data)
    - Resource not found (404 Not Found)
 
-  Bad Request Example:
+ *Bad Request* Example:
 
 ```ruby
 email='foo'
@@ -324,7 +319,7 @@ rescue OpenpayApiTransactionError => e
 end
   ```
 
-  Resource not found  Example:
+  *Resource not found* Example:
 
 ```ruby
 begin
@@ -340,15 +335,15 @@ end
 
 ###These exceptions have the following attributes:
 
-- category
-- description
-- http_code
-- error_code
-- json_message
+- *category*
+- *description*
+- *http_code*
+- *error_code*
+- *json_message*
 
 For more information about categories, descriptions and codes take a look at:
-http://docs.openpay.mx/#errores
-http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+- http://docs.openpay.mx/#errores
+- http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
 ## More information
