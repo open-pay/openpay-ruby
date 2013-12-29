@@ -264,6 +264,7 @@ Unknown or unhandled exceptions will be raised using their original exception cl
 
 
 - *OpenpayApiError*
+
      Generic base api exception class, for generic api exceptions.
 
      -Internal server error(500 Internal Server Error)
