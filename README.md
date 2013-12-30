@@ -365,7 +365,8 @@ In the Openpay dashboard you are able to see every request and its corresponding
 
 ##Developer Notes
 
--  bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
+- bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
+- Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
 
 
 
