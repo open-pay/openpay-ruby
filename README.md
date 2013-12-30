@@ -17,8 +17,7 @@ For the full *Openpay api* documentation take a look at:
 
    Add the following line to your Gem file
 
-   # gem install --source https://code.stripe.com stripe
-
+   # openpay gem
     gem 'openpay'
 
 Update your bundle:
@@ -27,7 +26,7 @@ Update your bundle:
 
 Or install it from the command line:
 
-    $ gem install openpay-1.0.0.gem
+    $ gem install openpay
 
 ###Requirements
 
