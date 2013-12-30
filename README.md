@@ -17,8 +17,8 @@ For the full *Openpay api* documentation take a look at:
 
    Add the following line to your Gem file
 
-       # openpay gem
-        gem 'openpay'
+   # openpay gem
+    gem 'openpay'
 
 Update your bundle:
 
