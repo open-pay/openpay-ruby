@@ -30,12 +30,12 @@ class OpenpayException < StandardError
 
 =begin
 rescue  RestClient::BadRequest  => e
-  oe=OpenpayApiTransactionError.new(e.message,e.http_code,e.http_body,e.http_body)
+  oe=OpenpayTransactionException.new(e.message,e.http_code,e.http_body,e.http_body)
   LOG.warn e.http_body
   @errors=true
   raise  oe
 rescue RestClient::BadGateway => e
-  oe=OpenpayApiConnectionError.new(e.message,e.http_code,e.http_body,e.http_body)
+  oe=OpenpayConnectionException.new(e.message,e.http_code,e.http_body,e.http_body)
   LOG.warn e.http_body
   @errors=true
   raise  oe
