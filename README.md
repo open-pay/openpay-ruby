@@ -198,7 +198,7 @@ FactoryGirl.define do
 
 ####API Methods
 
-This ruby API standardize the method names across all different resources using the *create*,*get*,*update* and *delete* verbs.
+This ruby API standardize the method names across all different resources using the **create**,**get**,**update** and **delete** verbs.
 
 For full method documentation take a look at:
   - http://docs.openpay.mx/
