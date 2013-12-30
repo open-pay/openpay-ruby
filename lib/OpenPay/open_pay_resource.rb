@@ -10,7 +10,7 @@ class OpenPayResource
   def initialize(merchant_id,private_key,production=false)
      @merchant_id=merchant_id
      @private_key=private_key
-     #assigns base url depending the request env
+     #assigns base url depending the requested env
      @base_url=OpenpayApi::base_url(production)
      @errors=false
     @production=production
@@ -35,19 +35,15 @@ class OpenPayResource
   end
 
 
-
-
   def list(args='')
     @base_url+ "#{@merchant_id}/"+ self.class.name.to_s.downcase+"/"+args
   end
-
 
   def each
     all.each do |line|
       yield line
     end
   end
-
 
   def delete_all
 
@@ -61,7 +57,6 @@ class OpenPayResource
     end
 
   end
-
 
   def get(args='')
 
@@ -131,7 +126,6 @@ class OpenPayResource
     return_hash=false
     @errors=false
 
-
     if message.is_a?(Hash)
       return_hash=true
       json= hash2json message
@@ -139,7 +133,6 @@ class OpenPayResource
       json=message
       return_hash=false
     end
-
 
     LOG.debug("#{self.class.name.downcase}:")
     LOG.debug "   POST URL:#{url(args)}"

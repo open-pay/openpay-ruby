@@ -16,15 +16,12 @@ class Customers < OpenPayResource
 
   def all_bank_accounts(customer)
     get("#{customer}/bankaccounts/")
-
   end
-
 
   def each_bank_account(customer)
     get("#{customer}/bankaccounts/").each do |account|
        yield account
     end
-
   end
 
 
@@ -33,19 +30,14 @@ class Customers < OpenPayResource
   end
 
   def delete_all_bank_accounts(customer)
-
     if env == :production
       raise OpenpayException.new('This method is not supported on PRODUCTION',false)
     end
-
     each_bank_account(customer) do |account|
       warn "deleting bank_account: #{account['id']}"
       delete("#{customer}/bankaccounts/#{account['id']}")
     end
   end
-
-
-
 
 
  #Charges
@@ -72,6 +64,10 @@ class Customers < OpenPayResource
     post(description,"#{customer_id}/charges/#{charge_id}/refund")
   end
 
+  def capture_charge(customer_id,charge_id)
+      post('',"#{customer_id}/charges/#{charge_id}/capture")
+  end
+
 
 
   #Payouts
@@ -86,7 +82,6 @@ class Customers < OpenPayResource
   def get_payout(customer_id,payout_id)
     get("#{customer_id}/payouts/#{payout_id}")
   end
-
 
   def each_payout(customer_id)
      all_payouts(customer_id).each do |pay|
@@ -158,26 +153,6 @@ class Customers < OpenPayResource
 
 
 
-
-
-
-
-
-  def get_customer(customer_id)
-    get(customer_id)
-  end
-
-
-  def delete_customer(customer_id)
-    get(customer_id)
-  end
-
-
-
-
-
-
-
   #Card
   def create_card(customer,card)
        create(card,"#{customer}/cards")
@@ -214,8 +189,6 @@ class Customers < OpenPayResource
   def all_cards(customer)
     get("#{customer}/cards")
   end
-
-
 
 
 

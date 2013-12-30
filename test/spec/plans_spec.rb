@@ -71,13 +71,12 @@ describe Plans do
 
 
     #validates
-    expect { @plans.get('111111') }.to raise_exception RestClient::ResourceNotFound
+    expect { @plans.get('111111') }.to raise_exception OpenpayTransactionException
     begin
       @plans.get('111111')
-    rescue RestClient::ResourceNotFound => e
+    rescue OpenpayTransactionException => e
 
-      expect(e.http_body).to be_a String
-      expect(e.message).to match '404 Resource Not Found'
+      expect(e.description).to match 'The requested resource doesn\'t exist.'
 
     end
 

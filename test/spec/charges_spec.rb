@@ -24,9 +24,7 @@ describe Charges do
 
 
   after(:all) do
-    @cards.delete_all
-    @charges.delete_all
-    @customers.delete_all
+
   end
 
 
@@ -39,6 +37,8 @@ describe Charges do
       #create card
       card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash)
+
+
 
       #create charge attached to prev created card
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 101)
@@ -152,8 +152,6 @@ describe Charges do
 
       #perform check
       stored_charge=@charges.get(charge['id'],customer['id'])
-
-
       expect(stored_charge['amount']).to be_within(0.5).of(4000)
 
       #clean up
@@ -198,40 +196,9 @@ describe Charges do
 
 
 
-  describe '.cancel' do
+  describe '.capture' do
 
-    it 'cancels an existing merchant charge'  do
-
-      pending 'check if the cancel method in reality works, documentation has some discrepancies'
-      #create card
-      card_hash=FactoryGirl.build(:valid_card)
-      card=@cards.create(card_hash)
-
-      #create charge attached to prev created card
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 1505)
-      charge=@charges.create(charge_hash)
-
-      #perform check
-      stored_charge=@charges.get(charge['id'])
-      expect(stored_charge['amount']).to be_within(0.1).of(1505)
-
-      #cancel charge
-      @charges.cancel(charge['id'])
-     p  stored_charge=@charges.get(charge['id'])
-
-
-
-      #clean up
-      @cards.delete(card['id'])
-
-
-    end
-
-
-
-    it 'cancels an existing customer charge'  do
-      pending 'check if the cancel method in reality works, documentation has some discrepancies'
-
+    it 'captures  an existing merchant charge'  do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -244,34 +211,15 @@ describe Charges do
       charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000)
       charge=@charges.create(charge_hash,customer['id'])
 
-      #perform check
-      stored_charge=@charges.get(charge['id'],customer['id'])
-      expect(stored_charge['amount']).to be_within(0.5).of(4000)
-
-      #cancel
-      @charges.cancel(customer['id'],charge['id'])
-    p   stored_charge=@charges.get(charge['id'],customer['id'])
+      #capture charge
+      captured_charge=@charges.capture(charge['id'],customer['id'])
+     p  captured_charge
 
 
 
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
-
-    end
-
-
-
-  end
-
-
-
-
-  describe '.capture' do
-
-    it 'captures  an existing merchant charge'  do
-      pending 'check if the cancel method in reality works, documentation has some discrepancies'
-
     end
 
 
@@ -347,11 +295,7 @@ describe Charges do
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
 
-
-
-
     end
-
 
   end
 
@@ -367,16 +311,13 @@ describe Charges do
 
 
     it 'list merchant charges' do
-
          pending
-
     end
 
 
 
     it 'list customer charges' do
       pending
-
     end
 
 
@@ -386,15 +327,43 @@ describe Charges do
   describe '.each' do
 
     it 'iterates over merchant charges' do
-      pending
+      @charges.each do       |charge|
+        #perform check.
+        expect(charge['amount']).to be_a Float
+      end
     end
 
 
 
     it 'iterate over customer charges' do
-      pending
-    end
 
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash,customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4)
+      @charges.create(charge_hash,customer['id'])
+      charge2_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'+"2"],amount: 4)
+
+      @charges.create(charge2_hash,customer['id'])
+
+
+      @charges.each(customer['id']) do |charge|
+        expect(charge['operation_type']).to match 'in'
+       expect(charge['amount']).to be_within(0.1).of(4)
+      end
+
+
+      #cleanup
+      @cards.delete(card['id'],customer['id'])
+      @customers.delete(customer['id'])
+
+    end
 
   end
 

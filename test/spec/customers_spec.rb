@@ -9,7 +9,7 @@ describe Customers do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @openpay=OpenpayApi.new(@merchant_id,@private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
 
   end
@@ -17,42 +17,56 @@ describe Customers do
 
   describe '.create' do
 
-    it 'create a customer' do
+    it 'creates a customer' do
 
+
+      #creates a new customer
       name='Juan'
       last_name='Perez'
-      customer_hash= FactoryGirl.build(:customer, name: name, last_name: last_name)
-      customer=@customers.create(customer_hash)
-      expect(customer).to be_a(Hash)
 
-      id=customer['id']
-      p id
-      saved_customer=@customers.get_customer(id)
+      #json as input
+      customer_json= FactoryGirl.build(:customer, name: name, last_name: last_name).to_json
+      customer=@customers.create(customer_json)
+
+      #perform check
+      #json as output
+      expect(customer).to have_json_path('name')
+
+      #build hash out json string
+      customer_hash=JSON.parse customer
+      id=customer_hash['id']
+
+      #perform check
+      saved_customer=@customers.get(id)
       expect(saved_customer['name']).to match(name)
       expect(saved_customer['last_name']).to match(last_name)
+
+      #cleanup
+      @customers.delete(id)
 
     end
 
 
-    it 'fails when passing incomplete information' do
+    it 'fails when passing invalid information' do
 
+      #check no errors
+      expect(@customers.errors?).to be_false
+
+      #invalid email
       email='foo'
       customer_hash = FactoryGirl.build(:customer, email: email)
 
-      expect { @customers.create(customer_hash)}.to raise_exception OpenpayApiTransactionError
-
-
+      #perform check
+      expect { @customers.create(customer_hash) }.to raise_exception OpenpayTransactionException
       begin
         @customers.create(customer_hash)
-      rescue  OpenpayApiTransactionError  => e
+      rescue OpenpayTransactionException => e
         expect(e.http_code).to be 400
         expect(e.description).to match 'email\' not a well-formed email address'
 
       end
 
       expect(@customers.errors?).to be_true
-
-
 
     end
 
@@ -63,12 +77,14 @@ describe Customers do
 
 
     it 'deletes an existing customer' do
+      #creates customer
       customer_hash = FactoryGirl.build(:customer, name: :delete_me)
-
       customer=@customers.create(customer_hash)
       id=customer['id']
+      #delete customer
       @customers.delete(id)
-      expect { @customers.get(id) }.to raise_exception OpenpayApiTransactionError
+      #perform check
+      expect { @customers.get(id) }.to raise_exception OpenpayTransactionException
     end
 
   end
@@ -77,92 +93,67 @@ describe Customers do
   describe '.get' do
 
     it 'get a customer' do
+
+      #create customer
       name='get_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
-
       customer=@customers.create(customer_hash)
       id=customer['id']
-      expect( @customers.get(id)['name'] ).to match name
+      #perform check
+      expect(@customers.get(id)['name']).to match name
+      #cleanup
+      @customers.delete(id)
     end
 
-
-  end
-
-
-  describe '.get_customer' do
-
-    it 'get a customer' do
-
-      name='get_customer_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
-
-      customer=@customers.create(customer_hash)
-      id=customer['id']
-      expect(@customers.get_customer(id)['name']).to match name
-    end
 
   end
 
 
   describe '.each' do
     it 'list all customers' do
-      @customers.each do |customer|
-        expect(customer['phone_number']).to match '0180012345'
+      #clean state just in case
+      @customers.delete_all
+
+      #create customers
+      name='cust1'
+      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer=@customers.create(customer_hash)
+      id=customer['id']
+      customer2=@customers.create(customer_hash)
+      id2=customer2['id']
+      #perform check
+      @customers.each do |cust|
+        expect(cust['name']).to match 'cust1'
       end
+      #cleanup
+      @customers.delete(id)
+      @customers.delete(id2)
     end
   end
 
 
-
   describe '.update' do
 
-    it 'updates an existing customer'    do
+    it 'updates an existing customer' do
+
+      # creates customer
       name='customer_update_test'
       customer_hash = FactoryGirl.build(:customer, name: name)
 
       customer=@customers.create(customer_hash)
       id=customer['id']
 
+      #update customer
       name='new_name'
       customer_hash = FactoryGirl.build(:customer, name: name)
-      @customers.update(customer_hash,id)
-      expect(@customers.get_customer(id)['name']).to match name
-    end
+      @customers.update(customer_hash, id)
+      #perform check
+      expect(@customers.get(id)['name']).to match name
 
-  end
-
-
-
-  describe '.create_card' do
-
-    it 'creates  a card for an existing customer' do
-      name='create_card_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
-      card_hash = FactoryGirl.build(:valid_card,holder_name:  'Juan')
-
-
-      customer=@customers.create(customer_hash)
-      @customers.create_card(customer['id'],card_hash)
-      expect( @customers.all_cards(customer['id']).size ).to be 1
-
+      #cleanup
+      @customers.delete(id)
 
     end
-
-
-
-  end
-
-
-  describe '.all_cards' do
-
-    it 'list all cards for a given customer'  do
-
-      @customers.each do |customer|
-          customer['phone_number']
-      end
-
-    end
-
 
   end
 
@@ -172,25 +163,51 @@ describe Customers do
   describe '.all' do
 
     it 'list all the customers' do
-      expect(@customers.all.size).to be_a Integer
+
+      #initial state check
+      expect(@customers.all.size).to be 0
+
+      # creates customer
+      name='customer_update_test'
+      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer=@customers.create(customer_hash)
+
+      #performs check
+       expect(@customers.all.size).to be 1
+
+      #cleanup
+      @customers.delete(customer['id'])
+
+      #performs check
+      expect(@customers.all.size).to be 0
+
+
     end
 
 
   end
 
 
-
   describe '.delete_all' do
 
-
     it 'deletes all customer records' do
+
+      #create 5 customers
+      name='customer_update_test'
+      customer_hash = FactoryGirl.build(:customer, name: name)
+      5.times do
+        @customers.create(customer_hash)
+      end
+
+      #performs check
+      expect(@customers.all.size).to be 5
       @customers.delete_all
-      expect(@customers.all.size).to be_a Integer
+      expect(@customers.all.size).to be 0
     end
 
     it 'raise an exception when used on Production' do
 
-      @openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
+      @openpayprod=OpenpayApi.new(@merchant_id, @private_key, true)
       cust=@openpayprod.create(:customers)
       expect { cust.delete_all }.to raise_exception OpenpayException
 
@@ -198,9 +215,7 @@ describe Customers do
     end
 
 
-
   end
-
 
 
 end

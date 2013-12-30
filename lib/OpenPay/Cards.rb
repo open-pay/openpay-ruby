@@ -3,12 +3,9 @@ require 'open_pay_resource'
 class Cards < OpenPayResource
 
 
-
-
   def list(creation,before,after,offset=0,limit=10)
 
   end
-
 
 
   def get(card='',customer_id=nil)
@@ -21,7 +18,6 @@ class Cards < OpenPayResource
   end
 
 
-
   def create(card,customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
@@ -32,21 +28,39 @@ class Cards < OpenPayResource
   end
 
 
-  def delete(card,customer_id=nil)
+  def delete(card_id,customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
-      customers.delete_card(customer_id,card)
+      customers.delete_card(customer_id,card_id)
     else
-      super card
+      super card_id
     end
   end
 
 
-  def delete_all(customer_id)
+  def delete_all(customer_id=nil)
+    if customer_id
       customers=@api_hook.create(:customers)
       customers.delete_all_cards(customer_id)
+    else
+      each do |card|
+        delete(card['id'])
+      end
+    end
   end
 
+
+  def each(customer_id=nil)
+    if customer_id
+      all(customer_id).each do |card|
+        yield card
+      end
+    else
+        all.each do |card|
+          yield card
+        end
+    end
+  end
 
 
   def all(customer_id=nil)
@@ -57,9 +71,6 @@ class Cards < OpenPayResource
       super   ''
     end
   end
-
-
-
 
 
 end

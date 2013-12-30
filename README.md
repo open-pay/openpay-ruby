@@ -347,6 +347,18 @@ For more information about categories, descriptions and codes take a look at:
 - http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
+##Debug
+
+In the Openpay dashboard you are able to see every request and its corresponding request/response.
+    - https://sandbox-dashboard.openpay.mx
+
+
+##Developer Notes
+
+-  bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
+
+
+
 ## More information
 
 For more use cases take a look at the *test/spec* folder

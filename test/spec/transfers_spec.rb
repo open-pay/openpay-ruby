@@ -118,8 +118,7 @@ describe Transfers do
 
 
     it 'fails to get a non existing transfer' do
-    expect {  p @transfers.get(11111,11111)  }.to raise_exception    RestClient::ResourceNotFound
-
+    expect {   @transfers.get(11111,11111)  }.to raise_exception    OpenpayTransactionException
     end
 
 

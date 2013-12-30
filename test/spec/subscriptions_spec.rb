@@ -42,7 +42,7 @@ describe Subscriptions do
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #performs check
-      saved_subscription=@subscriptions.get(subscription_hash, customer['id'])
+      saved_subscription=@subscriptions.get(subscription['id'], customer['id'])
       expect(saved_subscription['plan_id']).to match plan['id']
 
       #cleanup

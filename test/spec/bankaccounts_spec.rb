@@ -3,7 +3,8 @@ require '../spec_helper'
 
 describe  Bankaccounts do
 
-
+ #bankaccounts for merchant cannot be created using the api
+  #the merchant bank account should be created using the Openpay dashboard
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
@@ -28,7 +29,7 @@ describe  Bankaccounts do
       customer=@customers.create(customer_hash)
 
       account_hash=FactoryGirl.build(:bank_account)
-      bank=@bank_accounts.create(account_hash,customer['id'],)
+      bank=@bank_accounts.create(account_hash,customer['id'])
 
       bank_account=@bank_accounts.get(customer['id'],bank['id'])
       expect(bank_account['alias']).to match 'Cuenta principal'
@@ -112,7 +113,7 @@ end
     end
 
     it 'fails to list all bank accounts when a non existing customer is given' do
-      expect { @bank_accounts.all('11111') }.to raise_exception(OpenpayApiTransactionError)
+      expect { @bank_accounts.all('11111') }.to raise_exception(OpenpayTransactionException)
     end
 
   end
@@ -138,7 +139,7 @@ end
 
 
     it 'fails to delete  a non existing  bank accounts' do
-         expect { @customers.delete('1111') }.to raise_exception  OpenpayApiTransactionError
+         expect { @customers.delete('1111') }.to raise_exception  OpenpayTransactionException
     end
 
   end

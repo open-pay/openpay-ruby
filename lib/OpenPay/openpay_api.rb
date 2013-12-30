@@ -1,5 +1,5 @@
 require 'logger'
-require 'resource_factory'
+require 'open_pay_resource_factory'
 require 'base64'
 require 'rest-client'
 require 'uri'
@@ -10,14 +10,14 @@ LOG= Logger.new(STDOUT)
 
 #change to Logger::DEBUG if need trace information
 #due the nature of the information, we recommend to never use a log file when in debug
-LOG.level=Logger::INFO
+LOG.level=Logger::DEBUG
 
 
 class OpenpayApi
 
 
   #API Endpoints
-  API_DEV="https://sandbox-api.openpay.mx/v1/"
+  API_DEV='https://sandbox-api.openpay.mx/v1/'
   API_PROD='https://api.openpay.mx'
 
 
@@ -31,7 +31,7 @@ class OpenpayApi
 
   # @return [nil]
   def create(resource)
-    klass=ResourceFactory::create(resource, @merchant_id,@private_key,@production)
+    klass=OpenPayResourceFactory::create(resource, @merchant_id,@private_key,@production)
     #attach api hook to be able to refere to same API instance from created resources
     #TODO we may move it to the initialize method
     klass.api_hook=self

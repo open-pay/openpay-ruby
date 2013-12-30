@@ -32,6 +32,32 @@ class Charges < OpenPayResource
   end
 
 
+  def capture(transaction_id,customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.capture_charge(customer_id,transaction_id )
+    else
+      post(description, transaction_id+'/capture')
+    end
+  end
+
+
+
+
+  def each(customer_id=nil)
+    if customer_id
+      all(customer_id).each do |card|
+        yield card
+      end
+    else
+      all.each do |card|
+        yield card
+      end
+    end
+  end
+
+
+
   def get(charge='', customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
@@ -41,7 +67,6 @@ class Charges < OpenPayResource
     end
   end
 
-
   def create(charge, customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
@@ -50,6 +75,5 @@ class Charges < OpenPayResource
       super charge
     end
   end
-
 
 end
