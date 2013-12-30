@@ -3,14 +3,14 @@
 
 ##Description
 
-ruby client for *Openpay API* services (version 1.0.0)
+ruby client for *Openpay api* services (version 1.0.0)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
 For more information about Openpay visit:
  - http://openpay.mx/
 
-For the full *Openpay API* documentation take a look at:
+For the full *Openpay api* documentation take a look at:
  - http://docs.openpay.mx/
 
 ## Installation
@@ -70,7 +70,7 @@ subscriptions=openpay.create(:subscriptions)
 transfers=openpay.create(:transfers)
 ```
 
-According to the current version of the Openpay API the available resources are:
+According to the current version of the *Openpay api* the available resources are:
 
 - *bankaccounts*
 - *cards*
@@ -82,7 +82,7 @@ According to the current version of the Openpay API the available resources are:
 - *subscriptions*
 - *transfers*
 
-Each rest resource exposed in the rest Openpay API is represented by a class in this ruby API, being **OpenpayResource** the base class.
+Each rest resource exposed in the rest *Openpay api* is represented by a class in this ruby API, being **OpenpayResource** the base class.
 
 
 ### Implementation
@@ -119,7 +119,7 @@ This api supports both ruby hashes and json strings as inputs and outputs. (See 
 If a ruby hash is passed in as in input, a hash will be returned as the method output.
 if a json string is passed in as an input, a json string will be returned as the method function output.
 
-This code excerpt from a specification demonstrates how you can use hashes and json strings  interchangeably
+This code excerpt from a specification demonstrates how you can use hashes and json strings  interchangeably.
 
 Methods without inputs will return a ruby hash.
 
@@ -143,7 +143,7 @@ it 'creates a fee using a json message' do
 end
 ```
 
-Here you can see how the card hash representation looks like.
+Here you can see how the **card_hash** representation looks like.
 
 ```ruby
 require 'pp'
@@ -266,6 +266,7 @@ This API generates 3 different Exception classes.
 -  **OpenpayApiError**: Generic base api exception class, for generic api exceptions.
 
      - Internal server error (500 Internal Server Error)
+     - OpenpayApi factory method, invalid resource name.
 
     Example:
 
@@ -302,9 +303,12 @@ This API generates 3 different Exception classes.
 
 - **OpenpayApiTransactionError**: Errors happening after the initial connection has been initiated, errors during transactions.
 
-   - Bad Request (Malformed json,Invalid data)
-   - Unprocessable Entity (invalid data)
+   - Bad Request (e.g. Malformed json,Invalid data)
+   - Unprocessable Entity (e.g. invalid data)
    - Resource not found (404 Not Found)
+   - Conflict (e.g. resource already exists)
+   - PaymentRequired (e.g. insufficient funds)
+   - UnprocessableEntity ( e.g. stolen card )
 
  *Bad Request* Example:
 
