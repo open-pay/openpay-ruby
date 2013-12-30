@@ -30,7 +30,7 @@ Or install it from the command line:
 
 ###Requirements
 
-    * ruby 1.8.7 or higher
+    * ruby 1.9 or higher
 
 ## Usage
 
@@ -262,20 +262,27 @@ open_pay_resource.delete_all(customer_id=nil)
 This API generates 3 different Exception classes.
 
 
--  **OpenpayApiError**: Generic base api exception class, for generic api exceptions.
+-  **OpenpayException**: Generic base api exception class, for generic api exceptions.
 
      - Internal server error (500 Internal Server Error)
      - OpenpayApi factory method, invalid resource name.
 
-    Example:
+    Examples:
 
-     ```ruby
-      #production mode
-      openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
-      cust.delete_all # will raise an OpenpayException
-     ```
+ ```ruby
+  #production mode
+  openpay_prod=OpenpayApi.new(@merchant_id,@private_key,true)
+  customers=openpay_prod.create(:customers)
+  customers.delete_all # will raise an OpenpayException
+ ```
 
--  **OpenpayApiConnectionError**: Exception class for connection related issues, errors happening prior  the server connection.
+  ```ruby
+   #production mode
+   openpay_prod=OpenpayApi.new(@merchant_id,@private_key,true)
+   customers=openpay_prod.create(:non_existing_resource)    # will raise an OpenpayException
+  ```
+
+-  **OpenpayConnectionException**: Exception class for connection related issues, errors happening prior  the server connection.
 
      - Authentication Error (401 Unauthorized)
      - Connection Errors.
@@ -292,7 +299,7 @@ This API generates 3 different Exception classes.
 
       begin
          customers.get('23444422211')
-      rescue OpenpayApiConnectionError => e
+      rescue OpenpayConnectionException => e
          e.http_code  #  => 401
          e.error_code # => 1002
          e.description# => 'The api key or merchant id are invalid.'
@@ -300,7 +307,7 @@ This API generates 3 different Exception classes.
        end
      ```
 
-- **OpenpayApiTransactionError**: Errors happening after the initial connection has been initiated, errors during transactions.
+- **OpenpayTransactionException**: Errors happening after the initial connection has been initiated, errors during transactions.
 
    - Bad Request (e.g. Malformed json,Invalid data)
    - Unprocessable Entity (e.g. invalid data)
@@ -316,7 +323,7 @@ email='foo'
 customer_hash = FactoryGirl.build(:customer, email: email)
 begin
     customers.create(customer_hash)
-rescue OpenpayApiTransactionError => e
+rescue OpenpayTransactionException => e
     e.http_code# => 400
     e.error_code# => 1001
     e.description# => 'email\' not a well-formed email address'
