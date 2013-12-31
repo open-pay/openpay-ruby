@@ -383,7 +383,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
           charges.all(customer_id)
 
- - capture merchant card
+- capture merchant card
 
         charges.capture(charge_id)
 
@@ -482,6 +482,107 @@ open_pay_resource.delete_all(customer_id=nil)
 
 
 #### plans
+
+-create merchant plan
+
+        plans.create(plan_hash)
+
+
+-create  customer  plan
+
+        plans.create(plan_hash,customer_id)
+
+-get a merchant plan
+
+        merchant_plan=plans.get(plan_id)
+
+-get a customer  plan
+
+        customer_plan=plans.get(plan_id,customer_id)
+
+
+-updates a merchant  plan
+
+       plans.update(plan_hash,customer_id)
+
+-updates a customer  plan
+
+       plans.update(plan_hash,customer_id)
+
+-each merchant  plan
+
+     plans.each do {|plan| p plan }
+
+-each customer  plans
+
+     plans.each(customer_id)  do {|plan| p plan }
+
+
+-all merchant  plans
+
+     plans.all
+
+-all customer  plans
+
+      plans.all(customer_id)
+
+
+#### subscriptions
+
+-create customer subscriptions
+
+        subscriptions.create(subscriptions_hash,customer_id)
+
+
+-get customer subscription
+
+        subscriptions.get(subscriptions_hash,customer_id)
+
+-all customer subscription
+
+        subscriptions.all(customer_id)
+
+
+-each customer subscription
+
+        subscriptions.each(customer_id)    {|subscription| p subscription }
+
+-deletes customer subscription
+
+         subscriptions.delete(customer_id)
+
+-deletes all customer subscriptions ( sandbox mode only)
+
+         subscriptions.delete(customer_id)
+
+
+
+
+#### transfers
+
+-create transfer
+
+    transfers.create(transfer_hash,customer_id)
+
+
+-get  transfer
+
+    transfers.get(transfer_id,customer_id)
+
+-all customer transfers
+
+    transfers.all(customer_id)
+
+
+-each customer transfer
+
+    transfers.each(customer_id)    {|transfer| p transfer }
+
+
+
+
+
+
 
 
 
