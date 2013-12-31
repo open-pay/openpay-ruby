@@ -533,7 +533,6 @@ open_pay_resource.delete_all(customer_id=nil)
 
         subscriptions.create(subscriptions_hash,customer_id)
 
-
 - get customer subscription
 
         subscriptions.get(subscriptions_hash,customer_id)
