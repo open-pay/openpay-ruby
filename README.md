@@ -193,8 +193,7 @@ FactoryGirl.define do
   end
 ```
 
-
-####API Methods
+###Methods design
 
 This ruby API standardize the method names across all different resources using the **create**,**get**,**update** and **delete** verbs.
 
@@ -256,6 +255,8 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
+####API Methods
+
 
 ###bank_accounts
 
@@ -309,7 +310,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
         cards.each {|merchant_card| p card}
 
- - each customer card
+- each customer card
 
         cards.each(customer_id)   {|customer_card | p customer_card }
 
@@ -325,25 +326,25 @@ open_pay_resource.delete_all(customer_id=nil)
 
         merchant_cards=cards.all
 
-  - all customer card
+ - all customer card
 
         customer_cards=cards.all(customer_id)
 
- - delete merchant card
+- delete merchant card
 
         cards.delete(card_id)
 
- - delete customer card
+- delete customer card
 
-         cards.delete(card_id,customer_id)
+        cards.delete(card_id,customer_id)
 
-  -delete all merchant cards
+ -delete all merchant cards
 
-         cards.delete_all
+        cards.delete_all
 
-  -delete all customer cards
+ -delete all customer cards
 
-          cards.delete_all(customer_id)
+         cards.delete_all(customer_id)
 
 
 ##charges
@@ -374,27 +375,27 @@ open_pay_resource.delete_all(customer_id=nil)
          charges.each(customer_id) {|charge| p charge}
 
 
- - all merchant charge
+- all merchant charge
 
           charges.all
 
- - all customer charge
+- all customer charge
 
           charges.all(customer_id)
 
-  - capture merchant card
+ - capture merchant card
 
         charges.capture(charge_id)
 
- - capture customer card
+- capture customer card
 
         charges.capture(charge['id'],customer['id'])
 
- - refund  merchant charge
+- refund  merchant charge
 
         charges.refund(charge_id, refund_description_hash)
 
-  - refund  merchant charge
+- refund  merchant charge
 
          charges.refund(charge_id, refund_description_hash)
 
@@ -402,32 +403,32 @@ open_pay_resource.delete_all(customer_id=nil)
 
 ##Customers
 
-  - creates customer
+- creates customer
 
         customers.create(customer_json)
 
-  - get customer
+- get customer
 
         customer=customers.get(customer_id)
 
-   - update customer
+ - update customer
 
         customers.update(customer_hash)
 
-   - delete customer
+ - delete customer
 
         customers.delete(customer_id)
 
-   - each customer
+ - each customer
 
         customers.each do {|customer|  p customer }
 
-   - list all customer
+ - list all customer
 
         all_customers=customers.all
 
 
-   - delete all customers (sand box mode only)
+ - delete all customers (sand box mode only)
 
           all_customers=customers.all
 
@@ -435,49 +436,48 @@ open_pay_resource.delete_all(customer_id=nil)
 ###fees
 
 
-   - creates fee
+- creates fee
 
-           #In order to create a fee a charge should exists
-           fee.create(fee_hash)
+        #In order to create a fee a charge should exists
+        fee.create(fee_hash)
 
-    - gets all fees
+- gets all fees
 
-            all_fees=fees.all
+        all_fees=fees.all
 
 
 ###payouts
 
-    - creates a merchant payout
+- creates a merchant payout
 
-            payouts.create(payout_json)
+        payouts.create(payout_json)
 
-    - creates a customer payout
+- creates a customer payout
 
-             payouts.create(payout_hash,customer_id)
+         payouts.create(payout_hash,customer_id)
 
-    - gets a merchant payout
+- gets a merchant payout
 
-            payouts.get(payout_id)
+        payouts.get(payout_id)
+- gets a customer payout
 
-    - gets a customer payout
+        payouts.get(payout_id,customer_id)
 
-            payouts.get(payout_id,customer_id)
+- all merchant payouts
 
-     - all merchant payouts
+        merchant_payouts=payouts.all
 
-            merchant_payouts=payouts.all
+- all customer payouts
 
-     - all customer payouts
+        customer_payouts=payouts.all(customer_id)
 
-          customer_payouts=payouts.all(customer_id)
+- each merchant payout
 
-     - each merchant payout
+        payouts.each { |payout| p payout }
 
-          payouts.each { |payout| p payout }
+- each customer payout
 
-     - each customer payout
-
-          payouts.each(customer_id) { |payout| p payout }
+        payouts.each(customer_id) { |payout| p payout }
 
 
 
