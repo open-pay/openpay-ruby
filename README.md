@@ -256,6 +256,236 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
+
+###bank_accounts
+
+- creates a merchant bank account , is not supported through the API, use the console instead.
+
+- creates  a customer bank account
+
+        bank_accounts.create(account_hash,customer_id)
+
+- get a given bank account for a given customer
+
+         bank_account=bank_accounts.get(customer_id,bankaccount_id)
+
+- each customer bank account
+
+        bank_accounts.each(customer_id) do |bank_account|
+            bank_account['alias']
+        end
+
+- all bank accounts for a given customer
+
+         accounts=bank_accounts.all(customer_id)
+
+- deletes a given customer bank account
+
+          bank_accounts.delete(customer_id,bank_id)
+
+- deletes all customer bank accounts (sandbox mode only)
+
+         bank_accounts.delete_all(customer['id'])
+
+##cards
+
+- creates a merchant card
+
+        cards.create(card_json)
+
+- creates a customer card
+
+        cards.create(card_hash, customer_id)
+
+- gets merchant card
+
+        card=cards.get(card_id)
+
+- gets customer card
+
+         card=cards.get(card_id, customer_id)
+
+- each merchant card
+
+        cards.each {|merchant_card| p card}
+
+ - each customer card
+
+        cards.each(customer_id)   {|customer_card | p customer_card }
+
+- all merchant cards
+
+        merchant_cards=cards.all
+
+- all customer card
+
+        customer_cards=cards.all(customer_id)
+
+ - all merchant cards
+
+        merchant_cards=cards.all
+
+  - all customer card
+
+        customer_cards=cards.all(customer_id)
+
+ - delete merchant card
+
+        cards.delete(card_id)
+
+ - delete customer card
+
+         cards.delete(card_id,customer_id)
+
+  -delete all merchant cards
+
+         cards.delete_all
+
+  -delete all customer cards
+
+          cards.delete_all(customer_id)
+
+
+##charges
+
+
+ - creates merchant charge
+
+        charges.create(charge_hash)
+
+ - creates customer charge
+
+        charges.create(charge_hash,customer_id)
+
+- gets merchant charge
+
+        merchant_charge=charges.get(charge_id)
+
+- gets  customer charge
+
+         customer_charge=charges.get(charge_id,customer_id)
+
+- each merchant charge
+
+         charges.each {|charge| p charge}
+
+- each customer charge
+
+         charges.each(customer_id) {|charge| p charge}
+
+
+ - all merchant charge
+
+          charges.all
+
+ - all customer charge
+
+          charges.all(customer_id)
+
+  - capture merchant card
+
+        charges.capture(charge_id)
+
+ - capture customer card
+
+        charges.capture(charge['id'],customer['id'])
+
+ - refund  merchant charge
+
+        charges.refund(charge_id, refund_description_hash)
+
+  - refund  merchant charge
+
+         charges.refund(charge_id, refund_description_hash)
+
+
+
+##Customers
+
+  - creates customer
+
+        customers.create(customer_json)
+
+  - get customer
+
+        customer=customers.get(customer_id)
+
+   - update customer
+
+        customers.update(customer_hash)
+
+   - delete customer
+
+        customers.delete(customer_id)
+
+   - each customer
+
+        customers.each do {|customer|  p customer }
+
+   - list all customer
+
+        all_customers=customers.all
+
+
+   - delete all customers (sand box mode only)
+
+          all_customers=customers.all
+
+
+###fees
+
+
+   - creates fee
+
+           #In order to create a fee a charge should exists
+           fee.create(fee_hash)
+
+    - gets all fees
+
+            all_fees=fees.all
+
+
+###payouts
+
+    - creates a merchant payout
+
+            payouts.create(payout_json)
+
+    - creates a customer payout
+
+             payouts.create(payout_hash,customer_id)
+
+    - gets a merchant payout
+
+            payouts.get(payout_id)
+
+    - gets a customer payout
+
+            payouts.get(payout_id,customer_id)
+
+     - all merchant payouts
+
+            merchant_payouts=payouts.all
+
+     - all customer payouts
+
+          customer_payouts=payouts.all(customer_id)
+
+     - each merchant payout
+
+          payouts.each { |payout| p payout }
+
+     - each customer payout
+
+          payouts.each(customer_id) { |payout| p payout }
+
+
+
+###plans
+
+
+
+
 #### Exceptions
 
 This API generates 3 different Exception classes.
@@ -373,35 +603,44 @@ For more use cases take a look at the *test/spec* folder
 1.  http://docs.openpay.mx/
 
 
-###bank_accounts
 
-- creates a merchant bank account , is not supported through the API, use the console instead.
 
-- creates  a customer bank account
 
-        bank_accounts.create(account_hash,customer_id)
 
-- get a given bank account for a given customer
 
-         bank_account=bank_accounts.get(customer_id,bank_id)
 
- - each customer bank account
 
-        bank_accounts.each(customer_id) do |bank_account|
-            bank_account['alias']
-        end
 
-- all bank accounts for a given customer
 
-         accounts=bank_accounts.all(customer_id)
 
- - deletes a given customer bank account
 
-          bank_accounts.delete(customer_id,bank_id)
 
- - deletes all customer bank accounts (sandbox mode only)
 
-         bank_accounts.delete_all(customer['id'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
