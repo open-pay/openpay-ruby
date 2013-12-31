@@ -371,3 +371,40 @@ In the Openpay dashboard you are able to see every request and its corresponding
 For more use cases take a look at the *test/spec* folder
 
 1.  http://docs.openpay.mx/
+
+
+###bank_accounts
+
+- creates a merchant bank account , is not supported through the API, use the console instead.
+
+- creates  a customer bank account
+
+      bank_accounts.create(account_hash,customer_id)
+
+- get a given bank account for a given customer
+
+      bank_account=bank_accounts.get(customer_id,bank_id)
+
+ - each customer bank account
+
+        bank_accounts.each(customer_id) do |bank_account|
+            bank_account['alias']
+        end
+
+  - all bank accounts for a given customer
+
+         accounts=bank_accounts.all(customer_id)
+
+  - deletes a given customer bank account
+
+          bank_accounts.delete(customer_id,bank_id)
+
+  - deletes all customer bank accounts (sandbox mode only)
+
+         bank_accounts.delete_all(customer['id'])
+
+
+
+
+
+
