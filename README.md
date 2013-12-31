@@ -379,11 +379,11 @@ For more use cases take a look at the *test/spec* folder
 
 - creates  a customer bank account
 
-      bank_accounts.create(account_hash,customer_id)
+        bank_accounts.create(account_hash,customer_id)
 
 - get a given bank account for a given customer
 
-      bank_account=bank_accounts.get(customer_id,bank_id)
+         bank_account=bank_accounts.get(customer_id,bank_id)
 
  - each customer bank account
 
@@ -391,15 +391,15 @@ For more use cases take a look at the *test/spec* folder
             bank_account['alias']
         end
 
-  - all bank accounts for a given customer
+- all bank accounts for a given customer
 
          accounts=bank_accounts.all(customer_id)
 
-  - deletes a given customer bank account
+ - deletes a given customer bank account
 
           bank_accounts.delete(customer_id,bank_id)
 
-  - deletes all customer bank accounts (sandbox mode only)
+ - deletes all customer bank accounts (sandbox mode only)
 
          bank_accounts.delete_all(customer['id'])
 
