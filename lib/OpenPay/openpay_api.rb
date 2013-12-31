@@ -3,7 +3,7 @@ require 'open_pay_resource_factory'
 require 'base64'
 require 'rest-client'
 require 'uri'
-require 'errors/openpay_exception'
+require 'openpay/errors/openpay_exception'
 
 
 LOG= Logger.new(STDOUT)

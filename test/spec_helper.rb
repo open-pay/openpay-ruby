@@ -2,7 +2,7 @@ require 'openpay'
 
 
 require 'factory_girl'
-require '../Factories'
+require './test/Factories'
 require 'rspec'
 require 'rspec-expectations'
 require 'json_spec'

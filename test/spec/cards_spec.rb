@@ -1,4 +1,4 @@
-require '../spec_helper'
+require './test/spec_helper'
 
 
 describe Cards do

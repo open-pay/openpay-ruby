@@ -1,8 +1,6 @@
-require '../spec_helper'
+require './test/spec_helper'
 
 describe Transfers do
-
-
 
 
   before(:all) do
