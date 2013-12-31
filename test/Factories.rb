@@ -165,8 +165,8 @@ FactoryGirl.define do
 
 
   factory :refund_description, class:Hash do
-     description 'A petición del cliente'
-     initialize_with { attributes }
+    description 'A peticion del cliente'
+    initialize_with { attributes }
 
   end
 
@@ -174,7 +174,7 @@ FactoryGirl.define do
   factory :fee, class:Hash do
         customer_id  'dvocf97jd20es3tw5laz'
         amount  '12.50'
-        description  'Cobro de Comisión'
+        description  'Cobro de Comision'
         initialize_with { attributes }
 
   end

@@ -69,7 +69,7 @@ describe Fees do
       @charges.create(charge_hash, customer['id'])
 
       #create customer fee using json
-      fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comisión"}^
+      fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comision"}^
       #performs check , it returns json
       expect(@fees.create(fee_json)).to have_json_path('amount')
 
