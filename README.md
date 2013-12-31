@@ -411,7 +411,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
         customer=customers.get(customer_id)
 
- - update customer
+- update customer
 
         customers.update(customer_hash)
 
