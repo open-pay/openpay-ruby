@@ -1,5 +1,5 @@
 #openpay version
-require 'openpay/version'
+require 'version'
 
 #external dependencies
 require 'rest-client'
