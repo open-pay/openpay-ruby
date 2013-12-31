@@ -415,22 +415,22 @@ open_pay_resource.delete_all(customer_id=nil)
 
         customers.update(customer_hash)
 
- - delete customer
+- delete customer
 
         customers.delete(customer_id)
 
- - each customer
+- each customer
 
         customers.each do {|customer|  p customer }
 
- - list all customer
+- list all customer
 
         all_customers=customers.all
 
 
- - delete all customers (sand box mode only)
+- delete all customers (sand box mode only)
 
-          all_customers=customers.all
+         all_customers=customers.all
 
 
 #### fees
