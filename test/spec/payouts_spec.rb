@@ -144,7 +144,7 @@ describe Payouts do
      expect(@payouts.all.last['transaction_type']) .to match 'payout'
     end
 
-    it 'all customer payout' do
+    it 'all customer payouts' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)

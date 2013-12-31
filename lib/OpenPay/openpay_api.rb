@@ -10,7 +10,7 @@ LOG= Logger.new(STDOUT)
 
 #change to Logger::DEBUG if need trace information
 #due the nature of the information, we recommend to never use a log file when in debug
-LOG.level=Logger::INFO
+LOG.level=Logger::DEBUG
 
 
 class OpenpayApi

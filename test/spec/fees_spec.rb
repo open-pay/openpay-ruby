@@ -77,6 +77,9 @@ describe Fees do
 
   end
 
+
+
+
   describe '.all' do
 
     it 'get all fees' do

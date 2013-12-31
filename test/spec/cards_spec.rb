@@ -13,6 +13,9 @@ describe Cards do
     @cards=@openpay.create(:cards)
     @customers=@openpay.create(:customers)
 
+    @cards.delete_all
+
+
   end
 
   after(:all) do
@@ -140,11 +143,43 @@ describe Cards do
 
   describe '.each' do
 
-    it 'list all existing merchant cards' do
+    it 'iterates over all existing merchant cards' do
       @cards.each do |card|
         expect(card['expiration_year']).to match '14'
       end
     end
+
+
+    it 'iterates over all existing customer cards' do
+
+
+
+      #creates a customer
+      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+      customers=@openpay.create(:customers)
+      customer_hash = FactoryGirl.build(:customer)
+      customer=customers.create(customer_hash)
+
+      #creates a customer card
+      card=@cards.create(card_hash, customer['id'])
+      expect(card).to be_a(Hash)
+
+      @cards.each(customer['id']) do |c|
+        expect(c['expiration_year']).to match '14'
+      end
+
+
+      #cleanup
+      @cards.delete(card['id'],customer['id'])
+      @customers.delete(customer['id'])
+
+
+
+
+    end
+
+
+
 
 
   end
@@ -153,7 +188,8 @@ describe Cards do
   describe '.delete' do
 
 
-    it 'deletes a customer card' do
+    it 'deletes a merchant card' do
+
       #creates merchant card
       card_hash = FactoryGirl.build(:valid_card)
       cards=@cards.create(card_hash)
@@ -163,12 +199,11 @@ describe Cards do
       name='Vicente Olmos'
 
       #perform check
-      card=@cards.get(id)
-      expect(card['holder_name']).to match(name)
-      expect(card['card_number']).to match('1111')
 
-      #cleanup
-      @cards.delete(card['id'])
+      card=@cards.delete(id)
+      expect { @cards.get(id) }.to raise_exception(OpenpayTransactionException)
+
+
     end
 
 
