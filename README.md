@@ -111,7 +111,6 @@ json_out=open_pay_resource.create(json_in,customer_id)
 
  ```
 
-
 ####  Methods Inputs/Outputs
 
 This api supports both ruby hashes and json strings as inputs and outputs. (See previous example)
@@ -261,7 +260,6 @@ open_pay_resource.delete_all(customer_id=nil)
 
 This API generates 3 different Exception classes.
 
-
 -  **OpenpayException**: Generic base api exception class, for generic api exceptions.
 
      - Internal server error (500 Internal Server Error)
@@ -367,7 +365,7 @@ In the Openpay dashboard you are able to see every request and its corresponding
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
-
+- check openpay_ap.rbi for Logger configuration
 
 
 ## More information
