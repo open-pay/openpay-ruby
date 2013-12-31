@@ -318,15 +318,15 @@ open_pay_resource.delete_all(customer_id=nil)
 
         merchant_cards=cards.all
 
-- all customer card
+- all customer cards
 
         customer_cards=cards.all(customer_id)
 
- - all merchant cards
+- all merchant cards
 
         merchant_cards=cards.all
 
- - all customer card
+- all customer card
 
         customer_cards=cards.all(customer_id)
 
