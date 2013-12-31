@@ -1,4 +1,4 @@
-require 'openpay/errors/open_pay_exception'
+require 'openpay/errors/openpay_exception'
 
 class OpenpayTransactionException < OpenpayException
 

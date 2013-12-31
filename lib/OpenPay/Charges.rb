@@ -37,11 +37,9 @@ class Charges < OpenPayResource
       customers=@api_hook.create(:customers)
       customers.capture_charge(customer_id,transaction_id )
     else
-      post(description, transaction_id+'/capture')
+      post( '',transaction_id+'/capture')
     end
   end
-
-
 
 
   def each(customer_id=nil)
