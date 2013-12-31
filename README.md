@@ -1,4 +1,4 @@
-# openpay
+# openpay-ruby
 
 
 ##Description
@@ -17,8 +17,8 @@ For the full *Openpay api* documentation take a look at:
 
    Add the following line to your Gem file
 
-        #openpay gem
-        gem 'openpay'
+    #openpay gem
+     gem 'openpay'
 
 Update your bundle:
 
@@ -364,7 +364,8 @@ In the Openpay dashboard you are able to see every request and its corresponding
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
-- check openpay_ap.rbi for Logger configuration
+- check openpay_ap.rb for Logger configuration
+- travis  https://travis-ci.org/open-pay/openpay-ruby
 
 ## More information
 For more use cases take a look at the *test/spec* folder
