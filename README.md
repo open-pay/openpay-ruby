@@ -255,10 +255,10 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
-####API Methods
+###API Methods
 
 
-###bank_accounts
+#### bank_accounts
 
 - creates a merchant bank account , is not supported through the API, use the console instead.
 
@@ -288,7 +288,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
          bank_accounts.delete_all(customer['id'])
 
-##cards
+#### cards
 
 - creates a merchant card
 
@@ -347,7 +347,7 @@ open_pay_resource.delete_all(customer_id=nil)
          cards.delete_all(customer_id)
 
 
-##charges
+#### charges
 
 
  - creates merchant charge
@@ -401,7 +401,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
 
 
-##Customers
+#### customers
 
 - creates customer
 
@@ -433,7 +433,7 @@ open_pay_resource.delete_all(customer_id=nil)
           all_customers=customers.all
 
 
-###fees
+#### fees
 
 
 - creates fee
@@ -446,7 +446,7 @@ open_pay_resource.delete_all(customer_id=nil)
         all_fees=fees.all
 
 
-###payouts
+#### payouts
 
 - creates a merchant payout
 
@@ -481,7 +481,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
 
 
-###plans
+#### plans
 
 
 
