@@ -367,7 +367,6 @@ In the Openpay dashboard you are able to see every request and its corresponding
 - check openpay_ap.rbi for Logger configuration
 
 ## More information
-
 For more use cases take a look at the *test/spec* folder
 
 1.  http://docs.openpay.mx/
