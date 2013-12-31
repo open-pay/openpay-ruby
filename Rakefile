@@ -9,5 +9,7 @@ task :default => [:spec]
 desc 'run specifications'
 RSpec::Core::RakeTask.new do |t|
   t.pattern = 'test/spec/*'
+  t.rspec_opts << '--color'
+  r.rspec_opts << '-I .'
 end
 
