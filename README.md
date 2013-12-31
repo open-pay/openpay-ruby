@@ -560,21 +560,21 @@ open_pay_resource.delete_all(customer_id=nil)
 
 - create transfer
 
-    transfers.create(transfer_hash,customer_id)
+        transfers.create(transfer_hash,customer_id)
 
 
 - get  transfer
 
-    transfers.get(transfer_id,customer_id)
+        transfers.get(transfer_id,customer_id)
 
 - all customer transfers
 
-    transfers.all(customer_id)
+        transfers.all(customer_id)
 
 
 - each customer transfer
 
-    transfers.each(customer_id)    {|transfer| p transfer }
+        transfers.each(customer_id)    {|transfer| p transfer }
 
 
 
