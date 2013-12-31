@@ -50,7 +50,7 @@ private_key='sk_92b25d3baec149e6b428d81abfe37006'
 openpay=OpenpayApi.new(merchant_id,private_key)
 
 #To enable production mode you should pass a third argument as true.
-#openpay_prod=OpenPayApi.new(merchant_id,private_key,true)
+#openpay_prod=OpenpayApi.new(merchant_id,private_key,true)
  ```
 
 The openpay factory instance is in charge to generate the required resources through a factory method (create).
@@ -165,7 +165,7 @@ pp card_hash   =>
 :city=>"Queretaro"}}
 ```
 
-Next, how we can construct  the preceding hash using **FactoryGirl**.
+Next, how we construct  the preceding hash using **FactoryGirl**.
 **FactoryGirl** was used in our test suite to facilitate hash construction.
 It  may help you  as well at your final implementation if you decide to use hashes.
 (more examples at *test/Factories.rb*)

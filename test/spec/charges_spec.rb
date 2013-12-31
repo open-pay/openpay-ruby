@@ -198,7 +198,31 @@ describe Charges do
 
   describe '.capture' do
 
-    it 'captures  an existing merchant charge'  do
+
+    it 'captures  a merchant card charge'  do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create merchant card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash)
+
+      #create merchant charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
+      charge=@charges.create(charge_hash)
+
+      #capture merchant charge
+      @charges.capture(charge['id'])
+
+      #clean up
+      @cards.delete(card['id'])
+      @customers.delete(customer['id'])
+
+    end
+
+    it 'captures  an customer card charge'  do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -208,14 +232,11 @@ describe Charges do
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000)
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
       charge=@charges.create(charge_hash,customer['id'])
 
-      #capture charge
-      captured_charge=@charges.capture(charge['id'],customer['id'])
-     p  captured_charge
-
-
+      #capture customer charge
+      @charges.capture(charge['id'],customer['id'])
 
       #clean up
       @cards.delete(card['id'],customer['id'])
@@ -223,15 +244,6 @@ describe Charges do
     end
 
 
-    it 'fails to capture an non existing merchant charge' do
-      pending 'check if the cancel method in reality works, documentation has some discrepancies'
-    end
-
-
-
-    it 'captures  an existing customer charge'  do
-      pending 'check if the cancel method in reality works, documentation has some discrepancies'
-    end
 
 
   end
