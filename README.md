@@ -360,13 +360,11 @@ For more information about categories, descriptions and codes take a look at:
 In the Openpay dashboard you are able to see every request and its corresponding request/response.
     - https://sandbox-dashboard.openpay.mx
 
-
 ##Developer Notes
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
 - check openpay_ap.rbi for Logger configuration
-
 
 ## More information
 
