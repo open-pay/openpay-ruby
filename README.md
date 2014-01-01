@@ -322,14 +322,6 @@ open_pay_resource.delete_all(customer_id=nil)
 
         customer_cards=cards.all(customer_id)
 
-- all merchant cards
-
-        merchant_cards=cards.all
-
-- all customer card
-
-        customer_cards=cards.all(customer_id)
-
 - delete merchant card
 
         cards.delete(card_id)
