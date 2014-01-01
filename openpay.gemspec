@@ -24,11 +24,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.post_install_message = "Thanks for installing openpay. Enjoy !"
 
-   spec.add_development_dependency 'rspec'
-  spec.add_development_dependency "factory_girl"
-   spec.add_runtime_dependency "rest-client"
-  spec.add_runtime_dependency "rest-client"
-  spec.add_runtime_dependency "json"
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'factory_girl'
+  spec.add_runtime_dependency 'rest-client'
+  spec.add_runtime_dependency 'json'
 
 
 
