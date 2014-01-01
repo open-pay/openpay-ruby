@@ -1,8 +1,9 @@
 require 'logger'
-require 'open_pay_resource_factory'
 require 'base64'
 require 'rest-client'
 require 'uri'
+
+require 'openpay/open_pay_resource_factory'
 require 'openpay/errors/openpay_exception'
 
 

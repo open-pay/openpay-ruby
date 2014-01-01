@@ -1,5 +1,6 @@
-require 'openpay'
+$:.unshift File.expand_path 'lib'
 
+require 'openpay'
 
 require 'factory_girl'
 require './test/Factories'
