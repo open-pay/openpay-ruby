@@ -6,7 +6,7 @@ task :default => [:spec]
 
 desc 'run specifications'
 RSpec::Core::RakeTask.new do |t|
-  t.rspec_opts = '-I lib'
+  t.rspec_opts = '-I \'lib\''
 
   t.pattern = 'test/spec/*'
 end
