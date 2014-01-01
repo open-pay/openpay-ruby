@@ -14,6 +14,7 @@ require 'json_spec'
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
+    c.rspec_opts << '-I lib -I .'
     config.include JsonSpec::Helpers
   end
 end
