@@ -1,4 +1,4 @@
-p $:.unshift File.expand_path './lib'
+p  $:.unshift File.expand_path './lib/openpay'
 
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
