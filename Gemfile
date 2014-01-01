@@ -10,5 +10,5 @@ gem 'json_spec'
 
 
 # Specify your gem's dependencies in Openpay.gemspec
-gemspec :path=>"../"
+gemspec
 
