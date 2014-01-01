@@ -1,4 +1,4 @@
-require 'test/spec_helper'
+require './test/spec_helper'
 
 
 describe  Bankaccounts do

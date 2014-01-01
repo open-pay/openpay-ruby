@@ -1,3 +1,4 @@
+
 require 'openpay'
 
 require 'factory_girl'
