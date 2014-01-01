@@ -3,9 +3,8 @@ require 'base64'
 require 'rest-client'
 require 'uri'
 
-require 'openpay/open_pay_resource_factory'
-require 'openpay/errors/openpay_exception'
-
+require 'open_pay_resource_factory'
+require 'errors/openpay_exception'
 
 LOG= Logger.new(STDOUT)
 
@@ -16,11 +15,9 @@ LOG.level=Logger::INFO
 
 class OpenpayApi
 
-
   #API Endpoints
   API_DEV='https://sandbox-api.openpay.mx/v1/'
   API_PROD='https://api.openpay.mx'
-
 
   #by default the testing environment is used
   def initialize(merchant_id, private_key,production=false)
