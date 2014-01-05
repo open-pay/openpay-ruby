@@ -2,7 +2,6 @@ require 'open_pay_resource'
 
 class Cards < OpenPayResource
 
-
   def list(creation,before,after,offset=0,limit=10)
 
   end
