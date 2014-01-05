@@ -19,7 +19,6 @@ describe  Bankaccounts do
 
   after(:all) do
     @customers.delete_all
-    @bank_accounts.delete_all
   end
 
   describe '.create' do

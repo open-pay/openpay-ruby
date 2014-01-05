@@ -52,7 +52,6 @@ class OpenPayResource
     end
 
     each do |res|
-      warn "deleting #{res}"
       self.delete(res['id'])
     end
 

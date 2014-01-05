@@ -34,7 +34,6 @@ class Customers < OpenPayResource
       raise OpenpayException.new('This method is not supported on PRODUCTION',false)
     end
     each_bank_account(customer) do |account|
-      warn "deleting bank_account: #{account['id']}"
       delete("#{customer}/bankaccounts/#{account['id']}")
     end
   end
