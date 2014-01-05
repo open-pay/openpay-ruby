@@ -683,7 +683,7 @@ In the Openpay dashboard you are able to see every request and its corresponding
 ## More information
 For more use cases take a look at the *test/spec* folder
 
-1.  http://docs.openpay.mx/
+  1.  http://docs.openpay.mx/
 
 
 
