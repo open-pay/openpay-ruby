@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/openpay/customers.rb" afterPath="$PROJECT_DIR$/lib/openpay/customers.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="" />
     <ignored path="OpenPay.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -65,10 +60,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="4" selection-start="960" selection-end="962" vertical-scroll-proportion="0.7660626" vertical-offset="181" max-vertical-offset="1105">
+                <state line="38" column="4" selection-start="960" selection-end="962" vertical-scroll-proportion="-25.84" vertical-offset="0" max-vertical-offset="1105">
                   <folding />
                 </state>
               </provider>
@@ -104,10 +99,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Rakefile" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Rakefile" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Rakefile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+                <state line="11" column="94" selection-start="174" selection-end="174" vertical-scroll-proportion="0.28992248" vertical-offset="0" max-vertical-offset="645">
                   <folding />
                 </state>
               </provider>
@@ -128,7 +123,7 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="bankaccounts_spec.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="bankaccounts_spec.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/spec/bankaccounts_spec.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="20" column="28" selection-start="507" selection-end="507" vertical-scroll-proportion="-0.2420886" vertical-offset="493" max-vertical-offset="3247">
@@ -253,13 +248,13 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/Rakefile" />
         <option value="$PROJECT_DIR$/test/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/openpay.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/customers.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
         <option value="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
+        <option value="$PROJECT_DIR$/Rakefile" />
       </list>
     </option>
   </component>
@@ -1021,7 +1016,11 @@
       <created>1388960309418</created>
       <updated>1388960309418</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="removed some files&#10;">
+      <created>1388960699496</created>
+      <updated>1388960699497</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1091,7 +1090,8 @@
     <MESSAGE value="Documentation additions" />
     <MESSAGE value="Documentation additions&#10;" />
     <MESSAGE value="Travis setup&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Travis setup&#10;" />
+    <MESSAGE value="removed some files&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed some files&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1257,13 +1257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="22" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
@@ -1280,7 +1273,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="4" selection-start="960" selection-end="962" vertical-scroll-proportion="0.7660626" vertical-offset="181" max-vertical-offset="1105">
+        <state line="38" column="4" selection-start="960" selection-end="962" vertical-scroll-proportion="-25.84" vertical-offset="0" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
@@ -1316,6 +1309,13 @@
     <entry file="file://$PROJECT_DIR$/test/spec/bankaccounts_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="28" selection-start="507" selection-end="507" vertical-scroll-proportion="-0.2420886" vertical-offset="493" max-vertical-offset="3247">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="94" selection-start="174" selection-end="174" vertical-scroll-proportion="0.28992248" vertical-offset="0" max-vertical-offset="645">
           <folding />
         </state>
       </provider>
