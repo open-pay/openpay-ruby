@@ -1,12 +1,3 @@
-$:  << "lib/openpay"
-$:  << "lib"
-$:  << "."
-p $:
-
-p Dir.entries('lib')
-p Dir.entries('lib/openpay')
-
-
 require 'openpay'
 
 require 'factory_girl'
