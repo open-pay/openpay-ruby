@@ -8,7 +8,7 @@ require 'json'
 module Openpay
 
   #api setup / constants
-  require_relative   'openpay/openpay_api'
+  require   'openpay/openpay_api'
 
   #base class
   require  'openpay/open_pay_resource'
