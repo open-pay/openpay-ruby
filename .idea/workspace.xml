@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/cards.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/charges.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/customers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/fees.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/payouts.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/plans.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/subscriptions.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/openpay/transfers.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="Travis setup&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OpenPay.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,19 +54,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="openpay.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="openpay.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/openpay.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="61" selection-start="416" selection-end="416" vertical-scroll-proportion="0.37110186" vertical-offset="0" max-vertical-offset="962">
+                <state line="21" column="61" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="openpay_api.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="25" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+                <state line="15" column="65" selection-start="349" selection-end="349" vertical-scroll-proportion="0.2687039" vertical-offset="0" max-vertical-offset="1105">
                   <folding />
                 </state>
               </provider>
@@ -253,7 +246,6 @@
         <option value="$PROJECT_DIR$/test/Factories.rb" />
         <option value="$PROJECT_DIR$/test/spec/fees_spec.rb" />
         <option value="$PROJECT_DIR$/lib/version.rb" />
-        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/Plans.rb" />
         <option value="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
         <option value="$PROJECT_DIR$/openpay.gemspec" />
@@ -263,6 +255,7 @@
         <option value="$PROJECT_DIR$/Rakefile" />
         <option value="$PROJECT_DIR$/test/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/openpay.rb" />
+        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
       </list>
     </option>
   </component>
@@ -1008,7 +1001,11 @@
       <created>1388958378856</created>
       <updated>1388958378857</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Travis setup&#10;">
+      <created>1388958745159</created>
+      <updated>1388958745159</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1256,13 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="25" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="22" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
@@ -1272,7 +1262,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/openpay.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="61" selection-start="416" selection-end="416" vertical-scroll-proportion="0.37110186" vertical-offset="0" max-vertical-offset="962">
+        <state line="21" column="61" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="65" selection-start="349" selection-end="349" vertical-scroll-proportion="0.2687039" vertical-offset="0" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
