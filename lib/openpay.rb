@@ -8,27 +8,27 @@ require 'json'
 module Openpay
 
   #api setup / constants
-  require_relative 'openpay/openpay_api'
+  require   'openpay/openpay_api'
 
   #base class
-  require_relative  'openpay/open_pay_resource'
+  require  'openpay/open_pay_resource'
 
   #resource classes
-  require_relative 'openpay/bankaccounts'
-  require_relative 'openpay/cards'
-  require_relative 'openpay/charges'
-  require_relative 'openpay/customers'
-  require_relative 'openpay/fees'
-  require_relative 'openpay/payouts'
-  require_relative 'openpay/plans'
-  require_relative 'openpay/subscriptions'
-  require_relative 'openpay/transfers'
-  require_relative 'openpay/charges'
+  require 'openpay/bankaccounts'
+  require 'openpay/cards'
+  require 'openpay/charges'
+  require 'openpay/customers'
+  require 'openpay/fees'
+  require 'openpay/payouts'
+  require 'openpay/plans'
+  require 'openpay/subscriptions'
+  require 'openpay/transfers'
+  require 'openpay/charges'
 
   #exceptions
-  require_relative 'openpay/errors/openpay_exception_factory'
-  require_relative 'openpay/errors/openpay_exception'
-  require_relative 'openpay/errors/openpay_transaction_exception'
-  require_relative 'openpay/errors/openpay_connection_exception'
+  require 'openpay/errors/openpay_exception_factory'
+  require 'openpay/errors/openpay_exception'
+  require 'openpay/errors/openpay_transaction_exception'
+  require 'openpay/errors/openpay_connection_exception'
 
 end

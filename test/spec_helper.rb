@@ -1,3 +1,6 @@
+$:  << "lib/openpay"
+$:  << "lib"
+$:  << "."
 
 require 'openpay'
 
