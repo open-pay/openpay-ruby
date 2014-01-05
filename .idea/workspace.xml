@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" afterPath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/customers.rb" afterPath="$PROJECT_DIR$/lib/openpay/customers.rb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/openpay/customers.rb" afterPath="$PROJECT_DIR$/lib/openpay/customers.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -1018,7 +1017,11 @@
       <created>1388960005101</created>
       <updated>1388960005102</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Travis setup&#10;">
+      <created>1388960309418</created>
+      <updated>1388960309418</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="ToolWindowManager">
