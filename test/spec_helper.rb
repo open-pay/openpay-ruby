@@ -3,7 +3,9 @@ $:  << "lib"
 $:  << "."
 p $:
 
-p Dir.entries('.')
+p Dir.entries('lib')
+p Dir.entries('lib/openpay')
+
 
 require 'openpay'
 
