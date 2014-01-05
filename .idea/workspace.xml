@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="" />
+    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# Explicit paths specified without -i nor -o; assuming --only paths...&#10;# On branch master&#10;# Changes not staged for commit:&#10;#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)&#10;#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)&#10;#&#10;#&#9;modified:   ../../.idea/workspace.xml&#10;#&#9;modified:   ../../README.md&#10;#&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="OpenPay.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,10 +72,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="555" column="0" selection-start="11740" selection-end="11740" vertical-scroll-proportion="-16.115385" vertical-offset="9016" max-vertical-offset="12546">
+                <state line="655" column="0" selection-start="14438" selection-end="14438" vertical-scroll-proportion="1.3085809" vertical-offset="10342" max-vertical-offset="12529">
                   <folding />
                 </state>
               </provider>
@@ -99,10 +102,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Rakefile" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="Rakefile" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Rakefile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="94" selection-start="174" selection-end="174" vertical-scroll-proportion="0.28992248" vertical-offset="0" max-vertical-offset="645">
+                <state line="4" column="0" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
                   <folding />
                 </state>
               </provider>
@@ -111,10 +114,8 @@
           <file leaf-file-name=".travis.yml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.travis.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="153">
-                  <folding>
-                    <marker date="1388550195000" expanded="true" signature="15:29" placeholder="rvm:" />
-                  </folding>
+                <state line="3" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -126,7 +127,7 @@
           <file leaf-file-name="bankaccounts_spec.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/spec/bankaccounts_spec.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="28" selection-start="507" selection-end="507" vertical-scroll-proportion="-0.2420886" vertical-offset="493" max-vertical-offset="3247">
+                <state line="184" column="2" selection-start="4358" selection-end="4358" vertical-scroll-proportion="0.81170887" vertical-offset="2615" max-vertical-offset="3247">
                   <folding />
                 </state>
               </provider>
@@ -247,7 +248,6 @@
         <option value="$PROJECT_DIR$/openpay.gemspec" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/openpay.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
@@ -255,6 +255,7 @@
         <option value="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
         <option value="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
         <option value="$PROJECT_DIR$/Rakefile" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1020,7 +1021,11 @@
       <created>1388960699496</created>
       <updated>1388960699497</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="removed some files&#10;">
+      <created>1388960811440</created>
+      <updated>1388960811440</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1175,25 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="555" column="0" selection-start="11740" selection-end="11740" vertical-scroll-proportion="-16.115385" vertical-offset="9016" max-vertical-offset="12546">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-          <folding>
-            <marker date="1388550195000" expanded="true" signature="15:29" placeholder="rvm:" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/charges_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="238" column="51" selection-start="5639" selection-end="5691" vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="6698">
@@ -1306,18 +1292,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/bankaccounts_spec.rb">
+    <entry file="file://$PROJECT_DIR$/Rakefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="507" selection-end="507" vertical-scroll-proportion="-0.2420886" vertical-offset="493" max-vertical-offset="3247">
+        <state line="4" column="0" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="94" selection-start="174" selection-end="174" vertical-scroll-proportion="0.28992248" vertical-offset="0" max-vertical-offset="645">
+        <state line="3" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/bankaccounts_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="2" selection-start="4358" selection-end="4358" vertical-scroll-proportion="0.81170887" vertical-offset="2615" max-vertical-offset="3247">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="655" column="0" selection-start="14438" selection-end="14438" vertical-scroll-proportion="1.3085809" vertical-offset="10342" max-vertical-offset="12529">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>

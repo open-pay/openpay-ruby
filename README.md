@@ -654,7 +654,6 @@ rescue OpenpayApiTransactionError => e
 end
 ```
 
-
 ###These exceptions have the following attributes:
 
 - *category*
