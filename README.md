@@ -1,4 +1,4 @@
-# openpay-ruby
+# Openpay-Ruby  [![Build Status](https://travis-ci.org/open-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
 
 ##Description
