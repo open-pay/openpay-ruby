@@ -1,4 +1,4 @@
-require './test/spec_helper'
+require_relative '../spec_helper'
 
 
 describe Customers do
@@ -200,7 +200,7 @@ describe Customers do
       end
 
       #performs check
-      expect(@customers.all.size).to be 5
+      expect(@customers.all.size).to be > 4
       @customers.delete_all
       expect(@customers.all.size).to be 0
     end

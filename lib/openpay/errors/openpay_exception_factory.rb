@@ -5,6 +5,8 @@ class OpenpayExceptionFactory
   def   OpenpayExceptionFactory::create(exception)
 
     LOG.warn("An exception has been raised (original exception class: #{exception.class})")
+    LOG.warn("An exception has been raised (original exception class: #{exception.message })")
+
 
     case exception
 

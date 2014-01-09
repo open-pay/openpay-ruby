@@ -1,5 +1,5 @@
+require_relative '../spec_helper'
 
-require './test/spec_helper'
 
 describe Payouts do
 

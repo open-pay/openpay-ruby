@@ -1,8 +1,6 @@
 require 'open_pay_resource'
 
 
-
-#TODO change name
 class Bankaccounts < OpenPayResource
 
 
@@ -55,11 +53,6 @@ class Bankaccounts < OpenPayResource
     customers.delete_all_bank_accounts(customer_id)
 
   end
-
-
-
-
-
 
 
 

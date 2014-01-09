@@ -20,9 +20,17 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
   spec.require_paths = ['lib','lib/openpay','openpay','.']
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.post_install_message = "Thanks for installing openpay. Enjoy !"
+  spec.add_runtime_dependency 'rest-client'  , '~>1.6.7'
+  spec.add_runtime_dependency 'json'
+
+
+
+  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'json_spec'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'factory_girl'  ,  '4.2.0'
+  spec.post_install_message = 'Thanks for installing openpay. Enjoy !'
 
 
 

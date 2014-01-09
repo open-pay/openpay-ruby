@@ -1,4 +1,4 @@
-require './test/spec_helper'
+require_relative '../spec_helper'
 
 describe Fees do
 
@@ -101,7 +101,7 @@ describe Fees do
       @fees.create(fee_hash)
 
       #performs check
-      expect(@fees.all.first['customer_id']).to match customer['id']
+      expect(@fees.all.first['amount']).to be_a Float
 
       #cleanup
       @cards.delete(card['id'], customer['id'])

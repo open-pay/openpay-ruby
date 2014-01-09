@@ -8,3 +8,8 @@
    t.pattern = 'test/spec/*'
  end
 
+
+ RSpec::Core::RakeTask.new('bankaccounts') do |t|
+   t.pattern = 'test/spec/bankaccounts*'
+ end
+

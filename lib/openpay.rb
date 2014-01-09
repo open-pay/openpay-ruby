@@ -26,9 +26,9 @@ module Openpay
   require 'openpay/charges'
 
   #exceptions
-  require 'openpay/errors/openpay_exception_factory'
-  require 'openpay/errors/openpay_exception'
-  require 'openpay/errors/openpay_transaction_exception'
-  require 'openpay/errors/openpay_connection_exception'
+  require 'errors/openpay_exception_factory'
+  require 'errors/openpay_exception'
+  require 'errors/openpay_transaction_exception'
+  require 'errors/openpay_connection_exception'
 
 end

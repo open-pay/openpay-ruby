@@ -1,10 +1,16 @@
-require 'openpay'
+$: << '.'
+$: << 'lib'
+$: << 'lib/openpay'
 
+
+require 'openpay'
 require 'factory_girl'
 require 'test/Factories'
 require 'rspec'
 require 'rspec-expectations'
 require 'json_spec'
+
+
 
 
 RSpec.configure do |config|

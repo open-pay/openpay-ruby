@@ -52,7 +52,7 @@ class OpenPayResource
     end
 
     each do |res|
-      self.delete(res['id'])
+      p self.delete(res['id'])
     end
 
   end

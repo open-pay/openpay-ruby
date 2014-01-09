@@ -677,7 +677,8 @@ In the Openpay dashboard you are able to see every request and its corresponding
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
 - check openpay_ap.rb for Logger configuration
-- travis  https://travis-ci.org/open-pay/openpay-ruby
+- travis  https://travis-ci.org/open-pay/openpay-ruby , if a test fails it will leave leave some records, it may affect posterior tests.
+   it is recommended to reset the console/account to assure a clean state after a failure occurs.
 
 ## More information
 For more use cases take a look at the *test/spec* folder
