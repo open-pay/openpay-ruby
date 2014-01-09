@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# Explicit paths specified without -i nor -o; assuming --only paths...&#10;# On branch master&#10;# Changes not staged for commit:&#10;#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)&#10;#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)&#10;#&#10;#&#9;modified:   ../../.idea/workspace.xml&#10;#&#9;modified:   ../../README.md&#10;#&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/OpenPay.iml" afterPath="$PROJECT_DIR$/.idea/OpenPay.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
+    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/bankaccounts.rb" afterPath="$PROJECT_DIR$/lib/openpay/bankaccounts.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" afterPath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/cards_spec.rb" afterPath="$PROJECT_DIR$/test/spec/cards_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/charges_spec.rb" afterPath="$PROJECT_DIR$/test/spec/charges_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/customers_spec.rb" afterPath="$PROJECT_DIR$/test/spec/customers_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/exceptions_spec.rb" afterPath="$PROJECT_DIR$/test/spec/exceptions_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/fees_spec.rb" afterPath="$PROJECT_DIR$/test/spec/fees_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/openpay.gemspec" afterPath="$PROJECT_DIR$/openpay.gemspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay.rb" afterPath="$PROJECT_DIR$/lib/openpay.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/errors/openpay_exception_factory.rb" afterPath="$PROJECT_DIR$/lib/openpay/errors/openpay_exception_factory.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/openpayresource_spec.rb" afterPath="$PROJECT_DIR$/test/spec/openpayresource_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/payouts_spec.rb" afterPath="$PROJECT_DIR$/test/spec/payouts_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/plans_spec.rb" afterPath="$PROJECT_DIR$/test/spec/plans_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec_helper.rb" afterPath="$PROJECT_DIR$/test/spec_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/subscriptions_spec.rb" afterPath="$PROJECT_DIR$/test/spec/subscriptions_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/transfers_spec.rb" afterPath="$PROJECT_DIR$/test/spec/transfers_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OpenPay.iws" />
@@ -86,19 +67,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="0" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
+                <state line="7" column="116" selection-start="150" selection-end="150" vertical-scroll-proportion="0.18449612" vertical-offset="0" max-vertical-offset="1105">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="680" column="2" selection-start="15307" selection-end="15307" vertical-scroll-proportion="0.49423394" vertical-offset="11260" max-vertical-offset="12546">
+                <state line="680" column="2" selection-start="15402" selection-end="15402" vertical-scroll-proportion="-56.653847" vertical-offset="10087" max-vertical-offset="12529">
                   <folding />
                 </state>
               </provider>
@@ -156,10 +137,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="fees_spec.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="fees_spec.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/spec/fees_spec.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="103" column="53" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.48973143" vertical-offset="1441" max-vertical-offset="2074">
+                <state line="103" column="53" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2074">
                   <folding />
                 </state>
               </provider>
@@ -174,10 +155,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="open_pay_resource.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="open_pay_resource.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="54" column="8" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.0" vertical-offset="588" max-vertical-offset="4182">
+                <state line="187" column="5" selection-start="3835" selection-end="3835" vertical-scroll-proportion="3.75" vertical-offset="809" max-vertical-offset="4199">
                   <folding />
                 </state>
               </provider>
@@ -246,9 +227,6 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
-  <component name="Git.Push.Settings">
-    <option name="myUpdateMethod" value="REBASE" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -269,16 +247,16 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/test/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/openpay.rb" />
-        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/customers.rb" />
         <option value="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" />
         <option value="$PROJECT_DIR$/Rakefile" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/openpay.gemspec" />
-        <option value="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
         <option value="$PROJECT_DIR$/test/spec/customers_spec.rb" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/spec/fees_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
+        <option value="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
       </list>
     </option>
   </component>
@@ -1077,7 +1055,11 @@
       <created>1388960811440</created>
       <updated>1388960811440</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Added require_relative. And includes for running out of rake.">
+      <created>1389245786967</created>
+      <updated>1389245786968</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1091,17 +1073,17 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32917964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19385475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3281412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1148,7 +1130,8 @@
     <MESSAGE value="Documentation additions&#10;" />
     <MESSAGE value="Travis setup&#10;" />
     <MESSAGE value="removed some files&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed some files&#10;" />
+    <MESSAGE value="Added require_relative. And includes for running out of rake." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added require_relative. And includes for running out of rake." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1422,20 +1405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/openpay.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="20" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/plans_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="168" column="0" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
@@ -1471,13 +1440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="8" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.0" vertical-offset="588" max-vertical-offset="4182">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/customers_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="84" column="6" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.15789473" vertical-offset="1326" max-vertical-offset="4012">
@@ -1492,9 +1454,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/fees_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="53" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2074">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="680" column="2" selection-start="15307" selection-end="15307" vertical-scroll-proportion="0.49423394" vertical-offset="11260" max-vertical-offset="12546">
+        <state line="680" column="2" selection-start="15402" selection-end="15402" vertical-scroll-proportion="-56.653847" vertical-offset="10087" max-vertical-offset="12529">
           <folding />
         </state>
       </provider>
@@ -1502,9 +1471,23 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/fees_spec.rb">
+    <entry file="file://$PROJECT_DIR$/lib/openpay.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="53" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.48973143" vertical-offset="1441" max-vertical-offset="2074">
+        <state line="16" column="20" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="116" selection-start="150" selection-end="150" vertical-scroll-proportion="0.18449612" vertical-offset="0" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="5" selection-start="3835" selection-end="3835" vertical-scroll-proportion="3.75" vertical-offset="809" max-vertical-offset="4199">
           <folding />
         </state>
       </provider>

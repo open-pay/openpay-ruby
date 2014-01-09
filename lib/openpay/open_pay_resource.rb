@@ -52,7 +52,7 @@ class OpenPayResource
     end
 
     each do |res|
-      p self.delete(res['id'])
+      self.delete(res['id'])
     end
 
   end
@@ -135,7 +135,8 @@ class OpenPayResource
 
     LOG.debug("#{self.class.name.downcase}:")
     LOG.debug "   POST URL:#{url(args)}"
-    LOG.debug "   json: #{json}"
+    #For security reasons we keep it hide
+    #LOG.debug "   json: #{json}"
 
     begin
 
@@ -184,7 +185,7 @@ class OpenPayResource
 
 
     LOG.info "PUT URL:#{url}"
-    LOG.info "   json: #{json}"
+    #LOG.info "   json: #{json}"
 
     begin
       res= RestClient::Request.new(
