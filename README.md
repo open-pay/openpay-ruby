@@ -1,5 +1,4 @@
-# openpay-ruby
-
+# Openpay-Ruby
 
 ##Description
 
