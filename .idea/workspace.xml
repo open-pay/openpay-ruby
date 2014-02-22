@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="Turned off debug mode.&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/bankaccounts.rb" afterPath="$PROJECT_DIR$/lib/openpay/bankaccounts.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/openpay.gemspec" afterPath="$PROJECT_DIR$/openpay.gemspec" />
+    <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/openpay/errors/openpay_exception_factory.rb" afterPath="$PROJECT_DIR$/lib/openpay/errors/openpay_exception_factory.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/version.rb" afterPath="$PROJECT_DIR$/lib/version.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OpenPay.iws" />
@@ -80,10 +73,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="openpay_api.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="openpay_api.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="73" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1170">
+                <state line="12" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.02907916" vertical-offset="198" max-vertical-offset="1134">
                   <folding />
                 </state>
               </provider>
@@ -128,10 +121,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name=".travis.yml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.travis.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="36" selection-start="28" selection-end="28" vertical-scroll-proportion="0.08709677" vertical-offset="0" max-vertical-offset="620">
+                <state line="3" column="36" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
                   <folding />
                 </state>
               </provider>
@@ -180,7 +173,7 @@
           <file leaf-file-name="bankaccounts.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/openpay/bankaccounts.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.2983871" vertical-offset="211" max-vertical-offset="1170">
+                <state line="22" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.29886913" vertical-offset="211" max-vertical-offset="1170">
                   <folding />
                 </state>
               </provider>
@@ -265,11 +258,11 @@
         <option value="$PROJECT_DIR$/test/spec/customers_spec.rb" />
         <option value="$PROJECT_DIR$/test/spec/fees_spec.rb" />
         <option value="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" />
-        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
         <option value="$PROJECT_DIR$/openpay.gemspec" />
         <option value="$PROJECT_DIR$/lib/version.rb" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/lib/openpay/openpay_api.rb" />
       </list>
     </option>
   </component>
@@ -1076,14 +1069,18 @@
       <created>1389246752157</created>
       <updated>1389246752157</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="New gem 1.0.3 - travis ruby 2.0">
+      <created>1393087525964</created>
+      <updated>1393087525964</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="22" width="1834" height="1058" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32883817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32917964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1091,6 +1088,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32883817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1100,7 +1098,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1149,7 +1146,8 @@
     <MESSAGE value="removed some files&#10;" />
     <MESSAGE value="Added require_relative. And includes for running out of rake." />
     <MESSAGE value="Turned off debug mode.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Turned off debug mode.&#10;" />
+    <MESSAGE value="New gem 1.0.3 - travis ruby 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="New gem 1.0.3 - travis ruby 2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1438,13 +1436,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="73" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="187" column="5" selection-start="3835" selection-end="3835" vertical-scroll-proportion="0.0" vertical-offset="3366" max-vertical-offset="4446">
@@ -1461,7 +1452,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/openpay/bankaccounts.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.2983871" vertical-offset="211" max-vertical-offset="1170">
+        <state line="22" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.29886913" vertical-offset="211" max-vertical-offset="1170">
           <folding />
         </state>
       </provider>
@@ -1485,7 +1476,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="36" selection-start="28" selection-end="28" vertical-scroll-proportion="0.08709677" vertical-offset="0" max-vertical-offset="620">
+        <state line="3" column="36" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/openpay/openpay_api.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.02907916" vertical-offset="198" max-vertical-offset="1134">
           <folding />
         </state>
       </provider>

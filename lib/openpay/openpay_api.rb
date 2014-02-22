@@ -11,9 +11,7 @@ LOG= Logger.new(STDOUT)
 #due the nature of the information, we recommend to never use a log file when in debug
 LOG.level=Logger::ERROR
 
-
 class OpenpayApi
-
   #API Endpoints
   API_DEV='https://sandbox-api.openpay.mx/v1/'
   API_PROD='https://api.openpay.mx'
