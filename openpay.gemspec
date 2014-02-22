@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.version       = Openpay::VERSION
   spec.authors       = ["ronnie_bermejo"]
   spec.email         =  ["ronnie.bermejo.mx@gmail.com"]
-  spec.description   = %q{ruby client for Openpay API services (version 1.0.1)}
+  spec.description   = %q{ruby client for Openpay API services (version 1.0.2)}
   spec.summary       = %q{ruby api for openpay resources}
   spec.homepage      = "http://openpay.mx/"
   spec.license       = "Apache"

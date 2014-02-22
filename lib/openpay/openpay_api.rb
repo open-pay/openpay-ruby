@@ -14,7 +14,7 @@ LOG.level=Logger::ERROR
 
 class OpenpayApi
 
-  #API Enepoints
+  #API Endpoints
   API_DEV='https://sandbox-api.openpay.mx/v1/'
   API_PROD='https://api.openpay.mx'
 
