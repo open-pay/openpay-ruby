@@ -14,7 +14,7 @@ LOG.level=Logger::ERROR
 class OpenpayApi
   #API Endpoints
   API_DEV='https://sandbox-api.openpay.mx/v1/'
-  API_PROD='https://api.openpay.mx'
+  API_PROD='https://api.openpay.mx/v1/'
 
   #by default the testing environment is used
   def initialize(merchant_id, private_key,production=false)

@@ -62,7 +62,7 @@ describe Customers do
         @customers.create(customer_hash)
       rescue OpenpayTransactionException => e
         expect(e.http_code).to be 400
-        expect(e.description).to match 'email\' not a well-formed email address'
+        expect(e.description).to match 'not a well-formed email address'
 
       end
 

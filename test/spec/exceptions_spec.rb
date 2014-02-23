@@ -97,7 +97,7 @@ describe 'Openpay Exceptions' do
       begin
         @cards.create(card_hash)
       rescue OpenpayTransactionException =>   e
-        expect(e.description).to match 'The card has expired.'
+        expect(e.description).to match 'The card has expired'
         expect(e.error_code).to be 3002
 
       end
