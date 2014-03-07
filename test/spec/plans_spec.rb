@@ -76,7 +76,7 @@ describe Plans do
       @plans.get('111111')
     rescue OpenpayTransactionException => e
 
-      expect(e.description).to match 'The requested resource doesn\'t exist.'
+      expect(e.description).to match 'The requested resource doesn\'t exist'
 
     end
 

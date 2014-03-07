@@ -90,7 +90,7 @@ describe Charges do
       account=@bank_accounts.create(account_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:bank_charge, source_id:account['id'],order_id: account['id'])
+      charge_hash=FactoryGirl.build(:bank_charge, order_id: account['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #perform check

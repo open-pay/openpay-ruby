@@ -152,7 +152,6 @@ FactoryGirl.define do
 
     amount  "10000"
     description "Cargo con banco"
-    source_id "string"
     order_id 'required'
     method  "bank_account"
 

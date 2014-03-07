@@ -26,10 +26,10 @@ describe Payouts do
 
     it 'creates a merchant payout' do
 
-    payout_hash= FactoryGirl.build(:payout_card, destination_id: 'b4ravkgvpir9izop1faz',amount: 100)
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'bxz8ixftukkkjnrnypzb',amount: 100)
 
-     payout=@payouts.create(payout_hash)
-     expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(100)
+      payout=@payouts.create(payout_hash)
+      expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(100)
 
     end
 
@@ -101,7 +101,7 @@ describe Payouts do
 
     it 'gets a merchant payout' do
 
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'b4ravkgvpir9izop1faz',amount: 10)
+      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'bxz8ixftukkkjnrnypzb',amount: 10)
 
       payout=@payouts.create(payout_hash)
       expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(10)

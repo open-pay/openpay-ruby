@@ -49,7 +49,7 @@ describe 'Openpay Exceptions' do
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 400
         expect(e.error_code).to be 1001
-        expect(e.description).to match 'email\' not a well-formed email address'
+        expect(e.description).to match 'not a well-formed email address'
         expect(e.json_body).to have_json_path('category')
       end
     end
