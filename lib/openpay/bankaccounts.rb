@@ -1,16 +1,14 @@
 require 'open_pay_resource'
 
 
+
+#TODO change name
 class Bankaccounts < OpenPayResource
 
 
-  def create(bank_account,customer_id=nil)
-    if (customer_id)
-      customers=@api_hook.create(:customers)
-      customers.create_bank_account(customer_id,bank_account)
-    else
-      super bank_account
-    end
+  def create(bank_account,customer_id)
+    customers=@api_hook.create(:customers)
+    customers.create_bank_account(customer_id,bank_account)
   end
 
 
@@ -57,6 +55,11 @@ class Bankaccounts < OpenPayResource
     customers.delete_all_bank_accounts(customer_id)
 
   end
+
+
+
+
+
 
 
 
