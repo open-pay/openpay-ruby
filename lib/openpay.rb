@@ -24,7 +24,7 @@ module Openpay
   require 'openpay/subscriptions'
   require 'openpay/transfers'
   require 'openpay/charges'
-  require 'openpay/utils/search_params'
+  require 'openpay/search_params'
 
   #exceptions
   require 'errors/openpay_exception_factory'
