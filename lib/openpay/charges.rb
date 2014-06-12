@@ -11,36 +11,32 @@ class Charges < OpenPayResource
     end
   end
 
-
-  def cancel(transaction_id,customer_id=nil)
+  def cancel(transaction_id, customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
       customers.cancel_charge(customer_id, transaction_id)
     else
-         post('', transaction_id+'/cancel')
-     end
+      post('', transaction_id+'/cancel')
+    end
   end
 
-
-  def refund(transaction_id,description,customer_id=nil)
+  def refund(transaction_id, description, customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
-      customers.refund_charge(customer_id,transaction_id,description)
+      customers.refund_charge(customer_id, transaction_id, description)
     else
       post(description, transaction_id+'/refund')
     end
   end
 
-
-  def capture(transaction_id,customer_id=nil)
+  def capture(transaction_id, customer_id=nil)
     if customer_id
       customers=@api_hook.create(:customers)
-      customers.capture_charge(customer_id,transaction_id )
+      customers.capture_charge(customer_id, transaction_id)
     else
-      post( '',transaction_id+'/capture')
+      post('', transaction_id+'/capture')
     end
   end
-
 
   def each(customer_id=nil)
     if customer_id
@@ -53,8 +49,6 @@ class Charges < OpenPayResource
       end
     end
   end
-
-
 
   def get(charge='', customer_id=nil)
     if customer_id
@@ -71,6 +65,15 @@ class Charges < OpenPayResource
       customers.create_charge(customer_id, charge)
     else
       super charge
+    end
+  end
+
+  def list(search_params, customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.list_charges(customer_id, search_params)
+    else
+      super search_params
     end
   end
 

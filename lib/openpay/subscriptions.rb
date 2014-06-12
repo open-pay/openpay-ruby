@@ -1,36 +1,26 @@
 require 'open_pay_resource'
 
-class Subscriptions  < OpenPayResource
+class Subscriptions < OpenPayResource
 
-
-
-  def create(subscription,plan_id)
+  def create(subscription, customer_id)
     customers=@api_hook.create(:customers)
-    customers.create_subscription(subscription,plan_id)
+    customers.create_subscription(subscription, customer_id)
   end
 
+  def delete(subscription_id, customer_id)
+    customers=@api_hook.create(:customers)
+    customers.delete_subscription(customer_id, subscription_id)
+  end
 
-def delete(subscription_id,customer_id)
-  customers=@api_hook.create(:customers)
-  customers.delete_subscription(customer_id, subscription_id)
-end
-
-
-  def get(subscription_id,customer_id)
-
+  def get(subscription_id, customer_id)
     customers=@api_hook.create(:customers)
     customers.get_subscription(customer_id, subscription_id)
-
   end
-
 
   def all(customer_id)
-
     customers=@api_hook.create(:customers)
     customers.all_subscriptions(customer_id)
-
   end
-
 
   def each(customer_id)
     customers=@api_hook.create(:customers)
@@ -39,20 +29,17 @@ end
     end
   end
 
+  def list(search_params,customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.list_subscriptions(customer_id,search_params)
+    else
+      super search_params
+    end
+  end
 
   def delete_all(customer_id)
     customers=@api_hook.create(:customers)
     customers.delete_all_subscriptions(customer_id)
-
   end
-
-
-
-
-
-
-
-
-
-
 end
