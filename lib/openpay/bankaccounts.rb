@@ -1,16 +1,11 @@
 require 'open_pay_resource'
 
-
-
-#TODO change name
 class Bankaccounts < OpenPayResource
-
 
   def create(bank_account,customer_id)
     customers=@api_hook.create(:customers)
     customers.create_bank_account(customer_id,bank_account)
   end
-
 
   def get(customer_id='',bank_account=nil)
     customers=@api_hook.create(:customers)
@@ -23,27 +18,31 @@ class Bankaccounts < OpenPayResource
 
   end
 
-
   def delete(customer_id,bank_account)
     customers=@api_hook.create(:customers)
     customers.delete_bank_account(customer_id,bank_account)
   end
-
 
   def each(customer_id)
     customers=@api_hook.create(:customers)
      customers.each_bank_account(customer_id)  do |acc|
        yield acc
      end
-
   end
-
 
   def all(customer_id)
-      customers=@api_hook.create(:customers)
-      customers.all_bank_accounts(customer_id)
+    customers=@api_hook.create(:customers)
+    customers.all_bank_accounts(customer_id)
   end
 
+  def list(search_params,customer_id=nil)
+    if customer_id
+      customers=@api_hook.create(:customers)
+      customers.list_bankaccounts(customer_id,search_params)
+    else
+      super search_params
+    end
+  end
 
   def delete_all(customer_id)
 
@@ -55,12 +54,5 @@ class Bankaccounts < OpenPayResource
     customers.delete_all_bank_accounts(customer_id)
 
   end
-
-
-
-
-
-
-
 
 end

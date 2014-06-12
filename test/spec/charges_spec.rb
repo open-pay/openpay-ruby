@@ -2,9 +2,6 @@ require_relative '../spec_helper'
 
 describe Charges do
 
-
-
-
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
@@ -17,27 +14,21 @@ describe Charges do
     @cards=@openpay.create(:cards)
     @bank_accounts=@openpay.create(:bankaccounts)
 
-
-
   end
 
-
-  after(:all) do
-
+  it 'has all required methods' do
+    %w(all each create get list delete).each do |meth|
+      expect(@charges).to respond_to(meth)
+    end
   end
-
-
 
   describe '.create' do
 
     it 'creates a new merchant charge using the card method using a pre-stored card' do
 
-
       #create card
       card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash)
-
-
 
       #create charge attached to prev created card
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 101)
@@ -47,12 +38,10 @@ describe Charges do
       stored_charge=@charges.get(charge['id'])
       expect(stored_charge['amount']).to be_within(0.1).of(101)
 
-     #clean up
+      #clean up
       @cards.delete(card['id'])
 
-
     end
-
 
     it 'creates a new customer charge using the card method using a pre-stored card' do
 
@@ -78,7 +67,6 @@ describe Charges do
 
     end
 
-
     it 'creates a new customer charge using the bank_account method' do
 
       #create new customer
@@ -103,17 +91,11 @@ describe Charges do
 
     end
 
-
-
   end
-
-
 
   describe '.get' do
 
-
     it 'gets a merchant charge'  do
-
 
       #create card
       card_hash=FactoryGirl.build(:valid_card)
@@ -130,12 +112,9 @@ describe Charges do
       #clean up
       @cards.delete(card['id'])
 
-
-
     end
 
-
-    it  'gets a customer charge' do
+    it 'gets a customer charge' do
 
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
@@ -159,44 +138,28 @@ describe Charges do
 
     end
 
-
-
-
-
   end
-
-
-
 
   describe '.all' do
 
-    it 'list all merchant charges' do
-
+    it 'all merchant charges' do
       #TODO test can be improved,  but since charges cannot be deleted it make this difficult
       expect(@charges.all.size).to be_a Integer
-
    end
 
-
-    it 'list all customer charges' do
+    it 'all customer charges' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
-
       expect(@charges.all(customer['id']).size).to be 0
       @customers.delete(customer['id'])
-
 
     end
 
   end
 
-
-
-
   describe '.capture' do
-
 
     it 'captures  a merchant card charge'  do
 
@@ -213,6 +176,7 @@ describe Charges do
       charge=@charges.create(charge_hash)
 
       #capture merchant charge
+      #@charges.capture(charge['id'],optional)
       @charges.capture(charge['id'])
 
       #clean up
@@ -221,7 +185,7 @@ describe Charges do
 
     end
 
-    it 'captures  an customer card charge'  do
+    it 'captures a customer card charge'  do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -242,17 +206,9 @@ describe Charges do
       @customers.delete(customer['id'])
     end
 
-
-
-
   end
 
-
-
-
   describe '.refund' do
-
-
 
     #Refunds apply only for card charges
     it 'refunds  an existing merchant charge'  do
@@ -271,14 +227,10 @@ describe Charges do
       @charges.refund(charge['id'],refund_description)
       expect(@charges.get(charge['id'])['refund']['amount'] ).to be_within(0.1).of(505)
 
-
       #clean up
       @cards.delete(card['id'])
 
     end
-
-
-
 
     it 'refunds  an existing customer charge'  do
       #create new customer
@@ -310,41 +262,46 @@ describe Charges do
 
   end
 
-
-
-
-
-
-
-
-
   describe '.list' do
 
-
-    it 'list merchant charges' do
-         pending
-    end
-
-
-
     it 'list customer charges' do
-      pending
-    end
 
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash,customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge=@charges.create(charge_hash,customer['id'])
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id']+"1")
+      charge2=@charges.create(charge_hash,customer['id'])
+
+      #perform check
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      expect(@charges.all(customer['id']).size).to eq 2
+      expect(@charges.list(search_params,customer['id']).size).to eq 1
+
+      #clean up
+      @cards.delete(card['id'],customer['id'])
+      @customers.delete(customer['id'])
+
+    end
 
   end
-
 
   describe '.each' do
 
     it 'iterates over merchant charges' do
-      @charges.each do       |charge|
+      @charges.each do |charge|
         #perform check.
         expect(charge['amount']).to be_a Float
       end
     end
-
-
 
     it 'iterate over customer charges' do
 
@@ -363,12 +320,10 @@ describe Charges do
 
       @charges.create(charge2_hash,customer['id'])
 
-
       @charges.each(customer['id']) do |charge|
         expect(charge['operation_type']).to match 'in'
        expect(charge['amount']).to be_within(0.1).of(4)
       end
-
 
       #cleanup
       @cards.delete(card['id'],customer['id'])
@@ -377,12 +332,5 @@ describe Charges do
     end
 
   end
-
-
-
-
-
-
-
 
 end

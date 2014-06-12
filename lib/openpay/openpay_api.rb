@@ -9,7 +9,7 @@ require 'errors/openpay_exception'
 LOG= Logger.new(STDOUT)
 #change to Logger::DEBUG if need trace information
 #due the nature of the information, we recommend to never use a log file when in debug
-LOG.level=Logger::ERROR
+LOG.level=Logger::DEBUG
 
 class OpenpayApi
   #API Endpoints
@@ -23,7 +23,6 @@ class OpenpayApi
     @production=production
   end
 
-
   # @return [nil]
   def create(resource)
     klass=OpenPayResourceFactory::create(resource, @merchant_id,@private_key,@production)
@@ -33,7 +32,6 @@ class OpenpayApi
     klass
   end
 
-
   def OpenpayApi::base_url(production)
     if production
       API_PROD
@@ -42,17 +40,12 @@ class OpenpayApi
     end
   end
 
-
-  def  env
+  def env
     if @production
       :production
     else
       :test
     end
   end
-
-
-
-
 
 end

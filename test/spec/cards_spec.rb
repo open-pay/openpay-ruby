@@ -3,6 +3,8 @@ require_relative '../spec_helper'
 
 describe Cards do
 
+  # %w(create delete get list each all fail).each do |meth|
+  # end
 
   before(:all) do
 
@@ -15,17 +17,21 @@ describe Cards do
 
     @cards.delete_all
 
-
   end
 
   after(:all) do
     #each test should build and clean it's own mess.
   end
 
+  it 'has all required methods' do
+    %w(all each create get list delete).each do |meth|
+        expect(@cards).to respond_to(meth)
+    end
+  end
 
   describe '.create' do
 
-    it 'creates  merchant card' do
+    it 'creates merchant card' do
 
       #creates merchant card
       card_hash = FactoryGirl.build(:valid_card)
@@ -40,12 +46,10 @@ describe Cards do
       expect(card['holder_name']).to match(name)
       expect(card['card_number']).to match('1111')
 
-       #cleanup
+      #cleanup
       @cards.delete(card['id'])
 
-
     end
-
 
     it 'creates a customer card' do
 
@@ -61,7 +65,7 @@ describe Cards do
 
       id=cards['id']
 
-     #performs check
+      #performs check
       customer_cards=customers.all_cards(customer['id'])
       expect(customer_cards.size).to be 1
       expect(cards['holder_name']).to match 'Pepe'
@@ -74,9 +78,7 @@ describe Cards do
       @cards.delete(id, customer['id'])
       @customers.delete(customer['id'])
 
-
     end
-
 
     it 'fails when trying to create an existing merchant card' do
 
@@ -92,8 +94,6 @@ describe Cards do
 
     end
 
-
-
     it 'fails when trying to create an existing customer card' do
 
       #creates a customer
@@ -106,17 +106,14 @@ describe Cards do
       card=@cards.create(card_hash, customer['id'])
       expect(card).to be_a(Hash)
 
-     #performs check
-      expect { @cards.create(card_hash,customer['id']) }.to raise_error(OpenpayTransactionException)
+      #performs check
+      expect { @cards.create(card_hash, customer['id']) }.to raise_error(OpenpayTransactionException)
 
       #cleanup
-      @cards.delete(card['id'],customer['id'])
+      @cards.delete(card['id'], customer['id'])
       @customers.delete(customer['id'])
 
-
     end
-
-
 
     it 'fails when using an expired card' do
       card_hash = FactoryGirl.build(:expired_card)
@@ -125,13 +122,12 @@ describe Cards do
       #extended check
       begin
         @cards.create(card_hash)
-      rescue OpenpayTransactionException =>   e
+      rescue OpenpayTransactionException => e
         expect(e.description).to match 'The card has expired'
         expect(e.error_code).to be 3002
       end
 
     end
-
 
     it 'fails when using a stolen card' do
       card_json = FactoryGirl.build(:valid_card, card_number: '4000000000000119')
@@ -139,7 +135,6 @@ describe Cards do
     end
 
   end
-
 
   describe '.each' do
 
@@ -149,10 +144,7 @@ describe Cards do
       end
     end
 
-
     it 'iterates over all existing customer cards' do
-
-
 
       #creates a customer
       card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
@@ -168,25 +160,15 @@ describe Cards do
         expect(c['expiration_year']).to match '14'
       end
 
-
       #cleanup
-      @cards.delete(card['id'],customer['id'])
+      @cards.delete(card['id'], customer['id'])
       @customers.delete(customer['id'])
-
-
-
 
     end
 
-
-
-
-
   end
 
-
   describe '.delete' do
-
 
     it 'deletes a merchant card' do
 
@@ -199,19 +181,14 @@ describe Cards do
       name='Vicente Olmos'
 
       #perform check
-
       card=@cards.delete(id)
       expect { @cards.get(id) }.to raise_exception(OpenpayTransactionException)
 
-
     end
 
-
-
-     it 'fails to deletes a non existing card' do
+    it 'fails to deletes a non existing card' do
       expect { @cards.delete('1111111') }.to raise_exception(OpenpayTransactionException)
     end
-
 
     it 'deletes a customer card' do
 
@@ -228,21 +205,17 @@ describe Cards do
       @cards.delete(card['id'], customer['id'])
 
       #perform check
-     expect { @cards.get(card['id'],customer['id'])}.to raise_exception(OpenpayTransactionException)
+      expect { @cards.get(card['id'], customer['id']) }.to raise_exception(OpenpayTransactionException)
 
     end
-
 
     it 'fails to deletes a non existing  customer card' do
       expect { @cards.delete('1111111', '1111') }.to raise_exception(OpenpayTransactionException)
     end
 
-
   end
 
-
   describe '.get' do
-
 
     it ' gets an existing  merchant card' do
 
@@ -263,13 +236,11 @@ describe Cards do
 
     end
 
-
     it 'fails when getting a non existing card' do
       expect { @cards.get('11111') }.to raise_exception(OpenpayTransactionException)
     end
 
-
-    it ' gets an existing  customer card' do
+    it ' gets an existing customer card' do
 
       #create customer
       customer_hash = FactoryGirl.build(:customer)
@@ -293,18 +264,15 @@ describe Cards do
 
     end
 
-
     it 'fails when getting a non existing customer card' do
       expect { @cards.get('11111', '1111') }.to raise_exception(OpenpayTransactionException)
     end
 
-
   end
-
 
   describe '.all' do
 
-    it 'list all merchant cards' do
+    it 'all merchant cards' do
 
       #check initial state
       expect(@cards.all.size).to be 0
@@ -322,9 +290,7 @@ describe Cards do
 
     end
 
-
-    it 'list all customer cards' do
-
+    it 'all customer cards' do
 
       #create customer
       customer_hash = FactoryGirl.build(:customer)
@@ -346,34 +312,56 @@ describe Cards do
 
     end
 
-
-    it 'list cards for a non existing  customer' do
+    it 'cards for a non existing  customer' do
       expect { @cards.all('111111') }.to raise_exception OpenpayTransactionException
     end
 
-
   end
-
 
   describe '.list' do
 
     it 'list the merchant cards using a filter' do
 
-      pending
-      #creation[gte]=yyyy-mm-dd
-      #creation[lte]=yyyy-mm-dd
-      #offset=0&
-      #limit=10
-      # @cards.list('2000-01-01','2000-01-01',0,10)
+      #create merchant card
+      card_hash = FactoryGirl.build(:valid_card)
+      card1 = @cards.create(card_hash)
 
+      card_hash = FactoryGirl.build(:valid_card2)
+      card2 = @cards.create(card_hash)
 
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      expect(@cards.list(search_params).size).to eq 1
+      @cards.delete_all
     end
-
 
     it 'list the customer cards using a filter' do
-      pending
-    end
 
+      #create customer
+      customer_hash = FactoryGirl.build(:customer)
+      customer = @customers.create(customer_hash)
+
+      #creates card
+      bank_name ='Banamex'
+      card_hash = FactoryGirl.build(:valid_card)
+      card = @cards.create(card_hash, customer['id'])
+      id = card['id']
+
+      #creates card 2
+      bank_name = 'Bancomer'
+      card_hash = FactoryGirl.build(:valid_card2)
+      card = @cards.create(card_hash, customer['id'])
+      id = card['id']
+
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+
+      expect(@cards.all(customer['id']).size).to eq 2
+      expect(@cards.list(search_params , customer['id']).size).to eq 1
+
+      @cards.delete_all(customer['id'])
+
+    end
 
   end
 
@@ -388,7 +376,6 @@ describe Cards do
 
     end
 
-
     it 'deletes all existing  merchant cards' do
 
       #create merchant card
@@ -399,7 +386,6 @@ describe Cards do
       card2_json = FactoryGirl.build(:valid_card2).to_json
       @cards.create(card2_json)
 
-
       #perform check
       expect(@cards.all.size).to be 2
 
@@ -409,11 +395,9 @@ describe Cards do
       #perform check
       expect(@cards.all.size).to be 0
 
-
     end
 
     it 'deletes all existing cards for a given customer' do
-
 
       #creates customer
       customer_hash = FactoryGirl.build(:customer)
@@ -435,12 +419,8 @@ describe Cards do
       #check
       expect(@cards.all(customer['id']).size).to be 0
 
-
-
     end
 
-
   end
-
 
 end

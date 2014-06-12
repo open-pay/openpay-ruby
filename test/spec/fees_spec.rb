@@ -18,12 +18,15 @@ describe Fees do
 
   end
 
-
   after(:all) do
-    @bank_accounts.delete_all
     @customers.delete_all
   end
 
+  it 'has all required methods' do
+    %w(all each create get list delete).each do |meth|
+      expect(@customers).to respond_to(meth)
+    end
+  end
 
   describe '.create' do
 
@@ -54,7 +57,6 @@ describe Fees do
 
     end
 
-
     it 'creates a fee using a json message' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
@@ -77,8 +79,54 @@ describe Fees do
 
   end
 
+  describe '.each' do
+
+    it 'iterates over all elements' do
+      @fees.each do |fee|
+        expect(fee['description']).to match /\s+/
+      end
+    end
+
+  end
+
+  describe '.list' do
+
+    it 'list fees with a given filter' do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      @charges.create(charge_hash, customer['id'])
+
+      #create customer fee
+      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      @fees.create(fee_hash)
+
+      #create customer fee
+      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      @fees.create(fee_hash)
 
 
+      #performs check
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      expect(@fees.list(search_params).size).to eq 1
+
+
+      #cleanup
+      @cards.delete(card['id'], customer['id'])
+      @customers.delete(customer['id'])
+
+    end
+
+  end
 
   describe '.all' do
 
@@ -110,7 +158,3 @@ describe Fees do
     end
   end
 end
-
-
-
-

@@ -1,11 +1,8 @@
 require_relative '../spec_helper'
 
-
 describe 'Openpay Exceptions' do
 
-
   before(:all) do
-
 
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
@@ -14,11 +11,9 @@ describe 'Openpay Exceptions' do
     @customers=@openpay.create(:customers)
     @cards=@openpay.create(:cards)
 
-
   end
 
   describe OpenpayException do
-
 
     it 'should raise an OpenpayException when a non given resource is passed to the api factory' do
      expect { @openpay.create(:foo) }.to raise_exception OpenpayException
@@ -30,9 +25,7 @@ describe 'Openpay Exceptions' do
       expect { cust.delete_all }.to raise_exception OpenpayException
     end
 
-
   end
-
 
   describe OpenpayTransactionException do
 
@@ -49,11 +42,10 @@ describe 'Openpay Exceptions' do
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 400
         expect(e.error_code).to be 1001
-        expect(e.description).to match 'not a well-formed email address'
+        #expect(e.description).to match 'not a well-formed email address'
         expect(e.json_body).to have_json_path('category')
       end
     end
-
 
     it ' raise  an OpenpayTransactionException when trying to delete a non existing bank account '  do
       #non existing resource
@@ -69,8 +61,6 @@ describe 'Openpay Exceptions' do
         expect(e.json_body).to have_json_path('category')
       end
     end
-
-
 
     it 'fails when trying to create an existing card' do
 
@@ -90,23 +80,19 @@ describe 'Openpay Exceptions' do
       @cards.delete card_hash['id']
     end
 
-
     it 'raise  an OpenpayTransactionException when using an expired card' do
       card_hash = FactoryGirl.build(:expired_card)
       expect { @cards.create(card_hash) }.to raise_error(OpenpayTransactionException)
       begin
         @cards.create(card_hash)
-      rescue OpenpayTransactionException =>   e
+      rescue OpenpayTransactionException => e
         expect(e.description).to match 'The card has expired'
         expect(e.error_code).to be 3002
-
       end
 
     end
 
-
   end
-
 
   describe OpenpayConnectionException do
 
@@ -119,20 +105,17 @@ describe 'Openpay Exceptions' do
       customers=openpay.create(:customers)
       expect { customers.delete('1111') }.to raise_exception  OpenpayConnectionException
 
-
       begin
         customers.delete('1111')
       rescue OpenpayConnectionException => e
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 401
         expect(e.error_code).to be 1002
-        expect(e.description).to match 'The api key or merchant id are invalid.'
+        expect(e.description).to match 'The api key or merchant id are invalid'
         expect(e.json_body).to have_json_path('category')
       end
 
-
     end
   end
-
 
 end

@@ -4,7 +4,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'version'
 
-
 Gem::Specification.new do |spec|
   spec.name          = "openpay"
   spec.version       = Openpay::VERSION
@@ -23,16 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'rest-client'  , '~>1.6.7'
   spec.add_runtime_dependency 'json'
 
-
-
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'json_spec'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'factory_girl'  ,  '4.2.0'
   spec.post_install_message = 'Thanks for installing openpay. Enjoy !'
-
-
-
 
 end

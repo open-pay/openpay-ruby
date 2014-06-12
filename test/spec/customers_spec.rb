@@ -1,8 +1,6 @@
 require_relative '../spec_helper'
 
-
 describe Customers do
-
 
   before(:all) do
 
@@ -12,13 +10,23 @@ describe Customers do
     @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
 
+    @customers.delete_all
+
   end
 
+  after(:all) do
+    @customers.delete_all
+  end
+
+  it 'has all required methods' do
+    %w(all each create get list delete).each do |meth|
+      expect(@customers).to respond_to(meth)
+    end
+  end
 
   describe '.create' do
 
     it 'creates a customer' do
-
 
       #creates a new customer
       name='Juan'
@@ -46,7 +54,6 @@ describe Customers do
 
     end
 
-
     it 'fails when passing invalid information' do
 
       #check no errors
@@ -62,8 +69,7 @@ describe Customers do
         @customers.create(customer_hash)
       rescue OpenpayTransactionException => e
         expect(e.http_code).to be 400
-        expect(e.description).to match 'not a well-formed email address'
-
+        expect(e.description).to match /email no es una direcci.n de correo bien formada/
       end
 
       expect(@customers.errors?).to be_true
@@ -72,9 +78,7 @@ describe Customers do
 
   end
 
-
   describe '.delete' do
-
 
     it 'deletes an existing customer' do
       #creates customer
@@ -88,7 +92,6 @@ describe Customers do
     end
 
   end
-
 
   describe '.get' do
 
@@ -105,32 +108,15 @@ describe Customers do
       @customers.delete(id)
     end
 
-
   end
-
 
   describe '.each' do
     it 'list all customers' do
-      #clean state just in case
-      @customers.delete_all
-
-      #create customers
-      name='cust1'
-      customer_hash = FactoryGirl.build(:customer, name: name)
-      customer=@customers.create(customer_hash)
-      id=customer['id']
-      customer2=@customers.create(customer_hash)
-      id2=customer2['id']
-      #perform check
       @customers.each do |cust|
-        expect(cust['name']).to match 'cust1'
+        expect(cust['id']).to match /.+/
       end
-      #cleanup
-      @customers.delete(id)
-      @customers.delete(id2)
     end
   end
-
 
   describe '.update' do
 
@@ -157,15 +143,36 @@ describe Customers do
 
   end
 
+  describe '.list' do
 
+    it 'list customers given the filter' do
+      # creates customer
+      name='customer_update_test'
+      customer_hash = FactoryGirl.build(:customer, name: name)
 
+      customer=@customers.create(customer_hash)
+      id=customer['id']
+
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit=1
+
+      #perform check
+      expect(@customers.list(search_params).size).to eq 1
+
+      #cleanup
+      @customers.delete(id)
+
+    end
+
+  end
 
   describe '.all' do
 
-    it 'list all the customers' do
+    it 'all the customers' do
 
+      @customers.delete_all
       #initial state check
-      expect(@customers.all.size).to be 0
+      initial_num = @customers.all.size
 
       # creates customer
       name='customer_update_test'
@@ -173,7 +180,7 @@ describe Customers do
       customer=@customers.create(customer_hash)
 
       #performs check
-       expect(@customers.all.size).to be 1
+      expect(@customers.all.size).to be (initial_num + 1)
 
       #cleanup
       @customers.delete(customer['id'])
@@ -181,12 +188,9 @@ describe Customers do
       #performs check
       expect(@customers.all.size).to be 0
 
-
     end
 
-
   end
-
 
   describe '.delete_all' do
 
@@ -211,11 +215,12 @@ describe Customers do
       cust=@openpayprod.create(:customers)
       expect { cust.delete_all }.to raise_exception OpenpayException
 
-
     end
 
-
   end
+
+
+
 
 
 end

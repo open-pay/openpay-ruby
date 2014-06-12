@@ -2,7 +2,6 @@ require_relative '../spec_helper'
 
 describe Subscriptions do
 
-
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
@@ -19,59 +18,61 @@ describe Subscriptions do
 
   end
 
-
+  it 'has all required methods' do
+    %w(all each create get list delete).each do |meth|
+      expect(@subscriptions).to respond_to(meth)
+    end
+  end
 
   describe '.create' do
 
     it 'creates a subscription' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash=FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
-      #creates a customer  card
-      card_hash= FactoryGirl.build(:valid_card)
+      #creates a customer card
+      card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #performs check
       saved_subscription=@subscriptions.get(subscription['id'], customer['id'])
-      expect(saved_subscription['plan_id']).to match plan['id']
+      expect(saved_subscription['plan_id']).to eq(plan['id'])
 
       #cleanup
       @subscriptions.delete(subscription['id'], customer['id'])
 
     end
 
-
   end
-
 
   describe '.get' do
 
     it 'gets customer subscriptions' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash=FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #get customer subscription
@@ -119,7 +120,41 @@ describe Subscriptions do
 
   end
 
+  describe '.list' do
 
+    it 'list subscriptions based on given filter' do
+      #creates a customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #creates a customer card
+      card_hash= FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #creates a plan
+      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan=@plans.create(plan_hash)
+
+      #creates subscription
+      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      expect(@subscriptions.all(customer['id']).size).to be 0
+      subscription1=@subscriptions.create(subscription_hash, customer['id'])
+      subscription2=@subscriptions.create(subscription_hash, customer['id'])
+
+      #performs check
+      expect(@subscriptions.all(customer['id']).size).to be 2
+
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      expect(@subscriptions.all(customer['id']).size).to be 2
+      expect(@subscriptions.list(search_params, customer['id']).size).to be 1
+
+      #cleanup
+      @subscriptions.delete(subscription1['id'], customer['id'])
+      @subscriptions.delete(subscription2['id'], customer['id'])
+    end
+
+  end
 
   describe '.each' do
 
@@ -154,7 +189,6 @@ describe Subscriptions do
 
   end
 
-
   describe '.delete'  do
 
     it 'deletes an existing subscription for a given customer' do
@@ -186,7 +220,6 @@ describe Subscriptions do
 
   end
 
-
   describe '.delete_all' do
 
     it 'deletes all existing subscription for a given customer' do
@@ -195,7 +228,7 @@ describe Subscriptions do
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
 
-      #creates a customer  card
+      #creates a customer card
       card_hash= FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
@@ -219,10 +252,3 @@ describe Subscriptions do
    end
 
 end
-
-
-
-
-
-
-

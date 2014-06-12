@@ -8,10 +8,10 @@ require 'json'
 module Openpay
 
   #api setup / constants
-  require   'openpay/openpay_api'
+  require 'openpay/openpay_api'
 
   #base class
-  require  'openpay/open_pay_resource'
+  require 'openpay/open_pay_resource'
 
   #resource classes
   require 'openpay/bankaccounts'
@@ -24,6 +24,7 @@ module Openpay
   require 'openpay/subscriptions'
   require 'openpay/transfers'
   require 'openpay/charges'
+  require 'openpay/utils/search_params'
 
   #exceptions
   require 'errors/openpay_exception_factory'
@@ -31,4 +32,5 @@ module Openpay
   require 'errors/openpay_transaction_exception'
   require 'errors/openpay_connection_exception'
 
+  include OpenpayUtils
 end
