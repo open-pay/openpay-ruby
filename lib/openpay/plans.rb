@@ -10,14 +10,8 @@ class Plans  < OpenPayResource
     get("#{plan_id}/subscriptions")
   end
 
-
   def all_subscriptions(plan_id)
     get("#{plan_id}/subscriptions")
   end
-
-
-  def each
-  end
-
 
 end
