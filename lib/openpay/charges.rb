@@ -38,6 +38,27 @@ class Charges < OpenPayResource
     end
   end
 
+  def confirm_capture(options)
+
+    customer_id = options.fetch(:customer_id) { '' }
+    transaction_id = options.fetch(:transaction_id)
+    amount = options.fetch(:amount)
+
+    if amount.nil? or transaction_id.nil?
+      raise OpenpayException.new
+    end
+
+    amount_hash = { amount: amount }
+
+    unless customer_id.empty?
+      customers=@api_hook.create(:customers)
+      customers.confirm_customer_capture(customer_id, transaction_id, amount_hash)
+    else
+      post(amount_hash, transaction_id+'/capture')
+    end
+
+  end
+
   def each(customer_id=nil)
     if customer_id
       all(customer_id).each do |card|

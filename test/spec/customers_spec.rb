@@ -185,9 +185,6 @@ describe Customers do
       #cleanup
       @customers.delete(customer['id'])
 
-      #performs check
-      expect(@customers.all.size).to be 0
-
     end
 
   end
@@ -219,17 +216,5 @@ describe Customers do
 
   end
 
-
-
-
-
 end
-
-
-
-
-
-
-
-
 

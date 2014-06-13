@@ -2,7 +2,7 @@
 
 ##Description
 
-ruby client for *Openpay api* services (version 1.0.3)
+ruby client for *Openpay api* services (version 1.0.4)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
@@ -275,13 +275,21 @@ open_pay_resource.delete_all(customer_id=nil)
             bank_account['alias']
         end
 
+- list merchant / customer bank accounts
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = bank_accounts.list(search_params)
+        customer_filtered_list = bank_accounts.list(search_params, customer_id)
+
 - all bank accounts for a given customer
 
-         accounts=bank_accounts.all(customer_id)
+        accounts=bank_accounts.all(customer_id)
 
 - deletes a given customer bank account
 
-          bank_accounts.delete(customer_id,bank_id)
+         bank_accounts.delete(customer_id,bank_id)
 
 - deletes all customer bank accounts (sandbox mode only)
 
@@ -309,6 +317,14 @@ open_pay_resource.delete_all(customer_id=nil)
 
         cards.each {|merchant_card| p card}
 
+- list merchant / customer cards
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = cards.list(search_params)
+        customer_filtered_list = cards.list(search_params, customer_id)
+
 - each customer card
 
         cards.each(customer_id)   {|customer_card | p customer_card }
@@ -329,13 +345,13 @@ open_pay_resource.delete_all(customer_id=nil)
 
         cards.delete(card_id,customer_id)
 
- - delete all merchant cards
+- delete all merchant cards
 
         cards.delete_all
 
- - delete all customer cards
+- delete all customer cards
 
-         cards.delete_all(customer_id)
+        cards.delete_all(customer_id)
 
 
 #### charges
@@ -355,24 +371,32 @@ open_pay_resource.delete_all(customer_id=nil)
 
 - gets  customer charge
 
-         customer_charge=charges.get(charge_id,customer_id)
+        customer_charge=charges.get(charge_id,customer_id)
 
 - each merchant charge
 
-         charges.each {|charge| p charge}
+        charges.each {|charge| p charge}
+
+- list merchant / customer charges
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = charges.list(search_params)
+        customer_filtered_list = charges.list(search_params, customer_id)
 
 - each customer charge
 
-         charges.each(customer_id) {|charge| p charge}
+        charges.each(customer_id) {|charge| p charge}
 
 
 - all merchant charge
 
-          charges.all
+        charges.all
 
 - all customer charge
 
-          charges.all(customer_id)
+        charges.all(customer_id)
 
 - capture merchant card
 
@@ -382,14 +406,25 @@ open_pay_resource.delete_all(customer_id=nil)
 
         charges.capture(charge['id'],customer['id'])
 
+- confirm capture merchant
+
+        #pass a hash with the following options, no customer_id needed
+        confirm_capture_options = { transaction_id: transaction['id'], amount: 100  }
+        charges.confirm_capture(confirm_capture_options)
+
+- confirm capture customer
+
+        #pass a hash with the following options, pass the customer_id
+        confirm_capture_options = { customer_id: customer['id'], transaction_id: charge['id'], amount: 100  }
+        charges.confirm_capture(confirm_capture_options)
+
 - refund  merchant charge
 
         charges.refund(charge_id, refund_description_hash)
 
 - refund  merchant charge
 
-         charges.refund(charge_id, refund_description_hash)
-
+        charges.refund(charge_id, refund_description_hash)
 
 
 #### customers
@@ -414,18 +449,23 @@ open_pay_resource.delete_all(customer_id=nil)
 
         customers.each do {|customer|  p customer }
 
-- list all customer
+- list customers
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = customers.list(search_params)
+
+
+- all customer
 
         all_customers=customers.all
-
 
 - delete all customers (sand box mode only)
 
          all_customers=customers.all
 
-
 #### fees
-
 
 - creates fee
 
@@ -436,6 +476,12 @@ open_pay_resource.delete_all(customer_id=nil)
 
         all_fees=fees.all
 
+ - list customer fees
+
+         search_params = OpenpayUtils::SearchParams.new
+         search_params.limit = 1
+
+         merchant_filtered_list = fees.list(search_params)
 
 #### payouts
 
@@ -470,7 +516,13 @@ open_pay_resource.delete_all(customer_id=nil)
 
         payouts.each(customer_id) { |payout| p payout }
 
+- list merchant/customer payouts
 
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = payout.list(search_params)
+        customer_filtered_list = payout.list(search_params, customer_id)
 
 #### plans
 
@@ -479,7 +531,7 @@ open_pay_resource.delete_all(customer_id=nil)
         plans.create(plan_hash)
 
 
-- create  customer  plan
+- create  customer plan
 
         plans.create(plan_hash,customer_id)
 
@@ -487,33 +539,42 @@ open_pay_resource.delete_all(customer_id=nil)
 
         merchant_plan=plans.get(plan_id)
 
-- get a customer  plan
+- get a customer plan
 
         customer_plan=plans.get(plan_id,customer_id)
 
 
-- updates a merchant  plan
+- updates a merchant plan
 
          plans.update(plan_hash,customer_id)
 
-- updates a customer  plan
+- updates a customer plan
 
         plans.update(plan_hash,customer_id)
 
-- each merchant  plan
+- each merchant plan
 
         plans.each do {|plan| p plan }
 
-- each customer  plans
+- each customer plans
 
         plans.each(customer_id)  do {|plan| p plan }
 
 
-- all merchant  plans
+- list merchant /customer plan
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        merchant_filtered_list = plans.list(search_params)
+        customer_filtered_list = plans.list(search_params, customer_id)
+
+
+- all merchant plans
 
         plans.all
 
-- all customer  plans
+- all customer plans
 
         plans.all(customer_id)
 
@@ -528,6 +589,11 @@ open_pay_resource.delete_all(customer_id=nil)
 
         subscriptions.get(subscriptions_hash,customer_id)
 
+- update customer subscription
+
+        subscription_update_hash={ trial_end_date: "2016-01-12" }
+        subscriptions.update(subscription_id,customer_id, subscription_update_hash )
+
 - all customer subscription
 
         subscriptions.all(customer_id)
@@ -536,6 +602,14 @@ open_pay_resource.delete_all(customer_id=nil)
 - each customer subscription
 
         subscriptions.each(customer_id)    {|subscription| p subscription }
+
+
+- list customer subscriptions
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        customer_filtered_list = subscriptions.list(search_params, customer_id)
 
 - deletes customer subscription
 
@@ -565,6 +639,13 @@ open_pay_resource.delete_all(customer_id=nil)
 - each customer transfer
 
         transfers.each(customer_id)    {|transfer| p transfer }
+
+- list customer transfers
+
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
+
+        customer_filtered_list = transfers.list(search_params, customer_id)
 
 
 

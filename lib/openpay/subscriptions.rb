@@ -38,6 +38,11 @@ class Subscriptions < OpenPayResource
     end
   end
 
+  def update(subscription_id,customer_id,params)
+    customers=@api_hook.create(:customers)
+    customers.update_subscription(subscription_id,customer_id,params)
+  end
+
   def delete_all(customer_id)
     customers=@api_hook.create(:customers)
     customers.delete_all_subscriptions(customer_id)

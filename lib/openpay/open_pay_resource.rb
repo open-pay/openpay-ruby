@@ -121,7 +121,6 @@ class OpenPayResource
 
   def post(message, args='')
 
-    return_hash=false
     @errors=false
 
     if message.is_a?(Hash)
@@ -133,8 +132,8 @@ class OpenPayResource
     end
 
     # LOG.debug("#{self.class.name.downcase}:")
-    # LOG.debug "   POST URL:#{url(args)}"
-    # LOG.debug "   json: #{json}"
+     LOG.debug "   POST URL:#{url(args)}"
+     LOG.debug "   json: #{json}"
 
     begin
 

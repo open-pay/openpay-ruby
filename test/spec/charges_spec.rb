@@ -14,6 +14,8 @@ describe Charges do
     @cards=@openpay.create(:cards)
     @bank_accounts=@openpay.create(:bankaccounts)
 
+    @cards.delete_all
+
   end
 
   it 'has all required methods' do
@@ -159,9 +161,9 @@ describe Charges do
 
   end
 
-  describe '.capture' do
+  describe '.capture and .confirm_capture' do
 
-    it 'captures  a merchant card charge'  do
+    it 'captures a merchant card charge'  do
 
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
@@ -172,12 +174,17 @@ describe Charges do
       card=@cards.create(card_hash)
 
       #create merchant charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
       charge=@charges.create(charge_hash)
 
       #capture merchant charge
-      #@charges.capture(charge['id'],optional)
       @charges.capture(charge['id'])
+
+      confirm_capture_options = { transaction_id: charge['id'], amount: 100  }
+
+      #confirm capture
+      res = @charges.confirm_capture(confirm_capture_options)
+      expect(res['amount']).to eq 100
 
       #clean up
       @cards.delete(card['id'])
@@ -185,7 +192,7 @@ describe Charges do
 
     end
 
-    it 'captures a customer card charge'  do
+    it 'captures a customer card charge' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -201,6 +208,12 @@ describe Charges do
       #capture customer charge
       @charges.capture(charge['id'],customer['id'])
 
+      confirm_capture_options = { customer_id: customer['id'], transaction_id: charge['id'], amount: 100  }
+
+      #confirm capture
+      res = @charges.confirm_capture(confirm_capture_options)
+      expect(res['amount']).to eq 100
+
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
@@ -211,7 +224,7 @@ describe Charges do
   describe '.refund' do
 
     #Refunds apply only for card charges
-    it 'refunds  an existing merchant charge'  do
+    it 'refunds  an existing merchant charge' do
       #create card
       card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash)
@@ -232,7 +245,7 @@ describe Charges do
 
     end
 
-    it 'refunds  an existing customer charge'  do
+    it 'refunds an existing customer charge' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -322,7 +335,7 @@ describe Charges do
 
       @charges.each(customer['id']) do |charge|
         expect(charge['operation_type']).to match 'in'
-       expect(charge['amount']).to be_within(0.1).of(4)
+        expect(charge['amount']).to be_within(0.1).of(4)
       end
 
       #cleanup

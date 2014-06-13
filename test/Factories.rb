@@ -193,7 +193,6 @@ FactoryGirl.define do
     repeat_every 1
     initialize_with { attributes }
 
-
   end
 
   factory :transfer, class: Hash do

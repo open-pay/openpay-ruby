@@ -70,6 +70,10 @@ class Customers < OpenPayResource
     post('', "#{customer_id}/charges/#{charge_id}/capture")
   end
 
+  def confirm_customer_capture(customer_id, charge_id, amount)
+    post(amount, "#{customer_id}/charges/#{charge_id}/capture")
+  end
+
   #Payouts
   def create_payout(customer_id, payout)
     post(payout, "#{customer_id}/payouts")
@@ -142,6 +146,10 @@ class Customers < OpenPayResource
     all_subscriptions(customer_id).each do |cust|
       yield cust
     end
+  end
+
+  def update_subscription(subscription, customer, params)
+    put(params, "#{customer}/subscriptions/#{subscription}")
   end
 
   def delete_all_subscriptions(customer_id)

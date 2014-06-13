@@ -88,6 +88,43 @@ describe Subscriptions do
 
   end
 
+  describe '.update' do
+
+    it 'updates customer subscription' do
+
+      #creates a customer
+      customer_hash=FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #creates a customer  card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash, customer['id'])
+
+      #creates a plan
+      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan=@plans.create(plan_hash)
+
+      #creates subscription
+      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription=@subscriptions.create(subscription_hash, customer['id'])
+
+      #get customer subscription
+      stored_s=@subscriptions.get(subscription['id'], customer['id'])
+
+      #performs check
+      expect(stored_s['status']).to match 'trial'
+
+      subscription_update_hash={ trial_end_date: "2016-01-12" }
+
+      stored_s=@subscriptions.update(subscription['id'], customer['id'], subscription_update_hash)
+      expect(stored_s['trial_end_date']).to eq "2016-01-12"
+
+      #cleanup
+      @subscriptions.delete(subscription['id'], customer['id'])
+
+    end
+
+  end
 
   describe '.all' do
 
