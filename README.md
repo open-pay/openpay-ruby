@@ -1,3 +1,5 @@
+<img src="http://www.openpay.mx/img/logo.png">
+
 # Openpay-Ruby [![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
 ##Description
