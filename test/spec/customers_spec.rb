@@ -180,7 +180,7 @@ describe Customers do
       customer=@customers.create(customer_hash)
 
       #performs check
-      expect(@customers.all.size).to be (initial_num + 1)
+      expect(@customers.all.size).to eq (initial_num + 1)
 
       #cleanup
       @customers.delete(customer['id'])

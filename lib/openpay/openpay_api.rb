@@ -16,17 +16,15 @@ class OpenpayApi
   API_DEV='https://sandbox-api.openpay.mx/v1/'
   API_PROD='https://api.openpay.mx/v1/'
 
-  #by default the testing environment is used
-  def initialize(merchant_id, private_key,production=false)
+  #by default testing environment is used
+  def initialize(merchant_id, private_key, production=false)
     @merchant_id=merchant_id
     @private_key=private_key
     @production=production
   end
 
   def create(resource)
-    klass=OpenPayResourceFactory::create(resource, @merchant_id,@private_key,@production)
-    #attach api hook to be able to refere to same API instance from created resources
-    #TODO we may move it to the initialize method
+    klass=OpenPayResourceFactory::create(resource, @merchant_id, @private_key, @production)
     klass.api_hook=self
     klass
   end

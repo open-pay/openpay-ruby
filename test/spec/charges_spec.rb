@@ -161,7 +161,7 @@ describe Charges do
 
   end
 
-  describe '.capture and .confirm_capture' do
+  describe '.capture' do
 
     it 'captures a merchant card charge'  do
 
@@ -179,12 +179,6 @@ describe Charges do
 
       #capture merchant charge
       @charges.capture(charge['id'])
-
-      confirm_capture_options = { transaction_id: charge['id'], amount: 100  }
-
-      #confirm capture
-      res = @charges.confirm_capture(confirm_capture_options)
-      expect(res['amount']).to eq 100
 
       #clean up
       @cards.delete(card['id'])
@@ -208,6 +202,55 @@ describe Charges do
       #capture customer charge
       @charges.capture(charge['id'],customer['id'])
 
+
+      #clean up
+      @cards.delete(card['id'],customer['id'])
+      @customers.delete(customer['id'])
+    end
+
+  end
+
+  describe '.confirm_capture' do
+
+    it 'confirms a capture on a merchant charge' do
+
+      #create new customer
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create merchant card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash)
+
+      #create merchant charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
+      charge=@charges.create(charge_hash)
+
+      confirm_capture_options = {  transaction_id: charge['id'], amount: 100  }
+
+      #confirm capture
+      res = @charges.confirm_capture(confirm_capture_options)
+      expect(res['amount']).to eq 100
+
+      #clean up
+      @cards.delete(card['id'])
+      @customers.delete(customer['id'])
+
+    end
+
+    it 'confirms a capture on a customer charge' do
+
+      customer_hash= FactoryGirl.build(:customer)
+      customer=@customers.create(customer_hash)
+
+      #create customer card
+      card_hash=FactoryGirl.build(:valid_card)
+      card=@cards.create(card_hash,customer['id'])
+
+      #create charge
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
+      charge=@charges.create(charge_hash,customer['id'])
+
       confirm_capture_options = { customer_id: customer['id'], transaction_id: charge['id'], amount: 100  }
 
       #confirm capture
@@ -217,6 +260,7 @@ describe Charges do
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
+
     end
 
   end

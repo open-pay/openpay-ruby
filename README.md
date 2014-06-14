@@ -454,7 +454,7 @@ open_pay_resource.delete_all(customer_id=nil)
         search_params = OpenpayUtils::SearchParams.new
         search_params.limit = 1
 
-        merchant_filtered_list = customers.list(search_params)
+        customers_filtered_list = customers.list(search_params)
 
 
 - all customer
@@ -476,12 +476,12 @@ open_pay_resource.delete_all(customer_id=nil)
 
         all_fees=fees.all
 
- - list customer fees
+- list customer fees
 
-         search_params = OpenpayUtils::SearchParams.new
-         search_params.limit = 1
+        search_params = OpenpayUtils::SearchParams.new
+        search_params.limit = 1
 
-         merchant_filtered_list = fees.list(search_params)
+        merchant_filtered_list = fees.list(search_params)
 
 #### payouts
 
@@ -491,7 +491,7 @@ open_pay_resource.delete_all(customer_id=nil)
 
 - creates a customer payout
 
-         payouts.create(payout_hash,customer_id)
+        payouts.create(payout_hash,customer_id)
 
 - gets a merchant payout
 
@@ -521,8 +521,8 @@ open_pay_resource.delete_all(customer_id=nil)
         search_params = OpenpayUtils::SearchParams.new
         search_params.limit = 1
 
-        merchant_filtered_list = payout.list(search_params)
-        customer_filtered_list = payout.list(search_params, customer_id)
+        merchant_filtered_list = payouts.list(search_params)
+        customer_filtered_list = payouts.list(search_params, customer_id)
 
 #### plans
 
@@ -646,7 +646,6 @@ open_pay_resource.delete_all(customer_id=nil)
         search_params.limit = 1
 
         customer_filtered_list = transfers.list(search_params, customer_id)
-
 
 
 #### Exceptions
