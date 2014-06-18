@@ -654,9 +654,9 @@ open_pay_resource.delete_all(customer_id=nil)
 
 This API generates 3 different Exception classes.
 
--  **OpenpayException**: Generic base api exception class, for generic api exceptions.
+-  **OpenpayException**: Generic base API exception class, Generic API exceptions.
 
-     - Internal server error (500 Internal Server Error)
+     - Internal server error (500 Internal Server Error).
      - OpenpayApi factory method, invalid resource name.
 
     Examples:
