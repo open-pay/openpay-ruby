@@ -2,6 +2,8 @@
 
 # Openpay-Ruby [![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
+[![Gem Version](https://badge.fury.io/rb/openpay.svg)](http://badge.fury.io/rb/openpay)
+
 ##Description
 
 ruby client for *Openpay api* services (version 1.0.4)
