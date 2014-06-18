@@ -57,7 +57,7 @@ describe Customers do
     it 'fails when passing invalid information' do
 
       #check no errors
-      expect(@customers.errors?).to be_false
+      expect(@customers.errors?).to eq false
 
       #invalid email
       email='foo'
@@ -72,7 +72,7 @@ describe Customers do
         expect(e.description).to match /email no es una direcci.n de correo bien formada/
       end
 
-      expect(@customers.errors?).to be_true
+      expect(@customers.errors?).to eq true
 
     end
 
