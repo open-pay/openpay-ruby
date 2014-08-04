@@ -17,14 +17,15 @@ class OpenpayApi
   API_PROD='https://api.openpay.mx/v1/'
 
   #by default testing environment is used
-  def initialize(merchant_id, private_key, production=false)
+  def initialize(merchant_id, private_key, production=false, timeout=90)
     @merchant_id=merchant_id
     @private_key=private_key
     @production=production
+    @timeout=timeout
   end
 
   def create(resource)
-    klass=OpenPayResourceFactory::create(resource, @merchant_id, @private_key, @production)
+    klass=OpenPayResourceFactory::create(resource, @merchant_id, @private_key, @production, @timeout)
     klass.api_hook=self
     klass
   end

@@ -5,14 +5,14 @@ class OpenPayResource
 
   attr_accessor :api_hook
 
-  def initialize(merchant_id, private_key, production=false)
+  def initialize(merchant_id, private_key, production=false,timeout=90)
     @merchant_id=merchant_id
     @private_key=private_key
     #assigns base url depending the requested env
     @base_url=OpenpayApi::base_url(production)
     @errors=false
     @production=production
-    @timeout=90
+    @timeout=timeout
     #created resources should have a hook with the base class to keep control of created resources
     @api_hook=nil
   end
