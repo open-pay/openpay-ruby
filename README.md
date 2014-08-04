@@ -6,7 +6,7 @@
 
 ##Description
 
-ruby client for *Openpay api* services (version 1.0.4)
+ruby client for *Openpay api* services (version 1.0.5)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
@@ -54,6 +54,14 @@ openpay=OpenpayApi.new(merchant_id,private_key)
 
 #To enable production mode you should pass a third argument as true.
 #openpay_prod=OpenpayApi.new(merchant_id,private_key,true)
+
+#This ruby client manages a default timeout of 90 seconds to make the request 
+#    to Openpay services, if you need to modify this value, you need to explicitly 
+#    define the type of environment and followed by the new value for the timeout.
+#Syntax:
+#   openpay_prod=OpenpayApi.new(merchant_id,private_key,isProduction,timeout)
+#Example:
+#   openpay_prod=OpenpayApi.new(merchant_id,private_key,false,30)
  ```
 
 The openpay factory instance is in charge to generate the required resources through a factory method (create).
