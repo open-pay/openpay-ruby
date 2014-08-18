@@ -6,11 +6,10 @@ require 'uri'
 require 'openpay/open_pay_resource_factory'
 require 'errors/openpay_exception'
 
-file = File.new("openpay-log.txt",'w')
-LOG= Logger.new(file)
+LOG= Logger.new(STDOUT)
 #change to Logger::DEBUG if need trace information
 #due the nature of the information, we recommend to never use a log file when in debug
-LOG.level=Logger::DEBUG
+LOG.level=Logger::FATAL
 
 class OpenpayApi
   #API Endpoints
