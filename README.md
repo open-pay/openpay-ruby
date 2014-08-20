@@ -6,7 +6,7 @@
 
 ##Description
 
-ruby client for *Openpay api* services (version 1.0.5)
+ruby client for *Openpay api* services (version 1.0.6)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
@@ -767,7 +767,7 @@ In the Openpay dashboard you are able to see every request and its corresponding
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
-- check openpay_ap.rb for Logger configuration
+- check openpay_api.rb for Logger configuration
 - travis  https://travis-ci.org/open-pay/openpay-ruby , if a test fails it will leave leave some records, it may affect posterior tests.
    it is recommended to reset the console/account to assure a clean state after a failure occurs.
 
