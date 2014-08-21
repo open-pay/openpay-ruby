@@ -13,8 +13,8 @@ describe 'Request timeout exception' do
 
   end
 
-  it 'raise a OpenpayException when the operation timeouts' do
-    expect{@charges.all}.to raise_error(OpenpayException)
+  it 'raise an OpenpayConnectionException when the operation timeouts' do
+    expect{@charges.all}.to raise_error(OpenpayConnectionException)
   end
 
 end

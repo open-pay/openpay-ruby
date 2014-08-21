@@ -27,9 +27,13 @@ class OpenpayExceptionFactory
         @errors=true
         raise oe
       #badgateway-connection error, invalid credentials
-      when  RestClient::BadGateway, RestClient::Unauthorized
-            oe=OpenpayConnectionException.new exception.http_body
-            LOG.warn exception.http_body
+      when  RestClient::BadGateway, RestClient::Unauthorized, RestClient::RequestTimeout
+            LOG.warn exception
+            if exception.http_body
+              oe=OpenpayConnectionException.new exception.http_body
+            else
+              oe=OpenpayConnectionException.new(exception.message, false)
+            end
             @errors=true
             raise oe
 
