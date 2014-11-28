@@ -208,5 +208,19 @@ FactoryGirl.define do
     plan_id 'required'
     initialize_with { attributes }
   end
+  
+  
+  
+  factory :webhook1, class: Hash do
+    url 'http://requestb.in/190netg1'
+    event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
+    initialize_with { attributes }
+  end
+
+  factory :webhook2, class: Hash do
+    url 'http://requestb.in/vubjb4vu'
+    event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
+    initialize_with { attributes }
+  end
 
 end
