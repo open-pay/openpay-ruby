@@ -5,6 +5,8 @@ describe Webhooks do
   before(:all) do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
+    
+    #LOG.level=Logger::DEBUG
 
     @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @webhooks=@openpay.create(:webhooks)
@@ -25,7 +27,7 @@ describe Webhooks do
       webhook_hash= FactoryGirl.build(:webhook1)
       webhook=@webhooks.create(webhook_hash)
       #validates
-      expect(@webhooks.get(webhook['id'])['url']).to eq('http://requestb.in/190netg1')
+      expect(@webhooks.get(webhook['id'])['url']).to eq('http://requestb.in/qozy7dqp')
       #clean
       @webhooks.delete(webhook['id'])
     end

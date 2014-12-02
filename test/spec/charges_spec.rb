@@ -9,6 +9,8 @@ describe Charges do
 
     @openpay=OpenpayApi.new(@merchant_id,@private_key)
     @customers=@openpay.create(:customers)
+    
+    #LOG.level=Logger::DEBUG
 
     @charges=@openpay.create(:charges)
     @cards=@openpay.create(:cards)

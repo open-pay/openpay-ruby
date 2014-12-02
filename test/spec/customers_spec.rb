@@ -6,6 +6,8 @@ describe Customers do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
+    
+    #LOG.level=Logger::DEBUG
 
     @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
@@ -69,7 +71,7 @@ describe Customers do
         @customers.create(customer_hash)
       rescue OpenpayTransactionException => e
         expect(e.http_code).to be 400
-        expect(e.description).to match /email no es una direcci.n de correo bien formada/
+        expect(e.description).to match /\"{value}\" is not a valid email address/
       end
 
       expect(@customers.errors?).to eq true

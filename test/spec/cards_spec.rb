@@ -10,6 +10,8 @@ describe Cards do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
+    
+    #LOG.level=Logger::DEBUG
 
     @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @cards=@openpay.create(:cards)
@@ -140,7 +142,7 @@ describe Cards do
 
     it 'iterates over all existing merchant cards' do
       @cards.each do |card|
-        expect(card['expiration_year']).to match '14'
+        expect(card['expiration_year']).to match '20'
       end
     end
 
@@ -157,7 +159,7 @@ describe Cards do
       expect(card).to be_a(Hash)
 
       @cards.each(customer['id']) do |c|
-        expect(c['expiration_year']).to match '14'
+        expect(c['expiration_year']).to match '20'
       end
 
       #cleanup
