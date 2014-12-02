@@ -5,7 +5,7 @@
 
  desc 'run specifications'
  RSpec::Core::RakeTask.new do |t|
-   t.pattern = 'test/spec*'
+   t.pattern = 'test/spec/*'
  end
 
 
