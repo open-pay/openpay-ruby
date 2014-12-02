@@ -4,9 +4,6 @@
  task :default => [:spec]
 
  desc 'run specifications'
- RSpec::Core::RakeTask.new do |t|
-   t.pattern = 'test/spec/*'
- end
 
 
  RSpec::Core::RakeTask.new('bankaccounts') do |t|
