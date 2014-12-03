@@ -30,9 +30,8 @@ describe Payouts do
 
   describe '.create' do
 
-    it 'creates a merchant payout' do
-
-      pending
+    skip 'creates a merchant payout' do
+      #pending("is a pending example")
       #create merchant card
       card_hash = FactoryGirl.build(:valid_card)
       card = @cards.create(card_hash)
@@ -47,7 +46,6 @@ describe Payouts do
       expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(100)
 
       @cards.delete(card['id'])
-
     end
 
     it 'creates a customer payout using a card' do
@@ -108,14 +106,11 @@ describe Payouts do
 
   describe '.get' do
 
-    it 'gets a merchant payout' do
-
-      pending
+    skip 'gets a merchant payout' do
+      #pending("is a pending example")
       payout_hash= FactoryGirl.build(:payout_card, destination_id: 'bxz8ixftukkkjnrnypzb', amount: 10)
-
       payout=@payouts.create(payout_hash)
       expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(10)
-
     end
 
     it 'gets a customer payout' do
@@ -147,8 +142,8 @@ describe Payouts do
 
   describe '.all' do
 
-    it 'all merchant payouts' do
-      pending
+    skip 'all merchant payouts' do
+      #pending("is a pending example")
       expect(@payouts.all.size).to be_a Integer
       expect(@payouts.all.last['transaction_type']).to match 'payout'
     end
