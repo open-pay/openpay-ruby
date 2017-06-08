@@ -21,18 +21,18 @@ describe Webhooks do
       expect(@webhooks).to respond_to(meth)
     end
   end
-  
+
   describe '.create' do
     it 'creates a webhook' do
       webhook_hash= FactoryGirl.build(:webhook1)
       webhook=@webhooks.create(webhook_hash)
       #validates
-      expect(@webhooks.get(webhook['id'])['url']).to eq('http://requestb.in/qozy7dqp')
+      expect(@webhooks.get(webhook['id'])['url']).to eq('https://uwc1l4utbff4.runscope.net/')
       #clean
       @webhooks.delete(webhook['id'])
     end
   end
-  
+
   describe '.get' do
     it 'fails to get a non existing customer plan' do
       #validates
@@ -75,8 +75,7 @@ describe Webhooks do
       expect(@webhooks.all.size).to be_a Integer
     end
   end
-  
-  
+=begin
   describe '.verify' do
     it 'verify webhook and activate' do
      webhook_hash1= FactoryGirl.build(:webhook1)
@@ -100,5 +99,5 @@ describe Webhooks do
 
     end
   end
-  
+=end
 end

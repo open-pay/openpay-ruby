@@ -2,7 +2,6 @@ require_relative '../spec_helper'
 
 describe Transfers do
 
-
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
@@ -33,7 +32,6 @@ describe Transfers do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
-
       #create new customer card
       card_hash=FactoryGirl.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
@@ -46,11 +44,12 @@ describe Transfers do
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
 
+      sleep(50)
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
-
       transfer=@transfers.create(customer_hash,customer['id'])
       t=@transfers.get(transfer['id'],customer['id'])
+      
       expect(t['amount']).to be_within(0.1).of 12.5
       expect(t['method']).to match 'customer'
 
@@ -80,7 +79,8 @@ describe Transfers do
       #create customer  2
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
-
+      
+      sleep(50)
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
 
@@ -100,7 +100,6 @@ describe Transfers do
     end
 
   end
-
   describe '.each' do
 
     it 'iterates over a given customer transfers'  do
@@ -121,6 +120,7 @@ describe Transfers do
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
 
+      sleep(50)
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
@@ -157,7 +157,8 @@ describe Transfers do
       #create customer  2
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
-
+      
+      sleep(50)
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
@@ -200,6 +201,8 @@ describe Transfers do
       #create customer  2
       customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
+      
+      sleep(50)
 
       #create new transfer
       customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
@@ -216,4 +219,5 @@ describe Transfers do
     end
 
   end
+  
 end

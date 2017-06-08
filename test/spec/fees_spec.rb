@@ -45,7 +45,7 @@ describe Fees do
       #create charge
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
-
+      sleep(50)
       #create customer fee
       fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
@@ -71,6 +71,7 @@ describe Fees do
       #create charge
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
+      sleep(50)
 
       #create customer fee using json
       fee_json =%^{"customer_id":"#{customer['id']}","amount":"12.50","description":"Cobro de Comision"}^
@@ -90,7 +91,7 @@ describe Fees do
     end
 
   end
-
+  
   describe '.list' do
 
     it 'list fees with a given filter' do
@@ -106,10 +107,12 @@ describe Fees do
       #create charge
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
+      sleep(50)
 
       #create customer fee
       fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
+      sleep(50)
 
       #create customer fee
       fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
@@ -145,6 +148,7 @@ describe Fees do
       #create charge
       charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
+      sleep(50)
 
       #create customer fee
       fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])

@@ -209,16 +209,14 @@ FactoryGirl.define do
     initialize_with { attributes }
   end
   
-  
-  
   factory :webhook1, class: Hash do
-    url 'http://requestb.in/qozy7dqp'
+    url 'https://uwc1l4utbff4.runscope.net/'
     event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
     initialize_with { attributes }
   end
 
   factory :webhook2, class: Hash do
-    url 'http://requestb.in/10avuvw1'
+    url 'https://2yymdpkdych1.runscope.net/'
     event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
     initialize_with { attributes }
   end

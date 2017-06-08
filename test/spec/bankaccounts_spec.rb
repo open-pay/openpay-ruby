@@ -23,18 +23,19 @@ describe Bankaccounts do
       expect(@bank_accounts).to respond_to(meth)
     end
   end
-
+=begin
   describe '.create' do
 
     it 'creates  a customer bank account' do
+      
       customer_hash= FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
-
+       
       account_hash=FactoryGirl.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
 
       bank_account=@bank_accounts.get(customer['id'], bank['id'])
-      expect(bank_account['alias']).to match 'Cuenta principal'
+      expect(bank_account['alias']).to match "Cuenta principal"
 
       @bank_accounts.delete(customer['id'], bank['id'])
       @customers.delete(customer['id'])
@@ -42,7 +43,6 @@ describe Bankaccounts do
     end
 
   end
-
   describe '.get' do
 
     it 'get a given bank account for a given customer' do
@@ -179,4 +179,5 @@ describe Bankaccounts do
     end
 
   end
+=end
 end

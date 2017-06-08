@@ -94,6 +94,8 @@ describe Subscriptions do
 
     it 'updates customer subscription' do
 
+      time = Time.now + (60*60*24*2);
+      time = time.strftime("%Y-%m-%d")
       #creates a customer
       customer_hash=FactoryGirl.build(:customer)
       customer=@customers.create(customer_hash)
@@ -115,11 +117,10 @@ describe Subscriptions do
 
       #performs check
       expect(stored_s['status']).to match 'trial'
-
-      subscription_update_hash={ trial_end_date: "2016-01-12" }
-
+      subscription_update_hash={ trial_end_date: time }
+      sleep(20)
       stored_s=@subscriptions.update(subscription['id'], customer['id'], subscription_update_hash)
-      expect(stored_s['trial_end_date']).to eq "2016-01-12"
+      expect(stored_s['trial_end_date']).to eq time
 
       #cleanup
       @subscriptions.delete(subscription['id'], customer['id'])

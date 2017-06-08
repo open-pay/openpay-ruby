@@ -64,24 +64,6 @@ describe 'Openpay Exceptions' do
       end
     end
 
-    it 'fails when trying to create an existing card' do
-
-      #create customer
-      customers=@openpay.create(:customers)
-      customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Perez')
-      customer=customers.create(customer_hash)
-      #create card using json
-      card_json = FactoryGirl.build(:valid_card).to_json
-      card=@cards.create(card_json)
-      #perform check
-      expect { @cards.create(card_json) }.to raise_error(OpenpayTransactionException)
-
-      #cleanup
-      @customers.delete(customer['id'])
-      card_hash=JSON.parse card
-      @cards.delete card_hash['id']
-    end
-
     it 'raise  an OpenpayTransactionException when using an expired card' do
       card_hash = FactoryGirl.build(:expired_card)
       expect { @cards.create(card_hash) }.to raise_error(OpenpayTransactionException)

@@ -25,7 +25,7 @@ describe Charges do
       expect(@charges).to respond_to(meth)
     end
   end
-
+  
   describe '.create' do
 
     it 'creates a new merchant charge using the card method using a pre-stored card' do
@@ -67,30 +67,6 @@ describe Charges do
 
       #clean up
       @cards.delete(card['id'],customer['id'])
-      @customers.delete(customer['id'])
-
-    end
-
-    it 'creates a new customer charge using the bank_account method' do
-
-      #create new customer
-      customer_hash= FactoryGirl.build(:customer)
-      customer=@customers.create(customer_hash)
-
-      #create bank account
-      account_hash=FactoryGirl.build(:bank_account)
-      account=@bank_accounts.create(account_hash,customer['id'])
-
-      #create charge
-      charge_hash=FactoryGirl.build(:bank_charge, order_id: account['id'])
-      charge=@charges.create(charge_hash,customer['id'])
-
-      #perform check
-      stored_charge=@charges.get(charge['id'],customer['id'])
-      expect(stored_charge['amount']).to be_within(0.1).of(10000)
-
-      #clean up
-      @bank_accounts.delete(customer['id'],account['id'])
       @customers.delete(customer['id'])
 
     end
@@ -290,7 +266,7 @@ describe Charges do
       @cards.delete(card['id'])
 
     end
-
+    
     it 'refunds an existing customer charge' do
       #create new customer
       customer_hash= FactoryGirl.build(:customer)
@@ -301,24 +277,25 @@ describe Charges do
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000)
+      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 100)
       charge=@charges.create(charge_hash,customer['id'])
 
       #creates refund_description
       refund_description=FactoryGirl.build(:refund_description)
 
-
       #perform check
       expect(@charges.get(charge['id'],customer['id'])['refund']).to be nil
+      sleep(50)
       @charges.refund(charge['id'],refund_description,customer['id'])
-      expect(@charges.get(charge['id'],customer['id'])['refund']['amount'] ).to be_within(0.1).of(4000)
+      
+      expect(@charges.get(charge['id'],customer['id'])['refund']['amount'] ).to be_within(0.1).of(100)
 
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])
 
     end
-
+    
   end
 
   describe '.list' do

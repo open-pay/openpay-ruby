@@ -82,21 +82,22 @@ describe Cards do
 
     end
 
-    it 'fails when trying to create an existing merchant card' do
+    it 'create an existing merchant card' do
 
       #creates merchant card
       card_hash = FactoryGirl.build(:valid_card)
+      
       card=@cards.create(card_hash)
-
-      #perform check
-      expect { @cards.create(card_hash) }.to raise_error(OpenpayTransactionException)
-
+      #cleanup
+      @cards.delete(card['id'])
+      
+      card=@cards.create(card_hash)
       #cleanup
       @cards.delete(card['id'])
 
     end
 
-    it 'fails when trying to create an existing customer card' do
+    it 'trying to create an existing customer card' do
 
       #creates a customer
       card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
@@ -107,9 +108,6 @@ describe Cards do
       #creates a customer card
       card=@cards.create(card_hash, customer['id'])
       expect(card).to be_a(Hash)
-
-      #performs check
-      expect { @cards.create(card_hash, customer['id']) }.to raise_error(OpenpayTransactionException)
 
       #cleanup
       @cards.delete(card['id'], customer['id'])

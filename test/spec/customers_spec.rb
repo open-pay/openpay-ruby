@@ -55,7 +55,7 @@ describe Customers do
       @customers.delete(id)
 
     end
-
+    
     it 'fails when passing invalid information' do
 
       #check no errors
@@ -71,9 +71,8 @@ describe Customers do
         @customers.create(customer_hash)
       rescue OpenpayTransactionException => e
         expect(e.http_code).to be 400
-        expect(e.description).to match /\"{value}\" is not a valid email address/
+        expect(e.description).to match /'foo' is not a valid email address/
       end
-
       expect(@customers.errors?).to eq true
 
     end
