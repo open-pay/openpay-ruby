@@ -1,9 +1,10 @@
 ![Openpay Ruby](http://www.openpay.mx/img/github/ruby.jpg)
-#[![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
+
+[![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
 [![Gem Version](https://badge.fury.io/rb/openpay.svg)](http://badge.fury.io/rb/openpay)
 
-##Description
+## Description
 
 ruby client for *Openpay api* services (version 1.0.10)
 
@@ -30,7 +31,7 @@ Or install it from the command line:
 
     $ gem install openpay
 
-###Requirements
+### Requirements
 
     * ruby 1.9 or higher
 
@@ -155,23 +156,24 @@ Here you can see how the **card_hash** representation looks like.
 
 ```ruby
 require 'pp'
-pp card_hash   =>
-
-{:bank_name=>"visa",
-:holder_name=>"Vicente Olmos",
-:expiration_month=>"09",
-:card_number=>"4111111111111111",
-:expiration_year=>"14",
-:bank_code=>"bmx",
-:cvv2=>"111",
-:address=>
-{:postal_code=>"76190",
-:state=>"QRO",
-:line1=>"LINE1",
-:line2=>"LINE2",
-:line3=>"LINE3",
-:country_code=>"MX",
-:city=>"Queretaro"}}
+pp card_hash => {
+  :bank_name=>"visa",
+  :holder_name=>"Vicente Olmos",
+  :expiration_month=>"09",
+  :card_number=>"4111111111111111",
+  :expiration_year=>"14",
+  :bank_code=>"bmx",
+  :cvv2=>"111",
+  :address => {
+    :postal_code=>"76190",
+    :state=>"QRO",
+    :line1=>"LINE1",
+    :line2=>"LINE2",
+    :line3=>"LINE3",
+    :country_code=>"MX",
+    :city=>"Queretaro"
+  }
+}
 ```
 
 Next, how we construct  the preceding hash using **FactoryGirl**.
@@ -203,7 +205,7 @@ FactoryGirl.define do
   end
 ```
 
-###Methods design
+### Methods design
 
 This ruby API standardize the method names across all different resources using the **create**,**get**,**update** and **delete** verbs.
 
@@ -212,14 +214,15 @@ For full method documentation take a look at:
 
 The test suite at *test/spec* is a good source of reference.
 
-#####create
+##### create
 
    Creates the given resource
- ```ruby
-     open_pay_resource.create(representation,customer_id=nil)
- ```
 
-#####get
+```ruby
+open_pay_resource.create(representation,customer_id=nil)
+```
+
+##### get
 
    Gets an instance of a  given resource
 
@@ -227,7 +230,7 @@ The test suite at *test/spec* is a good source of reference.
 open_pay_resource.get(object_id,customer_id=nil)
 ```
 
-#####update
+##### update
 
    Updates an instance of a given resource
 
@@ -235,7 +238,7 @@ open_pay_resource.get(object_id,customer_id=nil)
 open_pay_resource.update(representation,customer_id=nil)
 ```
 
-#####delete
+##### delete
 
   Deletes an instance of the given resource
 
@@ -243,19 +246,21 @@ open_pay_resource.update(representation,customer_id=nil)
 open_pay_resource.delete(object_id,customer_id=nil)
 ```
 
-#####all
+##### all
    Returns an array of all instances of a resource
+   
 ```ruby
 open_pay_resource.all(customer_id=nil)
 ```
 
-#####each
+##### each
    Returns a block for each instance resource
+   
 ```ruby
 open_pay_resource.each(customer_id=nil)
  ```
 
-#####delete_all(available only under the development environment)
+##### delete_all(available only under the development environment)
 
    Deletes all instances of the given resource
 
@@ -265,7 +270,7 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
-###API Methods
+### API Methods
 
 
 #### bank_accounts
@@ -624,11 +629,11 @@ open_pay_resource.delete_all(customer_id=nil)
 
 - deletes customer subscription
 
-         subscriptions.delete(customer_id)
+         subscriptions.delete(subscription_id, customer_id)
 
 - deletes all customer subscriptions ( sandbox mode only)
 
-         subscriptions.delete(customer_id)
+         subscriptions.delete_all(customer_id)
 
 
 #### transfers
@@ -744,7 +749,7 @@ rescue OpenpayApiTransactionError => e
 end
 ```
 
-###These exceptions have the following attributes:
+### These exceptions have the following attributes:
 
 - *category*
 - *description*
@@ -757,12 +762,12 @@ For more information about categories, descriptions and codes take a look at:
 - http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
-##Debug
+## Debug
 
 In the Openpay dashboard you are able to see every request and its corresponding request/response.
     - https://sandbox-dashboard.openpay.mx
 
-##Developer Notes
+## Developer Notes
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
@@ -774,49 +779,3 @@ In the Openpay dashboard you are able to see every request and its corresponding
 For more use cases take a look at the *test/spec* folder
 
   1.  http://docs.openpay.mx/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
