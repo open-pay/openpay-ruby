@@ -3,8 +3,8 @@ require_relative '../spec_helper'
 describe Webhooks do
   
   before(:all) do
-    @merchant_id='mywvupjjs9xdnryxtplq'
-    @private_key='sk_92b25d3baec149e6b428d81abfe37006'
+    @merchant_id='m5nvnxerj4grfbb7hwqn'
+    @private_key='sk_8d7f21e8e14f4b0c97fc19b2207c6dbf'
     
     #LOG.level=Logger::DEBUG
 
@@ -27,7 +27,7 @@ describe Webhooks do
       webhook_hash= FactoryGirl.build(:webhook1)
       webhook=@webhooks.create(webhook_hash)
       #validates
-      expect(@webhooks.get(webhook['id'])['url']).to eq('https://uwc1l4utbff4.runscope.net/')
+      expect(@webhooks.get(webhook['id'])['url']).to eq('https://requestb.in/15r2d5n1')
       #clean
       @webhooks.delete(webhook['id'])
     end
@@ -40,7 +40,7 @@ describe Webhooks do
       begin
         @webhooks.get('111111')
       rescue OpenpayTransactionException => e
-        expect(e.description).to match 'The  merchant with id \'mywvupjjs9xdnryxtplq\' or the webhook with id \'111111\' does not exists.'
+        expect(e.description).to match 'The  merchant with id \'m5nvnxerj4grfbb7hwqn\' or the webhook with id \'111111\' does not exists.'
       end
     end
   end

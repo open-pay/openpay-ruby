@@ -7,12 +7,12 @@ require 'version'
 Gem::Specification.new do |spec|
   spec.name          = "openpay"
   spec.version       = Openpay::VERSION
-  spec.authors       = ["ronnie_bermejo"]
-  spec.email         =  ["ronnie.bermejo.mx@gmail.com"]
-  spec.description   = %q{ruby client for Openpay API services (version 1.0.409)}
+  spec.authors       = ["Openpay"]
+  spec.email         =  ["hola@openpay.mx"]
+  spec.description   = %q{ruby client for Openpay API services (version 1.0.10)}
   spec.summary       = %q{ruby api for openpay resources}
   spec.homepage      = "http://openpay.mx/"
-  spec.license       = "Apache"
+  spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib','lib/openpay','openpay','.']
 
   spec.add_runtime_dependency 'rest-client'  , '~>2.0'
-  spec.add_runtime_dependency 'json'
+  spec.add_runtime_dependency 'json', '~> 1.8'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'

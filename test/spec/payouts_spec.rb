@@ -4,8 +4,8 @@ describe Payouts do
 
   before(:all) do
 
-    @merchant_id='mywvupjjs9xdnryxtplq'
-    @private_key='sk_92b25d3baec149e6b428d81abfe37006'
+    @merchant_id='m5nvnxerj4grfbb7hwqn'
+    @private_key='sk_8d7f21e8e14f4b0c97fc19b2207c6dbf'
     
     #LOG.level=Logger::DEBUG
 

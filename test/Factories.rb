@@ -4,9 +4,9 @@ require 'factory_girl'
 FactoryGirl.define do
 
   factory :customer, class: Hash do
-    name 'Ronnie'
-    last_name 'Bermejo'
-    email 'ronnie.bermejo.mx@gmail.com'
+    name 'Guadalupe'
+    last_name 'Reyes'
+    email 'lupereyes@lemail.com'
     phone_number '0180012345'
     address { {
         postal_code: '76190',
@@ -187,7 +187,7 @@ FactoryGirl.define do
     amount '150.00'
     status_after_retry 'cancelled'
     retry_times 2
-    name 'Curso de ingles'
+    name 'TODO INCLUIDO'
     repeat_unit 'week'
     trial_days 30
     repeat_every 1
@@ -210,13 +210,13 @@ FactoryGirl.define do
   end
   
   factory :webhook1, class: Hash do
-    url 'https://uwc1l4utbff4.runscope.net/'
+    url 'https://requestb.in/15r2d5n1'
     event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
     initialize_with { attributes }
   end
 
   factory :webhook2, class: Hash do
-    url 'https://2yymdpkdych1.runscope.net/'
+    url 'https://requestb.in/s3pj3ds3'
     event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
     initialize_with { attributes }
   end
