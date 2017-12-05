@@ -4,7 +4,7 @@ $: << 'lib/openpay'
 
 require 'openpay'
 require 'factory_bot'
-require 'test/factories'
+require 'test/Factories'
 require 'rspec'
 require 'json_spec'
 
