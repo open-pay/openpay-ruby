@@ -1,5 +1,6 @@
 ![Openpay Ruby](http://www.openpay.mx/img/github/ruby.jpg)
-#[![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
+
+[![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
 [![Gem Version](https://badge.fury.io/rb/openpay.svg)](http://badge.fury.io/rb/openpay)
 

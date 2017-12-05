@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 
 describe 'OpenPayResource' do
@@ -23,7 +23,7 @@ describe 'OpenPayResource' do
 
 
     it 'converts a ruby hash into a json string' do
-      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Juan')
+      card_hash = FactoryBot.build(:valid_card, holder_name: 'Juan')
       json=@cards.hash2json(card_hash)
       expect(json).to have_json_path('holder_name')
       expect(json).to have_json_path('expiration_year')
@@ -39,7 +39,7 @@ describe 'OpenPayResource' do
 
 
     it 'converts json into a ruby hash' do
-      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+      card_hash = FactoryBot.build(:valid_card, holder_name: 'Pepe')
       json=@cards.hash2json(card_hash)
       jash=@cards.json2hash(json)
       expect(jash).to be_a Hash

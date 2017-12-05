@@ -1,7 +1,7 @@
-require 'factory_girl'
+require 'factory_bot'
 
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :customer, class: Hash do
     name 'Guadalupe'
@@ -45,7 +45,7 @@ FactoryGirl.define do
 
   end
 
-  factory :valid_card2, class: Hash do
+   factory :valid_card2, class: Hash do
 
     bank_name 'visa'
     holder_name 'Alma Olmos'
@@ -68,7 +68,7 @@ FactoryGirl.define do
 
   end
 
-  factory :only_deposit, class: Hash do
+    factory :only_deposit, class: Hash do
 
     bank_name 'visa'
     holder_name 'Alma Olmos'
@@ -114,6 +114,7 @@ FactoryGirl.define do
 
   end
 
+ 
   factory :bank_account, class: Hash do
 
     holder_name 'Juan Perez'
@@ -129,19 +130,20 @@ FactoryGirl.define do
     amount "1000"
     description "Cargo inicial a tarjeta"
     source_id "string"
-    method "card"
+    add_attribute :method, "card"
     order_id 'required'
 
     initialize_with { attributes }
 
   end
+  
 
   factory :bank_charge, class: Hash do
 
     amount "10000"
     description "Cargo con banco"
     order_id 'required'
-    method "bank_account"
+    add_attribute :method, "bank_account"
 
     initialize_with { attributes }
 
@@ -162,7 +164,7 @@ FactoryGirl.define do
 
   factory :payout_card, class: Hash do
 
-    method 'card'
+    add_attribute :method, 'card'
     destination_id '4444444444444448'
     amount '2'
     description 'Retiro de saldo semanal'
@@ -173,7 +175,7 @@ FactoryGirl.define do
 
   factory :payout_bank_account, class: Hash do
 
-    method 'bank_account'
+    add_attribute :method, 'bank_account'
     amount '1000'
     destination_id 'required'
     description 'Retiro de saldo semanal'
@@ -187,7 +189,7 @@ FactoryGirl.define do
     amount '150.00'
     status_after_retry 'cancelled'
     retry_times 2
-    name 'TODO INCLUIDO'
+    add_attribute :name ,'TODO INCLUIDO'
     repeat_unit 'week'
     trial_days 30
     repeat_every 1

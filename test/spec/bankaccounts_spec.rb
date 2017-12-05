@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 
 describe Bankaccounts do
@@ -28,10 +28,10 @@ describe Bankaccounts do
 
     it 'creates  a customer bank account' do
       
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
        
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
 
       bank_account=@bank_accounts.get(customer['id'], bank['id'])
@@ -47,10 +47,10 @@ describe Bankaccounts do
 
     it 'get a given bank account for a given customer' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
 
       bank_account=@bank_accounts.get(customer['id'], bank['id'])
@@ -66,10 +66,10 @@ describe Bankaccounts do
 
     it 'iterator for  all given customer bank accounts' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
 
       @bank_accounts.each(customer['id']) do |bank_account|
@@ -87,11 +87,11 @@ describe Bankaccounts do
 
     it 'list the bank accounts using a given filter' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
       expect(@bank_accounts.all(customer['id']).size).to be 0
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
       expect(@bank_accounts.all(customer['id']).size).to be 1
 
@@ -111,11 +111,11 @@ describe Bankaccounts do
 
     it 'all bank accounts for a given customer' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
       expect(@bank_accounts.all(customer['id']).size).to be 0
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
       expect(@bank_accounts.all(customer['id']).size).to be 1
 
@@ -134,11 +134,11 @@ describe Bankaccounts do
 
     it 'deletes a given bank account' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
       expect(@bank_accounts.all(customer['id']).size).to be 0
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       bank=@bank_accounts.create(account_hash, customer['id'])
       expect(@bank_accounts.all(customer['id']).size).to be 1
 
@@ -157,10 +157,10 @@ describe Bankaccounts do
 
     it 'deletes all bank accounts' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
 
       @bank_accounts.create(account_hash, customer['id'])
       expect(@bank_accounts.all(customer['id']).size).to be 1

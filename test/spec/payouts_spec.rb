@@ -1,11 +1,11 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Payouts do
 
   before(:all) do
 
-    @merchant_id='m5nvnxerj4grfbb7hwqn'
-    @private_key='sk_8d7f21e8e14f4b0c97fc19b2207c6dbf'
+    @merchant_id='mywvupjjs9xdnryxtplq'
+    @private_key='sk_92b25d3baec149e6b428d81abfe37006'
     
     #LOG.level=Logger::DEBUG
 
@@ -33,14 +33,14 @@ describe Payouts do
     skip 'creates a merchant payout' do
       #pending("is a pending example")
       #create merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card = @cards.create(card_hash)
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash)
 
-      payout_hash=FactoryGirl.build(:payout_card, destination_id: card['id'], amount: 100)
+      payout_hash=FactoryBot.build(:payout_card, destination_id: card['id'], amount: 100)
 
       payout=@payouts.create(payout_hash)
       expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(100)
@@ -52,18 +52,18 @@ describe Payouts do
       #We need to charge 1st into the card we are going to use
 
       #create new customer
-      customer_hash=FactoryGirl.build(:customer)
+      customer_hash=FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash, customer['id'])
 
-      payout_hash=FactoryGirl.build(:payout_card, destination_id: card['id'], amount: 400)
+      payout_hash=FactoryBot.build(:payout_card, destination_id: card['id'], amount: 400)
 
       payout=@payouts.create(payout_hash, customer['id'])
       expect(@payouts.get(payout['id'], customer['id'])['amount']).to be_within(0.1).of(400)
@@ -76,22 +76,22 @@ describe Payouts do
     skip 'creates a customer payout using a bank account' do
 
       #create new customer
-      customer_hash=FactoryGirl.build(:customer)
+      customer_hash=FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create new customer bank account
-      account_hash=FactoryGirl.build(:bank_account)
+      account_hash=FactoryBot.build(:bank_account)
       account=@bank_accounts.create(account_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash, customer['id'])
 
-      payout_hash=FactoryGirl.build(:payout_card, destination_id: account['id'], amount: 400)
+      payout_hash=FactoryBot.build(:payout_card, destination_id: account['id'], amount: 400)
 
       payout=@payouts.create(payout_hash, customer['id'])
       expect(@payouts.get(payout['id'], customer['id'])['amount']).to be_within(0.1).of(400)
@@ -107,25 +107,25 @@ describe Payouts do
 
     skip 'gets a merchant payout' do
       #pending("is a pending example")
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: 'bxz8ixftukkkjnrnypzb', amount: 10)
+      payout_hash= FactoryBot.build(:payout_card, destination_id: 'bxz8ixftukkkjnrnypzb', amount: 10)
       payout=@payouts.create(payout_hash)
       expect(@payouts.get(payout['id'])['amount']).to be_within(0.1).of(10)
     end
 
     skip 'gets a customer payout' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash, customer['id'])
 
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'], amount: 40)
+      payout_hash= FactoryBot.build(:payout_card, destination_id: card['id'], amount: 40)
 
       payout=@payouts.create(payout_hash, customer['id'])
 
@@ -149,18 +149,18 @@ describe Payouts do
 
     skip 'all customer payouts' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash, customer['id'])
 
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'], amount: 40)
+      payout_hash= FactoryBot.build(:payout_card, destination_id: card['id'], amount: 40)
 
       payout=@payouts.create(payout_hash, customer['id'])
 
@@ -182,18 +182,18 @@ describe Payouts do
     skip 'list payouts given the filter' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'])
       charge=@charges.create(charge_hash, customer['id'])
 
-      payout_hash= FactoryGirl.build(:payout_card, destination_id: card['id'], amount: 40)
+      payout_hash= FactoryBot.build(:payout_card, destination_id: card['id'], amount: 40)
 
       payout1=@payouts.create(payout_hash, customer['id'])
       payout2=@payouts.create(payout_hash, customer['id'])

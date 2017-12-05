@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Charges do
 
@@ -31,11 +31,11 @@ describe Charges do
     it 'creates a new merchant charge using the card method using a pre-stored card' do
 
       #create card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
 
       #create charge attached to prev created card
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 101)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 101)
       charge=@charges.create(charge_hash)
 
       #perform check
@@ -50,15 +50,15 @@ describe Charges do
     it 'creates a new customer charge using the card method using a pre-stored card' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #perform check
@@ -78,11 +78,11 @@ describe Charges do
     it 'gets a merchant charge'  do
 
       #create card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
 
       #create charge attached to prev created card
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 505)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 505)
       charge=@charges.create(charge_hash)
 
       #perform check
@@ -97,15 +97,15 @@ describe Charges do
     it 'gets a customer charge' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000)
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000)
       charge=@charges.create(charge_hash,customer['id'])
 
       #perform check
@@ -129,7 +129,7 @@ describe Charges do
 
     it 'all customer charges' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       expect(@charges.all(customer['id']).size).to be 0
@@ -144,15 +144,15 @@ describe Charges do
     it 'captures a merchant card charge'  do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create merchant card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
 
       #create merchant charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
       charge=@charges.create(charge_hash)
 
       #capture merchant charge
@@ -166,15 +166,15 @@ describe Charges do
 
     it 'captures a customer card charge' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
       charge=@charges.create(charge_hash,customer['id'])
 
       #capture customer charge
@@ -193,15 +193,15 @@ describe Charges do
     it 'confirms a capture on a merchant charge' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create merchant card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
 
       #create merchant charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000, capture:'false')
       charge=@charges.create(charge_hash)
 
       confirm_capture_options = {  transaction_id: charge['id'], amount: 100  }
@@ -218,15 +218,15 @@ describe Charges do
 
     it 'confirms a capture on a customer charge' do
 
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4000,capture:'false')
       charge=@charges.create(charge_hash,customer['id'])
 
       confirm_capture_options = { customer_id: customer['id'], transaction_id: charge['id'], amount: 100  }
@@ -248,15 +248,15 @@ describe Charges do
     #Refunds apply only for card charges
     it 'refunds  an existing merchant charge' do
       #create card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
 
       #create charge attached to prev created card
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 505)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'],amount: 505)
       charge=@charges.create(charge_hash)
 
       #creates refund_description
-      refund_description=FactoryGirl.build(:refund_description)
+      refund_description=FactoryBot.build(:refund_description)
       expect(@charges.get(charge['id'])['refund']).to be nil
 
       @charges.refund(charge['id'],refund_description)
@@ -269,19 +269,19 @@ describe Charges do
     
     it 'refunds an existing customer charge' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 100)
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 100)
       charge=@charges.create(charge_hash,customer['id'])
 
       #creates refund_description
-      refund_description=FactoryGirl.build(:refund_description)
+      refund_description=FactoryBot.build(:refund_description)
 
       #perform check
       expect(@charges.get(charge['id'],customer['id'])['refund']).to be nil
@@ -303,17 +303,17 @@ describe Charges do
     it 'list customer charges' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id']+"1")
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id']+"1")
       charge2=@charges.create(charge_hash,customer['id'])
 
       #perform check
@@ -342,17 +342,17 @@ describe Charges do
     it 'iterate over customer charges' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4)
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'],amount: 4)
       @charges.create(charge_hash,customer['id'])
-      charge2_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'+"2"],amount: 4)
+      charge2_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'+"2"],amount: 4)
 
       @charges.create(charge2_hash,customer['id'])
 

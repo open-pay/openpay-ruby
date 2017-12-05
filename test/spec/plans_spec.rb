@@ -1,13 +1,13 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Plans do
 
   before(:all) do
 
-    @merchant_id='m5nvnxerj4grfbb7hwqn'
-    @private_key='sk_8d7f21e8e14f4b0c97fc19b2207c6dbf'
+    @merchant_id='mywvupjjs9xdnryxtplq'
+    @private_key='sk_92b25d3baec149e6b428d81abfe37006'
     
-    LOG.level=Logger::DEBUG
+    #LOG.level=Logger::DEBUG
 
     @openpay=OpenpayApi.new(@merchant_id, @private_key)
     @customers=@openpay.create(:customers)
@@ -16,13 +16,13 @@ describe Plans do
 
   end
 
-=begin
+begin
 
   after(:all) do
     @plans.delete_all
   end
 
-=end 
+end 
 
   it 'has all required methods' do
     %w(all each create get list delete).each do |meth|
@@ -34,7 +34,7 @@ describe Plans do
 
     it 'creates a merchant plan' do
 
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5)
       plan=@plans.create(plan_hash)
 
       #validates
@@ -52,7 +52,7 @@ describe Plans do
     it 'gets a merchant plan' do
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #validates
@@ -86,7 +86,7 @@ describe Plans do
   describe '.list' do
     it 'list all plans given the filter' do
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       search_params = OpenpayUtils::SearchParams.new
@@ -103,11 +103,11 @@ describe Plans do
 
     it 'updates an existing customer plan' do
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, trial_days: 10)
+      plan_hash= FactoryBot.build(:plan, trial_days: 10)
       plan=@plans.create(plan_hash)
 
       expect(plan['trial_days']).to be 10
-      plan_hash= FactoryGirl.build(:plan, trial_days: 100)
+      plan_hash= FactoryBot.build(:plan, trial_days: 100)
       plan=@plans.update(plan_hash, plan['id'])
       expect(plan['trial_days']).to be 100
 
@@ -117,7 +117,7 @@ describe Plans do
 
     it 'fails to update an non existing customer plan' do
 
-      plan_hash= FactoryGirl.build(:plan, trial_days: 100)
+      plan_hash= FactoryBot.build(:plan, trial_days: 100)
 
       #validates
       expect { @plans.update(plan_hash, '111111') }.to raise_exception RestClient::ResourceNotFound
@@ -137,7 +137,7 @@ describe Plans do
     it 'iterates over all customer plans' do
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, trial_days: 30)
+      plan_hash= FactoryBot.build(:plan, trial_days: 30)
       plan=@plans.create(plan_hash)
       plan1=@plans.create(plan_hash)
       plan2=@plans.create(plan_hash)

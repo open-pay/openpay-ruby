@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Subscriptions do
 
@@ -31,19 +31,19 @@ describe Subscriptions do
     it 'creates a subscription' do
 
       #creates a customer
-      customer_hash=FactoryGirl.build(:customer)
+      customer_hash=FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash=FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash=FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #performs check
@@ -62,19 +62,19 @@ describe Subscriptions do
     it 'gets customer subscriptions' do
 
       #creates a customer
-      customer_hash=FactoryGirl.build(:customer)
+      customer_hash=FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash=FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash=FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #get customer subscription
@@ -97,19 +97,19 @@ describe Subscriptions do
       time = Time.now + (60*60*24*2);
       time = time.strftime("%Y-%m-%d")
       #creates a customer
-      customer_hash=FactoryGirl.build(:customer)
+      customer_hash=FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash=FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash=FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash=FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash=FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
       #get customer subscription
@@ -134,19 +134,19 @@ describe Subscriptions do
     it 'returns all subscriptions for a given customer' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash= FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash= FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       expect(@subscriptions.all(customer['id']).size).to be 0
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
@@ -164,19 +164,19 @@ describe Subscriptions do
 
     it 'list subscriptions based on given filter' do
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash= FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash= FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       expect(@subscriptions.all(customer['id']).size).to be 0
       subscription1=@subscriptions.create(subscription_hash, customer['id'])
       subscription2=@subscriptions.create(subscription_hash, customer['id'])
@@ -201,19 +201,19 @@ describe Subscriptions do
     it 'iterates over all subscriptions for a given customer' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash= FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash= FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       expect(@subscriptions.all(customer['id']).size).to be 0
       @subscriptions.create(subscription_hash, customer['id'])
 
@@ -234,19 +234,19 @@ describe Subscriptions do
     it 'deletes an existing subscription for a given customer' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer  card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash= FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscription
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash= FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       expect(@subscriptions.all(customer['id']).size).to be 0
       subscription=@subscriptions.create(subscription_hash, customer['id'])
 
@@ -265,19 +265,19 @@ describe Subscriptions do
     it 'deletes all existing subscription for a given customer' do
 
       #creates a customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates a customer card
-      card_hash= FactoryGirl.build(:valid_card)
+      card_hash= FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #creates a plan
-      plan_hash= FactoryGirl.build(:plan, repeat_every: 5, amount: 500)
+      plan_hash= FactoryBot.build(:plan, repeat_every: 5, amount: 500)
       plan=@plans.create(plan_hash)
 
       #creates subscriptions
-      subscription_hash= FactoryGirl.build(:subscription, plan_id: plan['id'], card_id: card['id'])
+      subscription_hash= FactoryBot.build(:subscription, plan_id: plan['id'], card_id: card['id'])
       expect(@subscriptions.all(customer['id']).size).to be 0
       @subscriptions.create(subscription_hash, customer['id'])
       @subscriptions.create(subscription_hash, customer['id'])

@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Transfers do
 
@@ -30,23 +30,23 @@ describe Transfers do
     it 'transfers money from customer to customer' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #create customer  2
-      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer_hash= FactoryBot.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
 
       sleep(50)
       #create new transfer
-      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      customer_hash= FactoryBot.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
       t=@transfers.get(transfer['id'],customer['id'])
       
@@ -65,24 +65,24 @@ describe Transfers do
     it 'gets a customer transfer' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #create customer  2
-      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer_hash= FactoryBot.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
       
       sleep(50)
       #create new transfer
-      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      customer_hash= FactoryBot.build(:transfer,customer_id: customer2['id'])
 
       transfer=@transfers.create(customer_hash,customer['id'])
       t=@transfers.get(transfer['id'],customer['id'])
@@ -105,24 +105,24 @@ describe Transfers do
     it 'iterates over a given customer transfers'  do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #create customer  2
-      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer_hash= FactoryBot.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
 
       sleep(50)
       #create new transfer
-      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      customer_hash= FactoryBot.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
 
       #iterates over transfers
@@ -143,24 +143,24 @@ describe Transfers do
 
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
       #create customer  2
-      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer_hash= FactoryBot.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
       
       sleep(50)
       #create new transfer
-      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      customer_hash= FactoryBot.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
 
@@ -186,26 +186,26 @@ describe Transfers do
     it 'returns all customer transfers' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create new customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id:card['id'],order_id: card['id'])
+      charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
 
 
       #create customer  2
-      customer_hash= FactoryGirl.build(:customer,name: 'Alejandro')
+      customer_hash= FactoryBot.build(:customer,name: 'Alejandro')
       customer2=@customers.create(customer_hash)
       
       sleep(50)
 
       #create new transfer
-      customer_hash= FactoryGirl.build(:transfer,customer_id: customer2['id'])
+      customer_hash= FactoryBot.build(:transfer,customer_id: customer2['id'])
       transfer=@transfers.create(customer_hash,customer['id'])
 
 

@@ -7,9 +7,9 @@ require 'version'
 Gem::Specification.new do |spec|
   spec.name          = "openpay"
   spec.version       = Openpay::VERSION
-  spec.authors       = ["Openpay"]
+  spec.authors       = ["Openpay","ronnie_bermejo"]
   spec.email         =  ["hola@openpay.mx"]
-  spec.description   = %q{ruby client for Openpay API services (version 1.0.10)}
+  spec.description   = %q{ruby client for Openpay API services (version 2.0.0)}
   spec.summary       = %q{ruby api for openpay resources}
   spec.homepage      = "http://openpay.mx/"
   spec.license       = "Apache-2.0"

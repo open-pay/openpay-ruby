@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 
 describe Cards do
@@ -36,7 +36,7 @@ describe Cards do
     it 'creates merchant card' do
 
       #creates merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       cards=@cards.create(card_hash)
       expect(cards).to be_a(Hash)
 
@@ -56,9 +56,9 @@ describe Cards do
     it 'creates a customer card' do
 
       #creates a customer
-      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+      card_hash = FactoryBot.build(:valid_card, holder_name: 'Pepe')
       customers=@openpay.create(:customers)
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=customers.create(customer_hash)
 
       #creates a customer card
@@ -85,7 +85,7 @@ describe Cards do
     it 'create an existing merchant card' do
 
       #creates merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       
       card=@cards.create(card_hash)
       #cleanup
@@ -100,9 +100,9 @@ describe Cards do
     it 'trying to create an existing customer card' do
 
       #creates a customer
-      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+      card_hash = FactoryBot.build(:valid_card, holder_name: 'Pepe')
       customers=@openpay.create(:customers)
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=customers.create(customer_hash)
 
       #creates a customer card
@@ -116,7 +116,7 @@ describe Cards do
     end
 
     it 'fails when using an expired card' do
-      card_hash = FactoryGirl.build(:expired_card)
+      card_hash = FactoryBot.build(:expired_card)
       #check
       expect { @cards.create(card_hash) }.to raise_error(OpenpayTransactionException)
       #extended check
@@ -130,7 +130,7 @@ describe Cards do
     end
 
     it 'fails when using a stolen card' do
-      card_json = FactoryGirl.build(:valid_card, card_number: '4000000000000119')
+      card_json = FactoryBot.build(:valid_card, card_number: '4000000000000119')
       expect { @cards.create(card_json) }.to raise_error(OpenpayTransactionException)
     end
 
@@ -147,9 +147,9 @@ describe Cards do
     it 'iterates over all existing customer cards' do
 
       #creates a customer
-      card_hash = FactoryGirl.build(:valid_card, holder_name: 'Pepe')
+      card_hash = FactoryBot.build(:valid_card, holder_name: 'Pepe')
       customers=@openpay.create(:customers)
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=customers.create(customer_hash)
 
       #creates a customer card
@@ -173,7 +173,7 @@ describe Cards do
     it 'deletes a merchant card' do
 
       #creates merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       cards=@cards.create(card_hash)
       expect(cards).to be_a(Hash)
 
@@ -194,11 +194,11 @@ describe Cards do
 
       #create customer
       customers=@openpay.create(:customers)
-      customer_hash = FactoryGirl.build(:customer, name: 'Juan', last_name: 'Paez')
+      customer_hash = FactoryBot.build(:customer, name: 'Juan', last_name: 'Paez')
       customer=customers.create(customer_hash)
 
       #create customer card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #delete card
@@ -221,7 +221,7 @@ describe Cards do
 
       #create merchant card
       bank_name='Banamex'
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
 
       card=@cards.create(card_hash)
       id=card['id']
@@ -243,12 +243,12 @@ describe Cards do
     it ' gets an existing customer card' do
 
       #create customer
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #creates card
       bank_name='Banamex'
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
       id=card['id']
 
@@ -278,7 +278,7 @@ describe Cards do
       expect(@cards.all.size).to be 0
 
       #create merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card=@cards.create(card_hash)
       id=card['id']
 
@@ -293,14 +293,14 @@ describe Cards do
     it 'all customer cards' do
 
       #create customer
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #check initial state
       expect(@cards.all(customer['id']).size).to be 0
 
       #create customer card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
       id=card['id']
 
@@ -323,10 +323,10 @@ describe Cards do
     it 'list the merchant cards using a filter' do
 
       #create merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card1 = @cards.create(card_hash)
 
-      card_hash = FactoryGirl.build(:valid_card2)
+      card_hash = FactoryBot.build(:valid_card2)
       card2 = @cards.create(card_hash)
 
       search_params = OpenpayUtils::SearchParams.new
@@ -338,18 +338,18 @@ describe Cards do
     it 'list the customer cards using a filter' do
 
       #create customer
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer = @customers.create(customer_hash)
 
       #creates card
       bank_name ='Banamex'
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card = @cards.create(card_hash, customer['id'])
       id = card['id']
 
       #creates card 2
       bank_name = 'Bancomer'
-      card_hash = FactoryGirl.build(:valid_card2)
+      card_hash = FactoryBot.build(:valid_card2)
       card = @cards.create(card_hash, customer['id'])
       id = card['id']
 
@@ -379,11 +379,11 @@ describe Cards do
     it 'deletes all existing  merchant cards' do
 
       #create merchant card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       @cards.create(card_hash)
 
       #using json just for fun ...and test
-      card2_json = FactoryGirl.build(:valid_card2).to_json
+      card2_json = FactoryBot.build(:valid_card2).to_json
       @cards.create(card2_json)
 
       #perform check
@@ -400,14 +400,14 @@ describe Cards do
     it 'deletes all existing cards for a given customer' do
 
       #creates customer
-      customer_hash = FactoryGirl.build(:customer)
+      customer_hash = FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #check initial state
       expect(@cards.all(customer['id']).size).to be 0
 
       #create card
-      card_hash = FactoryGirl.build(:valid_card)
+      card_hash = FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #perform check

@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Fees do
 
@@ -35,19 +35,19 @@ describe Fees do
     #In order to create a fee a charge should exists
     it 'creates a fee  ' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
       sleep(50)
       #create customer fee
-      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      fee_hash = FactoryBot.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
 
       #performs check
@@ -61,15 +61,15 @@ describe Fees do
 
     it 'creates a fee using a json message' do
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
       sleep(50)
 
@@ -97,25 +97,25 @@ describe Fees do
     it 'list fees with a given filter' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
       sleep(50)
 
       #create customer fee
-      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      fee_hash = FactoryBot.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
       sleep(50)
 
       #create customer fee
-      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      fee_hash = FactoryBot.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
 
 
@@ -138,20 +138,20 @@ describe Fees do
     it 'get all fees' do
 
       #create new customer
-      customer_hash= FactoryGirl.build(:customer)
+      customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
 
       #create customer card
-      card_hash=FactoryGirl.build(:valid_card)
+      card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash, customer['id'])
 
       #create charge
-      charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+      charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
       @charges.create(charge_hash, customer['id'])
       sleep(50)
 
       #create customer fee
-      fee_hash = FactoryGirl.build(:fee, customer_id: customer['id'])
+      fee_hash = FactoryBot.build(:fee, customer_id: customer['id'])
       @fees.create(fee_hash)
 
       #performs check

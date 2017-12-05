@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe 'Openpay Exceptions' do
 
@@ -34,7 +34,7 @@ describe 'Openpay Exceptions' do
     it 'should fail when an invalid field-value is passed in *email' do
       #invalid email format
       email='foo'
-      customer_hash = FactoryGirl.build(:customer, email: email)
+      customer_hash = FactoryBot.build(:customer, email: email)
 
       #perform checks
       expect { @customers.create(customer_hash) }.to raise_exception OpenpayTransactionException
@@ -65,7 +65,7 @@ describe 'Openpay Exceptions' do
     end
 
     it 'raise  an OpenpayTransactionException when using an expired card' do
-      card_hash = FactoryGirl.build(:expired_card)
+      card_hash = FactoryBot.build(:expired_card)
       expect { @cards.create(card_hash) }.to raise_error(OpenpayTransactionException)
       begin
         @cards.create(card_hash)

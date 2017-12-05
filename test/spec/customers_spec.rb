@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative 'spec_helper'
 
 describe Customers do
 
@@ -35,7 +35,7 @@ describe Customers do
       last_name='Perez'
 
       #json as input
-      customer_json= FactoryGirl.build(:customer, name: name, last_name: last_name).to_json
+      customer_json= FactoryBot.build(:customer, name: name, last_name: last_name).to_json
       customer=@customers.create(customer_json)
 
       #perform check
@@ -63,7 +63,7 @@ describe Customers do
 
       #invalid email
       email='foo'
-      customer_hash = FactoryGirl.build(:customer, email: email)
+      customer_hash = FactoryBot.build(:customer, email: email)
 
       #perform check
       expect { @customers.create(customer_hash) }.to raise_exception OpenpayTransactionException
@@ -83,7 +83,7 @@ describe Customers do
 
     it 'deletes an existing customer' do
       #creates customer
-      customer_hash = FactoryGirl.build(:customer, name: :delete_me)
+      customer_hash = FactoryBot.build(:customer, name: :delete_me)
       customer=@customers.create(customer_hash)
       id=customer['id']
       #delete customer
@@ -100,7 +100,7 @@ describe Customers do
 
       #create customer
       name='get_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
       customer=@customers.create(customer_hash)
       id=customer['id']
       #perform check
@@ -125,14 +125,14 @@ describe Customers do
 
       # creates customer
       name='customer_update_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
 
       customer=@customers.create(customer_hash)
       id=customer['id']
 
       #update customer
       name='new_name'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
       @customers.update(customer_hash, id)
       #perform check
       expect(@customers.get(id)['name']).to match name
@@ -149,7 +149,7 @@ describe Customers do
     it 'list customers given the filter' do
       # creates customer
       name='customer_update_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
 
       customer=@customers.create(customer_hash)
       id=customer['id']
@@ -177,7 +177,7 @@ describe Customers do
 
       # creates customer
       name='customer_update_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
       customer=@customers.create(customer_hash)
 
       #performs check
@@ -196,7 +196,7 @@ describe Customers do
 
       #create 5 customers
       name='customer_update_test'
-      customer_hash = FactoryGirl.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer, name: name)
       5.times do
         @customers.create(customer_hash)
       end
