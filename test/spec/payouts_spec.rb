@@ -220,7 +220,7 @@ describe Payouts do
       end
     end
 
-    it 'iterates over a given customer payouts' do
+    skip 'iterates over a given customer payouts' do
       a_customer=@customers.all.last
       @payouts.each(a_customer['id']) do |pay|
         expect(@payouts.get(pay['id'], a_customer['id'])['transaction_type']).to match 'payout'
