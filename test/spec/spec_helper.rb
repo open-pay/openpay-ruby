@@ -11,9 +11,7 @@ require 'json_spec'
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
-  config.before(:all) do
-    FactoryBot.reload
-  end
+  config.before(:suite) {FactoryBot.reload}
 
   config.expect_with :rspec do |c|
     c.syntax = :expect

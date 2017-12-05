@@ -16,13 +16,14 @@ describe Plans do
 
   end
 
-begin
+
+=begin
 
   after(:all) do
     @plans.delete_all
   end
 
-end 
+=end 
 
   it 'has all required methods' do
     %w(all each create get list delete).each do |meth|
