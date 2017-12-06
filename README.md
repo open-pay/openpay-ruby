@@ -4,9 +4,9 @@
 
 [![Gem Version](https://badge.fury.io/rb/openpay.svg)](http://badge.fury.io/rb/openpay)
 
-##Description
+## Description
 
-ruby client for *Openpay api* services (version 1.0.10)
+ruby client for *Openpay api* services (version 2.0)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
@@ -33,7 +33,7 @@ Or install it from the command line:
 
 ###Requirements
 
-    * ruby 1.9 or higher
+    * ruby 2.4 or higher
 
 ## Usage
 
@@ -135,15 +135,15 @@ Methods without inputs will return a ruby hash.
 ```ruby
 it 'creates a fee using a json message' do
   #create new customer
-  customer_hash= FactoryGirl.build(:customer)
+  customer_hash= FactoryBot.build(:customer)
   customer=@customers.create(customer_hash)
 
   #create customer card   , using factory girl to build the hash for us
-  card_hash=FactoryGirl.build(:valid_card)
+  card_hash=FactoryBot.build(:valid_card)
   card=@cards.create(card_hash, customer['id'])
 
   #create charge
-  charge_hash=FactoryGirl.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
+  charge_hash=FactoryBot.build(:card_charge, source_id: card['id'], order_id: card['id'], amount: 4000)
   charge=@charges.create(charge_hash, customer['id'])
 
   #create customer fee , using json as input, we get json as ouput
@@ -175,14 +175,14 @@ pp card_hash   =>
 :city=>"Queretaro"}}
 ```
 
-Next, how we construct  the preceding hash using **FactoryGirl**.
-**FactoryGirl** was used in our test suite to facilitate hash construction.
+Next, how we construct  the preceding hash using **FactoryBot**.
+**FactoryBot** was used in our test suite to facilitate hash construction.
 It  may help you  as well at your final implementation if you decide to use hashes.
 (more examples at *test/Factories.rb*)
 
 ```ruby
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :valid_card, class:Hash do
         bank_name  'visa'
         holder_name 'Vicente Olmos'
@@ -722,7 +722,7 @@ This API generates 3 different Exception classes.
 
 ```ruby
 email='foo'
-customer_hash = FactoryGirl.build(:customer, email: email)
+customer_hash = FactoryBot.build(:customer, email: email)
 begin
     customers.create(customer_hash)
 rescue OpenpayTransactionException => e
