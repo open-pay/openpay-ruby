@@ -220,6 +220,7 @@ describe Payouts do
       end
     end
 
+#skipping for review
     skip 'iterates over a given customer payouts' do
       a_customer=@customers.all.last
       @payouts.each(a_customer['id']) do |pay|

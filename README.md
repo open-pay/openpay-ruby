@@ -31,7 +31,7 @@ Or install it from the command line:
 
     $ gem install openpay
 
-###Requirements
+### Requirements
 
     * ruby 2.4 or higher
 
