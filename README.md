@@ -204,7 +204,7 @@ FactoryBot.define do
   end
 ```
 
-###Methods design
+### Methods design
 
 This ruby API standardize the method names across all different resources using the **create**,**get**,**update** and **delete** verbs.
 
@@ -213,14 +213,14 @@ For full method documentation take a look at:
 
 The test suite at *test/spec* is a good source of reference.
 
-#####create
+##### create
 
    Creates the given resource
  ```ruby
      open_pay_resource.create(representation,customer_id=nil)
  ```
 
-#####get
+##### get
 
    Gets an instance of a  given resource
 
@@ -228,7 +228,7 @@ The test suite at *test/spec* is a good source of reference.
 open_pay_resource.get(object_id,customer_id=nil)
 ```
 
-#####update
+##### update
 
    Updates an instance of a given resource
 
@@ -236,7 +236,7 @@ open_pay_resource.get(object_id,customer_id=nil)
 open_pay_resource.update(representation,customer_id=nil)
 ```
 
-#####delete
+##### delete
 
   Deletes an instance of the given resource
 
@@ -250,13 +250,13 @@ open_pay_resource.delete(object_id,customer_id=nil)
 open_pay_resource.all(customer_id=nil)
 ```
 
-#####each
+##### each
    Returns a block for each instance resource
 ```ruby
 open_pay_resource.each(customer_id=nil)
  ```
 
-#####delete_all(available only under the development environment)
+##### delete_all(available only under the development environment)
 
    Deletes all instances of the given resource
 
@@ -266,7 +266,7 @@ open_pay_resource.delete_all(customer_id=nil)
 ```
 
 
-###API Methods
+### API Methods
 
 
 #### bank_accounts
@@ -745,7 +745,7 @@ rescue OpenpayApiTransactionError => e
 end
 ```
 
-###These exceptions have the following attributes:
+### These exceptions have the following attributes:
 
 - *category*
 - *description*
@@ -758,17 +758,17 @@ For more information about categories, descriptions and codes take a look at:
 - http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
-##Debug
+## Debug
 
 In the Openpay dashboard you are able to see every request and its corresponding request/response.
     - https://sandbox-dashboard.openpay.mx
 
-##Developer Notes
+## Developer Notes
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
 - check openpay_api.rb for Logger configuration
-- travis  https://travis-ci.org/open-pay/openpay-ruby , if a test fails it will leave leave some records, it may affect posterior tests.
+- travis  https://travis-ci.org/open-pay/openpay-ruby , if a test fails it will leave some records, it may affect posterior tests.
    it is recommended to reset the console/account to assure a clean state after a failure occurs.
 
 ## More information
