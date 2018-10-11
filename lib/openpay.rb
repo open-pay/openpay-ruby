@@ -14,6 +14,8 @@ module Openpay
   require 'openpay/open_pay_resource'
 
   #resource classes
+  require 'openpay/points'
+  require 'openpay/tokens'
   require 'openpay/bankaccounts'
   require 'openpay/cards'
   require 'openpay/charges'
