@@ -138,7 +138,6 @@ class OpenPayResource
      LOG.debug "   json: #{json}"
 
     begin
-
       #request
       res= RestClient::Request.new(
           :method => :post,
@@ -184,7 +183,7 @@ class OpenPayResource
     LOG.info "PUT URL:#{url}"
     #LOG.info "   json: #{json}"
 
-    begin
+    begin 
       res= RestClient::Request.new(
           :method => :put,
           :url => url(args),
@@ -227,6 +226,9 @@ class OpenPayResource
   private
 
   def url(args = '', terminated = true)
+    if args.nil? || args.empty?
+      terminated = false
+    end
     termination = terminated ? '/' : ''
     @base_url + "#{@merchant_id}/" + resource_name + termination + args
   end
