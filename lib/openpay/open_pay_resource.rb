@@ -62,11 +62,14 @@ class OpenPayResource
       terminated = false
     end
 
+    strUrl = url(args, terminated)
+    strUrlAux = delete_ending_slash(strUrl)
+
     LOG.debug("#{resource_name}:")
     LOG.debug("   GET Resource URL:#{url(args, terminated)}")
     res=RestClient::Request.new(
         :method => :get,
-        :url => url(args, terminated),
+        :url => strUrlAux,
         :user => @private_key,
         :timeout => @timeout,
         :ssl_version => :TLSv1_2,
@@ -93,13 +96,17 @@ class OpenPayResource
 
     @errors=false
 
+    
+    strUrl = url(args)
+    strUrlAux = delete_ending_slash(strUrl)
+
     LOG.debug("#{self.class.name.downcase}:")
-    LOG.debug("    DELETE  URL:#{url(args)}")
+    LOG.debug("    DELETE  URL:#{strUrlAux}")
 
     res=''
     req=RestClient::Request.new(
         :method => :delete,
-        :url => url(args),
+        :url => strUrlAux,
         :user => @private_key,
         :timeout => @timeout,
         :ssl_version => :TLSv1_2,
@@ -133,15 +140,19 @@ class OpenPayResource
       return_hash=false
     end
 
+    
+    strUrl = url(args)
+    strUrlAux = delete_ending_slash(strUrl)
+
     # LOG.debug("#{self.class.name.downcase}:")
-     LOG.debug "   POST URL:#{url(args)}"
+     LOG.debug "   POST URL:#{strUrlAux}"
      LOG.debug "   json: #{json}"
 
     begin
       #request
       res= RestClient::Request.new(
           :method => :post,
-          :url => url(args),
+          :url => strUrlAux,
           :user => @private_key,
           :timeout => @timeout,
           :ssl_version => :TLSv1_2,
@@ -180,13 +191,16 @@ class OpenPayResource
       return_hash=false
     end
 
-    LOG.info "PUT URL:#{url}"
+    strUrl = url(args, terminated)
+    strUrlAux = delete_ending_slash(strUrl)
+
+    LOG.info "PUT URL:#{strUrlAux}"
     #LOG.info "   json: #{json}"
 
     begin 
       res= RestClient::Request.new(
           :method => :put,
-          :url => url(args),
+          :url => strUrlAux,
           :user => @private_key,
           :timeout => @timeout,
           :ssl_version => :TLSv1_2,
@@ -235,6 +249,17 @@ class OpenPayResource
 
   def resource_name
     self.class.name.to_s.downcase
+  end
+
+  def delete_ending_slash(url)
+    slash = '/'
+    strUrl = url
+    strUrlAux = url
+    ending = strUrl.to_s[-1,1]
+    if ending == slash
+      strUrlAux = strUrl.to_s[0,strUrl.length - 1]
+    end
+    strUrlAux
   end
 
   def is_filter_string?(args)
