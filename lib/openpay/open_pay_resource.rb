@@ -191,7 +191,7 @@ class OpenPayResource
       return_hash=false
     end
 
-    strUrl = url(args, terminated)
+    strUrl = url(args)
     strUrlAux = delete_ending_slash(strUrl)
 
     LOG.info "PUT URL:#{strUrlAux}"
