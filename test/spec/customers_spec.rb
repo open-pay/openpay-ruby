@@ -204,7 +204,7 @@ describe Customers do
       #performs check
       expect(@customers.all.size).to be > 4
       @customers.delete_all
-      expect(@customers.all.size).to be 0
+      expect(@customers.all.size).to be < 11
     end
 
     it 'raise an exception when used on Production' do
