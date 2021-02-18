@@ -5,8 +5,8 @@ $: << 'lib/openpay'
 require 'openpay'
 require 'factory_bot'
 #uncomment below to test on travis-ci
-FactoryBot.find_definitions
-require 'test/Factories'
+# FactoryBot.find_definitions
+require 'Factories'
 require 'rspec'
 require 'json_spec'
 
