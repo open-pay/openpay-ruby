@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'cgi'
 module OpenpayUtils
 
   class SearchParams < OpenStruct
@@ -8,7 +9,9 @@ module OpenpayUtils
       filter = '?'
       self.marshal_dump.each do |attribute, value|
         if attribute =~ /(\w+)_(gte|lte)/
-          attribute = "#{$1}[#{$2}]"
+          square_bracket_open_encode = CGI.escape('[')
+          square_bracket_close_encode = CGI.escape(']')
+          attribute = "#{$1}#{square_bracket_open_encode}#{$2}#{square_bracket_close_encode}"
         end
         filter << "#{attribute}=#{value}&"
       end

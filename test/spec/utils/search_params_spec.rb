@@ -28,7 +28,7 @@ describe OpenpayUtils do
         search_params.limit = limit
         amount = 100
         search_params.amount_lte = amount
-        expect(search_params.to_s).to eq("?creation[gte]=2013-11-01&limit=2&amount[lte]=100")
+        expect(search_params.to_s).to eq("?creation%5Bgte%5D=2013-11-01&limit=2&amount%5Blte%5D=100")
       end
     end
   end
