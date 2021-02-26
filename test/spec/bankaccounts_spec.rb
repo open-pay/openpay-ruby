@@ -23,6 +23,30 @@ describe Bankaccounts do
       expect(@bank_accounts).to respond_to(meth)
     end
   end
+  describe '.list' do
+
+    it 'list the bank accounts using a creation_gte filter' do
+
+      customer_hash= FactoryBot.build(:customer)
+      customer=@customers.create(customer_hash)
+      expect(@bank_accounts.all(customer['id']).size).to be 0
+
+      account_hash=FactoryBot.build(:bank_account)
+      bank=@bank_accounts.create(account_hash, customer['id'])
+      expect(@bank_accounts.all(customer['id']).size).to be 1
+
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      search_params.creation_gte = '2000-01-01'
+
+      expect(@bank_accounts.all(customer['id']).size).to eq 1
+      expect(@bank_accounts.list(search_params , customer['id']).size).to eq 1
+
+      @bank_accounts.delete(customer['id'], bank['id'])
+      @customers.delete(customer['id'])
+
+    end
+  end
 =begin
   describe '.create' do
 

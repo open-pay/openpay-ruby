@@ -97,7 +97,7 @@ FactoryBot.define do
     holder_name 'Vicente Olmos'
     expiration_month '09'
     card_number '4000000000000069'
-    expiration_year '20'
+    expiration_year '21'
     bank_code 'bmx'
     cvv2 '111'
     address { {
