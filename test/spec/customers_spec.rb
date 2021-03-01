@@ -156,6 +156,7 @@ describe Customers do
 
       search_params = OpenpayUtils::SearchParams.new
       search_params.limit=1
+      search_params.creation_gte='2020-01-01'
 
       #perform check
       expect(@customers.list(search_params).size).to eq 1

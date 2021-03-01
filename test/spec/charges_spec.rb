@@ -305,23 +305,21 @@ describe Charges do
       #create new customer
       customer_hash= FactoryBot.build(:customer)
       customer=@customers.create(customer_hash)
-
       #create customer card
       card_hash=FactoryBot.build(:valid_card)
       card=@cards.create(card_hash,customer['id'])
-
       #create charge
       charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id'])
       charge=@charges.create(charge_hash,customer['id'])
       charge_hash=FactoryBot.build(:card_charge, source_id:card['id'],order_id: card['id']+"1")
       charge2=@charges.create(charge_hash,customer['id'])
-
       #perform check
       search_params = OpenpayUtils::SearchParams.new
       search_params.limit = 1
+      search_params.creation_gte = '2000-01-01'
+      search_params.amount_gte = 1
       expect(@charges.all(customer['id']).size).to eq 2
       expect(@charges.list(search_params,customer['id']).size).to eq 1
-
       #clean up
       @cards.delete(card['id'],customer['id'])
       @customers.delete(customer['id'])

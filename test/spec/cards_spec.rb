@@ -157,7 +157,7 @@ describe Cards do
       expect(card).to be_a(Hash)
 
       @cards.each(customer['id']) do |c|
-        expect(c['expiration_year']).to match '20'
+        expect(c['expiration_year']).to match '25'
       end
 
       #cleanup
@@ -363,6 +363,19 @@ describe Cards do
 
     end
 
+    it 'list the merchant cards using a filter creation and amount' do
+      #create merchant card
+      card_hash = FactoryBot.build(:valid_card)
+      card1 = @cards.create(card_hash)
+      card_hash = FactoryBot.build(:valid_card2)
+      card2 = @cards.create(card_hash)
+      search_params = OpenpayUtils::SearchParams.new
+      search_params.limit = 1
+      creation_date = "2013-11-01"
+      search_params.creation_gte = creation_date
+      expect(@cards.list(search_params).size).to eq 1
+      @cards.delete_all
+    end
   end
 
 
