@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d164914-f0e2-44e7-b004-3376b178b23a" name="Default" comment="New gem 1.0.3 - travis ruby 2.0">
+      <change afterPath="$PROJECT_DIR$/lib/openpay/colombia/cards_co.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/openpay/colombia/charges_co.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/openpay/colombia/customers_co.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/openpay/utils/country.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/spec/bankaccounts_col_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/spec/colombia/cards_col_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/spec/colombia/charges_col_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/spec/colombia/customers_co_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/spec/customers_co_spec.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/OpenPay.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OpenPay.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/openpay.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/openpay.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/openpay/open_pay_resource_factory.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/openpay/open_pay_resource_factory.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/openpay/openpay_api.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Factories.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/Factories.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/spec/bankaccounts_spec.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/spec/cards_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/spec/cards_spec.rb" afterDir="false" />
@@ -17,6 +30,9 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -35,6 +51,13 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="OpenPay" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Ruby File" />
+      </list>
+    </option>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -78,6 +101,9 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
+  </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -205,7 +231,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/openpay/colombia" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -218,11 +244,18 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/openpay/colombia" />
+      <recent name="$PROJECT_DIR$/test/spec" />
+      <recent name="$PROJECT_DIR$/lib/openpay" />
+      <recent name="$PROJECT_DIR$/test/spec/colombia" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/spec/colombia" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Ruby.openpay">
+  <component name="RunManager" selected="RSpec.Charges">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -280,6 +313,7 @@
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TAGS_FILTER" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_NAME_FILTER" VALUE="" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_ARGS" VALUE="--color -r features" />
@@ -321,7 +355,7 @@
     <configuration default="true" type="JavascriptDebugType" singleton="true">
       <method v="2" />
     </configuration>
-    <configuration name="Charges.list list customer ..." type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+    <configuration name="Charges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
       <module name="OpenPay" />
       <predefined_log_file enabled="true" id="RUBY_RSPEC" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -343,9 +377,10 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/charges_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges.list list customer charges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -358,7 +393,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Customers.list list custome..." type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+    <configuration name="Charges.create creates a new customer charge using the card method using a pre-stored card STORE" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
       <module name="OpenPay" />
       <predefined_log_file enabled="true" id="RUBY_RSPEC" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -379,10 +414,11 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/customers_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/colombia/charges_col_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Customers.list list customers given the filter" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges.create creates a new customer charge using the card method using a pre-stored card STORE" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -395,7 +431,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Fees.list list fees with a ..." type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+    <configuration name="Charges.create creates a new merchant charge using the card method using a pre-stored card store" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
       <module name="OpenPay" />
       <predefined_log_file enabled="true" id="RUBY_RSPEC" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -416,10 +452,125 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/fees_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/colombia/charges_col_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Fees.list list fees with a given filter" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges.create creates a new merchant charge using the card method using a pre-stored card store" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Charges.each iterate over customer charges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+      <module name="OpenPay" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/test" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/colombia/charges_col_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges.each iterate over customer charges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Charges.each" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+      <module name="OpenPay" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/test" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/colombia/charges_col_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Charges.each" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomersColombia" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
+      <module name="OpenPay" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/test" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/customers_colombia_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="CustomersColombia" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -450,43 +601,7 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="charges_spec" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true" nameIsGenerated="true">
-      <module name="OpenPay" />
-      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/test" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_FORKED_COVERAGE="true">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/spec/charges_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATHS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
@@ -523,28 +638,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="openpay" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
-      <module name="OpenPay" />
-      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$PROJECT_DIR$/lib" />
-      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_FORKED_COVERAGE="true">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/lib/openpay.rb" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -563,9 +656,10 @@
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="CUSTOM_SET_OF_FILES" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
@@ -575,19 +669,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="RSpec.Charges.list list customer ..." />
-      <item itemvalue="RSpec.Customers.list list custome..." />
-      <item itemvalue="RSpec.charges_spec" />
-      <item itemvalue="RSpec.Fees.list list fees with a ..." />
-      <item itemvalue="Ruby.openpay" />
+      <item itemvalue="RSpec.Charges.each" />
+      <item itemvalue="RSpec.Charges.each iterate over customer charges" />
+      <item itemvalue="RSpec.Charges.create creates a new merchant charge using the card method using a pre-stored card store" />
+      <item itemvalue="RSpec.Charges.create creates a new customer charge using the card method using a pre-stored card STORE" />
+      <item itemvalue="RSpec.Charges" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Ruby.openpay" />
-        <item itemvalue="RSpec.Fees.list list fees with a ..." />
-        <item itemvalue="RSpec.Customers.list list custome..." />
-        <item itemvalue="RSpec.Charges.list list customer ..." />
-        <item itemvalue="RSpec.charges_spec" />
+        <item itemvalue="RSpec.Charges" />
+        <item itemvalue="RSpec.Charges.create creates a new customer charge using the card method using a pre-stored card STORE" />
+        <item itemvalue="RSpec.Charges.create creates a new merchant charge using the card method using a pre-stored card store" />
+        <item itemvalue="RSpec.Charges.each" />
+        <item itemvalue="RSpec.Charges.each iterate over customer charges" />
       </list>
     </recent_temporary>
   </component>
@@ -626,6 +720,16 @@
       <workItem from="1613758823535" duration="3283000" />
       <workItem from="1614234636507" duration="1327000" />
       <workItem from="1614382426715" duration="665000" />
+      <workItem from="1627315003351" duration="7117000" />
+      <workItem from="1627338083429" duration="2763000" />
+      <workItem from="1627341089571" duration="891000" />
+      <workItem from="1627395710708" duration="1209000" />
+      <workItem from="1627396940483" duration="348000" />
+      <workItem from="1627397295164" duration="20939000" />
+      <workItem from="1627518982135" duration="218000" />
+      <workItem from="1627519208797" duration="2735000" />
+      <workItem from="1627573927447" duration="535000" />
+      <workItem from="1627574476852" duration="20001000" />
     </task>
     <task id="LOCAL-00028" summary="Travis setup&#10;">
       <created>1388533395136</created>
@@ -1045,34 +1149,155 @@
     <MESSAGE value="encode url '[' ']'" />
     <option name="LAST_COMMIT_MESSAGE" value="encode url '[' ']'" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/test/spec/charges_spec.rb</url>
+          <line>61</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/lib/openpay/colombia/customers_co.rb</url>
+          <line>43</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb</url>
+          <line>195</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/lib/openpay/colombia/cards_co.rb</url>
+          <line>18</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/lib/openpay/colombia/cards_co.rb</url>
+          <line>15</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/lib/openpay/open_pay_resource.rb</url>
+          <line>68</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OpenPay@Plans.rcov" NAME="Plans Coverage Results" MODIFIED="1613604320390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Customers_list_list_custome___.rcov" NAME="Customers.list list custome... Coverage Results" MODIFIED="1613761235998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@All_specs_in_test__OpenPay.rcov" NAME="All specs in test: OpenPay Coverage Results" MODIFIED="1613695363663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Charges_list_list_customer____.rcov" NAME="Charges.list list customer ... Coverage Results" MODIFIED="1613760757732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@openpay.rcov" NAME="openpay Coverage Results" MODIFIED="1614234783871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@OpenpayUtils_SearchParams_t___.rcov" NAME="OpenpayUtils SearchParams.t... Coverage Results" MODIFIED="1613601630876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@All_specs_in_spec__OpenPay.rcov" NAME="All specs in spec: OpenPay Coverage Results" MODIFIED="1613622520921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards.rcov" NAME="Cards Coverage Results" MODIFIED="1627403082180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_create_fails_when_passing_invalid_information.rcov" NAME="Customers.create fails when passing invalid information Coverage Results" MODIFIED="1627578720078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers.rcov" NAME="Customers Coverage Results" MODIFIED="1627579857917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_create.rcov" NAME="Customers.create Coverage Results" MODIFIED="1627518799960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_get_fails_when_getting_a_non_existing_customer_card.rcov" NAME="Cards.get fails when getting a non existing customer card Coverage Results" MODIFIED="1627593054736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_delete_deletes_an_existing_customer__1_.rcov" NAME="Customers.delete deletes an existing customer (1) Coverage Results" MODIFIED="1627579228929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts__1_.rcov" NAME="Bankaccounts (1) Coverage Results" MODIFIED="1627396521847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_has_all_required_methods.rcov" NAME="Bankaccounts has all required methods Coverage Results" MODIFIED="1627401046301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_list_list_customers_given_the_filter.rcov" NAME="Customers.list list customers given the filter Coverage Results" MODIFIED="1627579490090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
     <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchan_____1_.rcov" NAME="Cards.list list the merchan... (1) Coverage Results" MODIFIED="1613694267754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@charges_spec.rcov" NAME="charges_spec Coverage Results" MODIFIED="1613760306483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Customers.rcov" NAME="Customers Coverage Results" MODIFIED="1613610888580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_list.rcov" NAME="Bankaccounts.list Coverage Results" MODIFIED="1613698355916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards_create.rcov" NAME="Cards.create Coverage Results" MODIFIED="1613609590255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@default__OpenPay.rcov" NAME="default: OpenPay Coverage Results" MODIFIED="1613607619259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Charges_has_all_required_me___.rcov" NAME="Charges has all required me... Coverage Results" MODIFIED="1613528681777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts.rcov" NAME="Bankaccounts Coverage Results" MODIFIED="1613698460610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards_list.rcov" NAME="Cards.list Coverage Results" MODIFIED="1613623465845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@OpenpayUtils.rcov" NAME="OpenpayUtils Coverage Results" MODIFIED="1613694449495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchan_____2_.rcov" NAME="Cards.list list the merchan... (2) Coverage Results" MODIFIED="1613694691206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards.rcov" NAME="Cards Coverage Results" MODIFIED="1613698118479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Customers_update.rcov" NAME="Customers.update Coverage Results" MODIFIED="1613528761878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_fails_when_usi___.rcov" NAME="Cards.create fails when usi... Coverage Results" MODIFIED="1613697323843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
     <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_has_all_requir___.rcov" NAME="Bankaccounts has all requir... Coverage Results" MODIFIED="1613606443621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Fees_list_list_fees_with_a____.rcov" NAME="Fees.list list fees with a ... Coverage Results" MODIFIED="1613761295724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Charges.rcov" NAME="Charges Coverage Results" MODIFIED="1613609616315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
-    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchan___.rcov" NAME="Cards.list list the merchan... Coverage Results" MODIFIED="1613687465719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_all_all_the_customers.rcov" NAME="Customers.all all the customers Coverage Results" MODIFIED="1627581772744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_all_deletes_all_existing__merchant_cards.rcov" NAME="Cards.delete_all deletes all existing  merchant cards Coverage Results" MODIFIED="1627593645422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
     <SUITE FILE_PATH="coverage/OpenPay@Charges_all_all_customer_ch___.rcov" NAME="Charges.all all customer ch... Coverage Results" MODIFIED="1613687059802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_all_deletes_all_existing_cards_for_a_given_customer.rcov" NAME="Cards.delete_all deletes all existing cards for a given customer Coverage Results" MODIFIED="1627593689108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_all_all_the_customers__1_.rcov" NAME="Customers.all all the customers (1) Coverage Results" MODIFIED="1627582062724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchant_cards_using_a_filter_creation_and_amount.rcov" NAME="Cards.list list the merchant cards using a filter creation and amount Coverage Results" MODIFIED="1627593564343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_delete_deletes_an_existing_customer.rcov" NAME="Customers.delete deletes an existing customer Coverage Results" MODIFIED="1627580702572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_update_updates_an_existing_customer.rcov" NAME="Customers.update updates an existing customer Coverage Results" MODIFIED="1627579407684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_list_list_custome___.rcov" NAME="Customers.list list custome... Coverage Results" MODIFIED="1613761235998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_deletes_a_customer_card.rcov" NAME="Cards.delete deletes a customer card Coverage Results" MODIFIED="1627402760306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchan___.rcov" NAME="Cards.list list the merchan... Coverage Results" MODIFIED="1613687465719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_list.rcov" NAME="Bankaccounts.list Coverage Results" MODIFIED="1627337775851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_create_creates_a_customer__2_.rcov" NAME="Customers.create creates a customer (2) Coverage Results" MODIFIED="1627519476837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers__2_.rcov" NAME="Customers (2) Coverage Results" MODIFIED="1627519601710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_get_gets_a_customer_charge.rcov" NAME="Charges.get gets a customer charge Coverage Results" MODIFIED="1627596967581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_refund_refunds_an_existing_customer_charge.rcov" NAME="Charges.refund refunds an existing customer charge Coverage Results" MODIFIED="1627598500411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@OpenpayUtils_SearchParams_t___.rcov" NAME="OpenpayUtils SearchParams.t... Coverage Results" MODIFIED="1613601630876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@CustomersColombia.rcov" NAME="CustomersColombia Coverage Results" MODIFIED="1627519575566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchan_____2_.rcov" NAME="Cards.list list the merchan... (2) Coverage Results" MODIFIED="1613694691206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_has_all_required_methods.rcov" NAME="Cards has all required methods Coverage Results" MODIFIED="1627401693259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_create_creates_a_customer__1_.rcov" NAME=" Coverage Results" MODIFIED="1627578493682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_fails_to_deletes_a_non_existing_card.rcov" NAME="Cards.delete fails to deletes a non existing card Coverage Results" MODIFIED="1627402746507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_delete_all_deletes_all_customer_records.rcov" NAME="Customers.delete_all deletes all customer records Coverage Results" MODIFIED="1627579784302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_creates_merchant_card.rcov" NAME="Cards.create creates merchant card Coverage Results" MODIFIED="1627583761646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_get_gets_a_merchant_charge.rcov" NAME="Charges.get gets a merchant charge Coverage Results" MODIFIED="1627596690535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_all_raise_an_exception_when_used_on_Production__1_.rcov" NAME="Cards.delete_all raise an exception when used on Production (1) Coverage Results" MODIFIED="1627403020483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_customer_charge_using_the_card_method_using_a_pre_stored_card__1_.rcov" NAME="Charges.create creates a new customer charge using the card method using a pre-stored card (1) Coverage Results" MODIFIED="1627516399277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_has_all_required_me___.rcov" NAME="Charges has all required me... Coverage Results" MODIFIED="1613528681777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_list_list_the_bank_accounts_using_a_creation_gte_filter.rcov" NAME="Bankaccounts.list list the bank accounts using a creation_gte filter Coverage Results" MODIFIED="1627398620209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_all_all_customer_charges.rcov" NAME="Charges.all all customer charges Coverage Results" MODIFIED="1627597402922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_fails_when_usi___.rcov" NAME="Cards.create fails when usi... Coverage Results" MODIFIED="1613697323843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_creates_a_customer_card.rcov" NAME="Cards.create creates a customer card Coverage Results" MODIFIED="1627585004209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_deletes_a_merchant_card.rcov" NAME="Cards.delete deletes a merchant card Coverage Results" MODIFIED="1627402739789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@All_specs_in_test__OpenPay.rcov" NAME="All specs in test: OpenPay Coverage Results" MODIFIED="1613695363663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@openpay.rcov" NAME="openpay Coverage Results" MODIFIED="1614234783871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_update.rcov" NAME="Customers.update Coverage Results" MODIFIED="1613528761878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_get_fails_when_getting_a_non_existing_card.rcov" NAME="Cards.get fails when getting a non existing card Coverage Results" MODIFIED="1627585898103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create.rcov" NAME="Cards.create Coverage Results" MODIFIED="1627338190446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_delete_delette_all_customers.rcov" NAME="Customers.delete delette all customers Coverage Results" MODIFIED="1627581581628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@OpenpayUtils.rcov" NAME="OpenpayUtils Coverage Results" MODIFIED="1613694449495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_get__gets_an_existing__merchant_card.rcov" NAME="Cards.get  gets an existing  merchant card Coverage Results" MODIFIED="1627585873426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
     <SUITE FILE_PATH="coverage/OpenPay@Cards_create_creates_mercha___.rcov" NAME="Cards.create creates mercha... Coverage Results" MODIFIED="1613607160167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_get__gets_an_existing_customer_card.rcov" NAME="Cards.get  gets an existing customer card Coverage Results" MODIFIED="1627592980195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@All_specs_in_spec__OpenPay.rcov" NAME="All specs in spec: OpenPay Coverage Results" MODIFIED="1613622520921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts_list_list_the_bank_accounts_using_a_creation_gte_filter__1_.rcov" NAME="Bankaccounts.list list the bank accounts using a creation_gte filter (1) Coverage Results" MODIFIED="1627397877010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_all_all_merchant_cards.rcov" NAME="Cards.all all merchant cards Coverage Results" MODIFIED="1627593085302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_fails_to_deletes_a_non_existing__customer_card.rcov" NAME="Cards.delete fails to deletes a non existing  customer card Coverage Results" MODIFIED="1627402767621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@default__OpenPay.rcov" NAME="default: OpenPay Coverage Results" MODIFIED="1613607619259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_customer_charge_using_the_card_method_using_a_pre_stored_card.rcov" NAME="Charges.create creates a new customer charge using the card method using a pre-stored card Coverage Results" MODIFIED="1627596397386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_fails_when_using_an_expired_card.rcov" NAME="Cards.create fails when using an expired card Coverage Results" MODIFIED="1627585255521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_trying_to_create_an_existing_customer_card.rcov" NAME="Cards.create trying to create an existing customer card Coverage Results" MODIFIED="1627585092361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_has_all_required_methods.rcov" NAME="Customers has all required methods Coverage Results" MODIFIED="1627519452609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_create_creates_a_customer.rcov" NAME="Customers.create creates a customer Coverage Results" MODIFIED="1627576198666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_capture_captures_a_customer_card_charge.rcov" NAME="Charges.capture captures a customer card charge Coverage Results" MODIFIED="1627407738392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_all_cards_for_a_non_existing__customer.rcov" NAME="Cards.all cards for a non existing  customer Coverage Results" MODIFIED="1627402851693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Fees_list_list_fees_with_a____.rcov" NAME="Fees.list list fees with a ... Coverage Results" MODIFIED="1613761295724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_merchant_charge_using_the_card_method_using_a_pre_stored_card__1_.rcov" NAME="Charges.create creates a new merchant charge using the card method using a pre-stored card (1) Coverage Results" MODIFIED="1627583254775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_refund_refunds__an_existing_merchant_charge.rcov" NAME="Charges.refund refunds  an existing merchant charge Coverage Results" MODIFIED="1627598012322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_merchant_charge_using_the_card_method_using_a_pre_stored_card.rcov" NAME="Charges.create creates a new merchant charge using the card method using a pre-stored card Coverage Results" MODIFIED="1627596008204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_all_all_merchant_charges.rcov" NAME="Charges.all all merchant charges Coverage Results" MODIFIED="1627597175445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Plans.rcov" NAME="Plans Coverage Results" MODIFIED="1613604320390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_delete_all_raise_an_exception_when_used_on_Production.rcov" NAME="Cards.delete_all raise an exception when used on Production Coverage Results" MODIFIED="1627593627277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_create_an_existing_merchant_card.rcov" NAME="Cards.create create an existing merchant card Coverage Results" MODIFIED="1627584970845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_each_iterate_over_customer_charges.rcov" NAME="Charges.each iterate over customer charges Coverage Results" MODIFIED="1627598882404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_customer_charge_using_the_card_method_using_a_pre_stored_card_STORE.rcov" NAME="Charges.create creates a new customer charge using the card method using a pre-stored card STORE Coverage Results" MODIFIED="1627600247618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges.rcov" NAME="Charges Coverage Results" MODIFIED="1627405006479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_each_iterates_over_all_existing_customer_cards.rcov" NAME="Cards.each iterates over all existing customer cards Coverage Results" MODIFIED="1627402729507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_capture_captures_a_merchant_card_charge.rcov" NAME="Charges.capture captures a merchant card charge Coverage Results" MODIFIED="1627407185229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_all_all_customer_cards.rcov" NAME="Cards.all all customer cards Coverage Results" MODIFIED="1627593132595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_confirm_capture_confirms_a_capture_on_a_merchant_charge.rcov" NAME="Charges.confirm_capture confirms a capture on a merchant charge Coverage Results" MODIFIED="1627408010438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_create_fails_when_using_a_stolen_card.rcov" NAME="Cards.create fails when using a stolen card Coverage Results" MODIFIED="1627585336143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@charges_spec.rcov" NAME="charges_spec Coverage Results" MODIFIED="1613760306483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_each.rcov" NAME="Charges.each Coverage Results" MODIFIED="1627598914713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_each_list_all_customers.rcov" NAME="Customers.each list all customers Coverage Results" MODIFIED="1627579344985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers__1_.rcov" NAME="Customers (1) Coverage Results" MODIFIED="1627580219745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_each_iterates_over_all_existing_merchant_cards.rcov" NAME="Cards.each iterates over all existing merchant cards Coverage Results" MODIFIED="1627402711050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Customers_get_get_a_customer.rcov" NAME="Customers.get get a customer Coverage Results" MODIFIED="1627579056130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_customer_cards_using_a_filter.rcov" NAME="Cards.list list the customer cards using a filter Coverage Results" MODIFIED="1627593489984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list.rcov" NAME="Cards.list Coverage Results" MODIFIED="1613623465845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Bankaccounts.rcov" NAME="Bankaccounts Coverage Results" MODIFIED="1627568126852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_create_creates_a_new_merchant_charge_using_the_card_method_using_a_pre_stored_card_store.rcov" NAME="Charges.create creates a new merchant charge using the card method using a pre-stored card store Coverage Results" MODIFIED="1627599856257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Cards_list_list_the_merchant_cards_using_a_filter.rcov" NAME="Cards.list list the merchant cards using a filter Coverage Results" MODIFIED="1627593235045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
+    <SUITE FILE_PATH="coverage/OpenPay@Charges_list_list_customer____.rcov" NAME="Charges.list list customer ... Coverage Results" MODIFIED="1613760757732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="OpenPay" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test/Factories.rb">

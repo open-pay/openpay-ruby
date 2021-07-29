@@ -1,6 +1,5 @@
 require 'factory_bot'
 
-
 FactoryBot.define do
 
   factory :customer, class: Hash do
@@ -9,15 +8,29 @@ FactoryBot.define do
     email 'lupereyes@lemail.com'
     phone_number '0180012345'
     address { {
-        postal_code: '76190',
-        state: 'QRO',
-        line1: 'LINE1',
-        line2: 'LINE2',
-        line3: 'LINE3',
-        country_code: 'MX',
-        city: 'Queretaro',
+      postal_code: '76190',
+      state: 'QRO',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      country_code: 'MX',
+      city: 'Queretaro',
     } }
 
+    initialize_with { attributes }
+
+  end
+
+  factory :customer_col, class: Hash do
+    name 'Guadalupe'
+    last_name 'Reyes'
+    email 'lupereyes@lemail.com'
+    phone_number '0180012345'
+    customer_address { {
+      department: 'department',
+      city: 'Colombia',
+      additional: 'additional'
+    } }
     initialize_with { attributes }
 
   end
@@ -32,20 +45,29 @@ FactoryBot.define do
     bank_code 'bmx'
     cvv2 '111'
     address { {
-        postal_code: '76190',
-        state: 'QRO',
-        line1: 'LINE1',
-        line2: 'LINE2',
-        line3: 'LINE3',
-        country_code: 'MX',
-        city: 'Queretaro',
+      postal_code: '76190',
+      state: 'QRO',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      country_code: 'CO',
+      city: 'Queretaro',
     } }
 
     initialize_with { attributes }
 
   end
 
-   factory :valid_card2, class: Hash do
+  factory :valid_card_col, class: Hash do
+    holder_name 'Vicente Olmos'
+    card_number '4111111111111111'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '25'
+    initialize_with { attributes }
+  end
+
+  factory :valid_card2, class: Hash do
 
     bank_name 'visa'
     holder_name 'Alma Olmos'
@@ -55,20 +77,29 @@ FactoryBot.define do
     bank_code 'bmx'
     cvv2 '111'
     address { {
-        postal_code: '76190',
-        state: 'QRO',
-        line1: 'LINE1',
-        line2: 'LINE2',
-        line3: 'LINE3',
-        country_code: 'MX',
-        city: 'Queretaro',
+      postal_code: '76190',
+      state: 'QRO',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      country_code: 'MX',
+      city: 'Queretaro',
     } }
 
     initialize_with { attributes }
 
   end
 
-    factory :only_deposit, class: Hash do
+  factory :valid_card2_col, class: Hash do
+    holder_name 'Alma Olmos'
+    card_number '4242424242424242'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '22'
+    initialize_with { attributes }
+  end
+
+  factory :only_deposit, class: Hash do
 
     bank_name 'visa'
     holder_name 'Alma Olmos'
@@ -78,13 +109,13 @@ FactoryBot.define do
     bank_code 'bmx'
     cvv2 '111'
     address { {
-        postal_code: '76190',
-        state: 'QRO',
-        line1: 'LINE1',
-        line2: 'LINE2',
-        line3: 'LINE3',
-        country_code: 'MX',
-        city: 'Queretaro',
+      postal_code: '76190',
+      state: 'QRO',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      country_code: 'MX',
+      city: 'Queretaro',
     } }
 
     initialize_with { attributes }
@@ -101,20 +132,28 @@ FactoryBot.define do
     bank_code 'bmx'
     cvv2 '111'
     address { {
-        postal_code: '76190',
-        state: 'QRO',
-        line1: 'LINE1',
-        line2: 'LINE2',
-        line3: 'LINE3',
-        country_code: 'MX',
-        city: 'Queretaro',
+      postal_code: '76190',
+      state: 'QRO',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      country_code: 'MX',
+      city: 'Queretaro',
     } }
 
     initialize_with { attributes }
 
   end
 
- 
+  factory :expired_card_col, class: Hash do
+    holder_name 'Vicente Olmos'
+    card_number '4000000000000069'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '21'
+    initialize_with { attributes }
+  end
+
   factory :bank_account, class: Hash do
 
     holder_name 'Juan Perez'
@@ -136,7 +175,66 @@ FactoryBot.define do
     initialize_with { attributes }
 
   end
-  
+
+  factory :card_charge_col_2, class: Hash do
+
+    amount "1000"
+    description "Cargo inicial a tarjeta"
+    source_id "string"
+    add_attribute :method, "card"
+    order_id 'required'
+    currency 'COP'
+    device_session_id "kR1MiQhz2otdIuUlQkbEyitIqVMiI16f"
+    initialize_with { attributes }
+
+  end
+
+  factory :card_charge_col, class: Hash do
+
+    amount "1000"
+    description "Cargo inicial a tarjeta"
+    source_id "string"
+    add_attribute :method, "card"
+    order_id 'required'
+    currency 'COP'
+    device_session_id "kR1MiQhz2otdIuUlQkbEyitIqVMiI16f"
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      phone_number: "4448936475",
+      email: "juan.vazquez@empresa.co"
+    } }
+    initialize_with { attributes }
+
+  end
+
+  factory :card_charge_store_col, class: Hash do
+
+    amount "1000"
+    description "Cargo inicial a tarjeta"
+    add_attribute :method, "store"
+    currency 'COP'
+    iva '10'
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      phone_number: "4448936475",
+      email: "juan.vazquez@empresa.co"
+    } }
+    initialize_with { attributes }
+
+  end
+
+  factory :card_charge_store_col_2, class: Hash do
+
+    amount "1000"
+    description "Cargo inicial a tarjeta"
+    add_attribute :method, "store"
+    currency 'COP'
+    iva '10'
+    initialize_with { attributes }
+
+  end
 
   factory :bank_charge, class: Hash do
 
@@ -189,7 +287,7 @@ FactoryBot.define do
     amount '150.00'
     status_after_retry 'cancelled'
     retry_times 2
-    add_attribute :name ,'TODO INCLUIDO'
+    add_attribute :name, 'TODO INCLUIDO'
     repeat_unit 'week'
     trial_days 30
     repeat_every 1
@@ -210,16 +308,16 @@ FactoryBot.define do
     plan_id 'required'
     initialize_with { attributes }
   end
-  
+
   factory :webhook1, class: Hash do
     url 'https://requestb.in/15r2d5n1'
-    event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
+    event_types ['charge.succeeded', 'charge.created', 'charge.cancelled', 'charge.failed']
     initialize_with { attributes }
   end
 
   factory :webhook2, class: Hash do
     url 'https://requestb.in/s3pj3ds3'
-    event_types ['charge.succeeded','charge.created','charge.cancelled','charge.failed']
+    event_types ['charge.succeeded', 'charge.created', 'charge.cancelled', 'charge.failed']
     initialize_with { attributes }
   end
 
