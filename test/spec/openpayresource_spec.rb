@@ -13,7 +13,7 @@ describe 'OpenPayResource' do
     
     #LOG.level=Logger::DEBUG
 
-    @openpay=OpenpayApi.new(@merchant_id,@private_key)
+    @openpay=OpenpayApi.new(@merchant_id,@private_key,"mx")
     @cards=@openpay.create(:cards)
 
   end

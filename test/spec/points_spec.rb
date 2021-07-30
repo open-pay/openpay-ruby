@@ -7,7 +7,7 @@ describe 'Points' do
     @merchant_id='mhbzmkji20dhu9kq3r2i'
     @private_key='sk_0070ce5a12d948e0a0c9b5b8b7ff51ae'
 
-    @openpay=OpenpayApi.new(@merchant_id,@private_key)
+    @openpay=OpenpayApi.new(@merchant_id,@private_key,"mx")
     @points=@openpay.create(:points)
 
   end

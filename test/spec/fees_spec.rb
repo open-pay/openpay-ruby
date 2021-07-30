@@ -9,7 +9,7 @@ describe Fees do
     
     #LOG.level=Logger::DEBUG
 
-    @openpay=OpenpayApi.new(@merchant_id, @private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key,"mx")
     @customers=@openpay.create(:customers)
     @cards=@openpay.create(:cards)
     @charges=@openpay.create(:charges)

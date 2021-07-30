@@ -9,7 +9,7 @@ describe Payouts do
     
     #LOG.level=Logger::DEBUG
 
-    @openpay=OpenpayApi.new(@merchant_id, @private_key)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key,"mx")
     @payouts=@openpay.create(:payouts)
 
     @customers=@openpay.create(:customers)

@@ -10,7 +10,7 @@ describe 'Request timeout exception' do
     
     #LOG.level=Logger::DEBUG
 
-    @openpay=OpenpayApi.new(@merchant_id, @private_key, false, 0)
+    @openpay=OpenpayApi.new(@merchant_id, @private_key, false, 0,"mx")
     @charges=@openpay.create(:charges)
 
   end
