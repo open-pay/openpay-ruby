@@ -29,6 +29,9 @@ module Openpay
   require 'openpay/colombia/customers_co'
   require 'openpay/colombia/charges_co'
   require 'openpay/colombia/cards_co'
+  require 'openpay/colombia/plans_co'
+  require 'openpay/colombia/subscriptions_co'
+
   #misc
   require 'openpay/utils/search_params'
 

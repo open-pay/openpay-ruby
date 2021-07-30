@@ -2,42 +2,6 @@ require 'openpay/open_pay_resource'
 
 class CustomersCo < OpenPayResource
 
-  #Bankaccount
-  # def create_bank_account(customer, bank_account)
-  #   create(bank_account, "#{customer}/bankaccounts")
-  # end
-  #
-  # def get_bank_account(customer, bank_id)
-  #   get("#{customer}/bankaccounts/#{bank_id}")
-  # end
-  #
-  # def all_bank_accounts(customer)
-  #   get("#{customer}/bankaccounts/")
-  # end
-  #
-  # def list_bankaccounts(customer, search_params)
-  #   get("#{customer}/bankaccounts#{search_params.to_s}")
-  # end
-  #
-  # def each_bank_account(customer)
-  #   get("#{customer}/bankaccounts/").each do |account|
-  #     yield account
-  #   end
-  # end
-  #
-  # def delete_bank_account(customer, bank_id)
-  #   delete("#{customer}/bankaccounts/#{bank_id}")
-  # end
-  #
-  # def delete_all_bank_accounts(customer)
-  #   if env == :production
-  #     raise OpenpayException.new('This method is not supported on PRODUCTION', false)
-  #   end
-  #   each_bank_account(customer) do |account|
-  #     delete("#{customer}/bankaccounts/#{account['id']}")
-  #   end
-  # end
-  #
   #Charges
   # customers.create_charge(customer_id,charge)
   def create_charge(customer_id, charge)
@@ -53,6 +17,7 @@ class CustomersCo < OpenPayResource
   #   get("#{customer}/charges#{search_params.to_s}")
   # end
   #
+
   #return all charges for the given customer_id
   def all_charges(customer_id)
     get("#{customer_id}/charges/")
@@ -66,7 +31,7 @@ class CustomersCo < OpenPayResource
     post(description, "#{customer_id}/charges/#{charge_id}/refund")
   end
 
-  #
+
   # def capture_charge(customer_id, charge_id)
   #   post('', "#{customer_id}/charges/#{charge_id}/capture")
   # end
@@ -121,47 +86,47 @@ class CustomersCo < OpenPayResource
   #   end
   # end
   #
-  # #Subscriptions
-  # def create_subscription(subscription, customer_id)
-  #   #revisar la url
-  #   post(subscription, "#{customer_id}/subscriptions")
-  # end
-  #
-  # def delete_subscription(customer_id, subscription_id)
-  #   delete("#{customer_id}/subscriptions/#{subscription_id}")
-  # end
-  #
-  # def get_subscription(customer_id, subscription_id)
-  #   get("#{customer_id}/subscriptions/#{subscription_id}")
-  # end
-  #
-  # def all_subscriptions(customer_id)
-  #   get("#{customer_id}/subscriptions/")
-  # end
-  #
-  # def list_subscriptions(customer, search_params)
-  #   get("#{customer}/subscriptions#{search_params.to_s}")
-  # end
-  #
-  # def each_subscription(customer_id)
-  #   all_subscriptions(customer_id).each do |cust|
-  #     yield cust
-  #   end
-  # end
-  #
-  # def update_subscription(subscription, customer, params)
-  #   put(params, "#{customer}/subscriptions/#{subscription}")
-  # end
-  #
-  # def delete_all_subscriptions(customer_id)
-  #   if env == :production
-  #     raise OpenpayException.new('This method is not supported on PRODUCTION', false)
-  #   end
-  #   all_subscriptions(customer_id).each do |sub|
-  #     delete_subscription(customer_id, sub['id'])
-  #   end
-  # end
-  #
+  #Subscriptions
+  def create_subscription(subscription, customer_id)
+    #revisar la url
+    post(subscription, "#{customer_id}/subscriptions")
+  end
+
+  def delete_subscription(customer_id, subscription_id)
+    delete("#{customer_id}/subscriptions/#{subscription_id}")
+  end
+
+  def get_subscription(customer_id, subscription_id)
+    get("#{customer_id}/subscriptions/#{subscription_id}")
+  end
+
+  def all_subscriptions(customer_id)
+    get("#{customer_id}/subscriptions/")
+  end
+
+  def list_subscriptions(customer, search_params)
+    get("#{customer}/subscriptions#{search_params.to_s}")
+  end
+
+  def each_subscription(customer_id)
+    all_subscriptions(customer_id).each do |cust|
+      yield cust
+    end
+  end
+
+  def update_subscription(subscription, customer, params)
+    put(params, "#{customer}/subscriptions/#{subscription}")
+  end
+
+  def delete_all_subscriptions(customer_id)
+    if env == :production
+      raise OpenpayException.new('This method is not supported on PRODUCTION', false)
+    end
+    all_subscriptions(customer_id).each do |sub|
+      delete_subscription(customer_id, sub['id'])
+    end
+  end
+
   #Card
   def create_card(customer, card)
     create(card, "#{customer}/cards")

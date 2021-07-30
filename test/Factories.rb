@@ -190,7 +190,6 @@ FactoryBot.define do
   end
 
   factory :card_charge_col, class: Hash do
-
     amount "1000"
     description "Cargo inicial a tarjeta"
     source_id "string"
@@ -205,11 +204,9 @@ FactoryBot.define do
       email: "juan.vazquez@empresa.co"
     } }
     initialize_with { attributes }
-
   end
 
   factory :card_charge_store_col, class: Hash do
-
     amount "1000"
     description "Cargo inicial a tarjeta"
     add_attribute :method, "store"
@@ -222,7 +219,39 @@ FactoryBot.define do
       email: "juan.vazquez@empresa.co"
     } }
     initialize_with { attributes }
+  end
 
+  factory :charge_pse_col, class: Hash do
+    add_attribute :method, "bank_account"
+    amount "1000"
+    currency 'COP'
+    description "Cargo SPE"
+    iva '10'
+    redirect_url "/"
+    initialize_with { attributes }
+  end
+
+  factory :charge_pse_new_client_col, class: Hash do
+    add_attribute :method, "bank_account"
+    amount "1000"
+    currency 'COP'
+    description "Cargo SPE"
+    iva '10'
+    redirect_url "/"
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      email: "juan.vazquez@empresa.co",
+      phone_number: "4448936475",
+      requires_account: false,
+      customer_address:
+        {
+          department: "Medellín",
+          city: "Antioquía",
+          additional: "Avenida 7m bis #174-25 Apartamento 637"
+        }
+    } }
+    initialize_with { attributes }
   end
 
   factory :card_charge_store_col_2, class: Hash do
@@ -303,9 +332,9 @@ FactoryBot.define do
   end
 
   factory :subscription, class: Hash do
+    plan_id 'required'
     trial_days 30
     card_id 'required'
-    plan_id 'required'
     initialize_with { attributes }
   end
 
