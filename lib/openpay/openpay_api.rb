@@ -19,6 +19,7 @@ class OpenpayApi
   API_PROD_CO = 'https://api.openpay.co/v1/'
 
   #by default testing environment is used
+  # country can take value 'mx' (Mexico) or 'co' Colombia
   def initialize(merchant_id, private_key, production = false, timeout = 90, country)
     @merchant_id = merchant_id
     @private_key = private_key
