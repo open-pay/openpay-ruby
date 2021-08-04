@@ -350,4 +350,22 @@ FactoryBot.define do
     initialize_with { attributes }
   end
 
+  factory :token_col, class: Hash do
+    holder_name 'Vicente Olmos'
+    card_number '4111111111111111'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '30'
+    address { {
+      city: 'Bogotá',
+      country_code: 'CO',
+      postal_code: '110511',
+      line1: 'LINE1',
+      line2: 'LINE2',
+      line3: 'LINE3',
+      state: 'Bogota',
+    } }
+    initialize_with { attributes }
+  end
+
 end
