@@ -12,7 +12,7 @@ describe Cards do
 
     #LOG.level=Logger::DEBUG
 
-    @openpay = OpenpayApi.new(@merchant_id, @private_key, "mx")
+    @openpay = OpenpayApi.new(@merchant_id, @private_key)
     @cards = @openpay.create(:cards)
     @customers = @openpay.create(:customers)
 

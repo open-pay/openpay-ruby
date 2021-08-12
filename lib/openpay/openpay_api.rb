@@ -18,9 +18,9 @@ class OpenpayApi
   API_DEV_CO = 'https://sandbox-api.openpay.co/v1/'
   API_PROD_CO = 'https://api.openpay.co/v1/'
 
-  #by default testing environment is used
+  # by default testing environment is used
   # country can take value 'mx' (Mexico) or 'co' Colombia
-  def initialize(merchant_id, private_key, production = false, timeout = 90, country)
+  def initialize(merchant_id, private_key, country = "mx", production = false, timeout = 90)
     @merchant_id = merchant_id
     @private_key = private_key
     @production = production
