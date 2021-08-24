@@ -6,7 +6,7 @@
 
 ## Description
 
-ruby client for *Openpay api* services (version 2.0)
+ruby client for *Openpay api* services (version 3.0.0)
 
 This is a ruby client implementing the payment services for *Openpay* at openpay.mx
 
