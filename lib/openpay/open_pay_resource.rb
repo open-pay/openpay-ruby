@@ -247,7 +247,11 @@ class OpenPayResource
   end
 
   def resource_name
-    self.class.name.downcase.gsub(@country, "")
+    if self.class.name.downcase.gsub(@country, "") == "pse"
+      'charges'
+    else
+      self.class.name.downcase.gsub(@country, "")
+    end
   end
 
   def delete_ending_slash(url)
