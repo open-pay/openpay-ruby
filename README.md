@@ -46,11 +46,13 @@ require 'openpay'
 #merchant and private key
 merchant_id='mywvupjjs9xdnryxtplq'
 private_key='sk_92b25d3baec149e6b428d81abfe37006'
+country = 'mx'
 
 
 #An openpay resource factory instance is created out of the OpenpayApi
 #it  points to the development environment  by default.
-openpay=OpenpayApi.new(merchant_id,private_key)
+#The country value can take 'mx' to Mexico or 'co' for Colombia
+openpay=OpenpayApi.new(merchant_id,private_key,country)
 
 #To enable production mode you should pass a third argument as true.
 #openpay_prod=OpenpayApi.new(merchant_id,private_key,true)

@@ -1,12 +1,12 @@
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
 describe Customers do
 
   before(:all) do
-    @merchant_id = 'mywvupjjs9xdnryxtplq'
-    @private_key = 'sk_92b25d3baec149e6b428d81abfe37006'
+    @merchant_id = 'mwf7x79goz7afkdbuyqd'
+    @private_key = 'sk_94a89308b4d7469cbda762c4b392152a'
     #LOG.level=Logger::DEBUG
-    @openpay = OpenpayApi.new(@merchant_id, @private_key, "mx")
+    @openpay = OpenpayApi.new(@merchant_id, @private_key, "co")
     @customers = @openpay.create(:customers)
   end
 
@@ -26,7 +26,7 @@ describe Customers do
       name = 'Juan'
       last_name = 'Perez'
       #json as input
-      customer_json = FactoryBot.build(:customer, name: name, last_name: last_name).to_json
+      customer_json = FactoryBot.build(:customer_col, name: name, last_name: last_name).to_json
       customer = @customers.create(customer_json)
       #perform check
       #json as output
@@ -40,7 +40,6 @@ describe Customers do
       expect(saved_customer['last_name']).to match(last_name)
       #cleanup
       @customers.delete(id)
-
     end
 
     it 'fails when passing invalid information' do
@@ -48,7 +47,7 @@ describe Customers do
       expect(@customers.errors?).to eq false
       #invalid email
       email = 'foo'
-      customer_hash = FactoryBot.build(:customer, email: email)
+      customer_hash = FactoryBot.build(:customer_col, email: email)
       #perform check
       expect { @customers.create(customer_hash) }.to raise_exception OpenpayTransactionException
       begin
@@ -59,12 +58,13 @@ describe Customers do
       end
       expect(@customers.errors?).to eq true
     end
+
   end
 
   describe '.delete' do
     it 'deletes an existing customer' do
       #creates customer
-      customer_hash = FactoryBot.build(:customer, name: :delete_me)
+      customer_hash = FactoryBot.build(:customer_col, name: :delete_me)
       customer = @customers.create(customer_hash)
       id = customer['id']
       #delete customer
@@ -78,7 +78,7 @@ describe Customers do
     it 'get a customer' do
       #create customer
       name = 'get_test'
-      customer_hash = FactoryBot.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer_col, name: name)
       customer = @customers.create(customer_hash)
       id = customer['id']
       #perform check
@@ -86,6 +86,7 @@ describe Customers do
       #cleanup
       @customers.delete(id)
     end
+
   end
 
   describe '.each' do
@@ -100,25 +101,25 @@ describe Customers do
     it 'updates an existing customer' do
       # creates customer
       name = 'customer_update_test'
-      customer_hash = FactoryBot.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer_col, name: name)
       customer = @customers.create(customer_hash)
       id = customer['id']
       #update customer
       name = 'new_name'
-      customer_hash = FactoryBot.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer_col, name: name)
       @customers.update(customer_hash, id)
       #perform check
       expect(@customers.get(id)['name']).to match name
       #cleanup
       @customers.delete(id)
     end
-
   end
+
   describe '.list' do
     it 'list customers given the filter' do
       # creates customer
       name = 'customer_update_test'
-      customer_hash = FactoryBot.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer_col, name: name)
       customer = @customers.create(customer_hash)
       id = customer['id']
       search_params = OpenpayUtils::SearchParams.new
@@ -134,39 +135,17 @@ describe Customers do
   describe '.all' do
     it 'all the customers' do
       #initial state check
-      search_params = OpenpayUtils::SearchParams.new
-      search_params.limit = 10000
-      initial_num = @customers.list(search_params).size
+      initial_num = @customers.all.size
       # creates customer
       name = 'customer_update_test'
-      customer_hash = FactoryBot.build(:customer, name: name)
+      customer_hash = FactoryBot.build(:customer_col, name: name)
       customer = @customers.create(customer_hash)
       #performs check
-      expect(@customers.list(search_params).size).to eq initial_num + 1
+      expect(@customers.all.size).to eq initial_num + 1
       #cleanup
       @customers.delete(customer['id'])
     end
   end
-
-  # describe '.delete_all' do
-  #   it 'deletes all customer records' do
-  #     #create 5 customers
-  #     name='customer_update_test'
-  #     customer_hash = FactoryBot.build(:customer, name: name)
-  #     5.times do
-  #       @customers.create(customer_hash)
-  #     end
-  #     #performs check
-  #     expect(@customers.all.size).to be > 4
-  #     @customers.delete_all
-  #     expect(@customers.all.size).to be < 11
-  #   end
-  #   it 'raise an exception when used on Production' do
-  #     @openpayprod=OpenpayApi.new(@merchant_id, @private_key, true)
-  #     cust=@openpayprod.create(:customers)
-  #     expect { cust.delete_all }.to raise_exception OpenpayException
-  #   end
-  # end
 
 end
 

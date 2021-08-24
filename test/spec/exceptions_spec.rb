@@ -4,26 +4,26 @@ describe 'Openpay Exceptions' do
 
   before(:all) do
 
-    @merchant_id='mywvupjjs9xdnryxtplq'
-    @private_key='sk_92b25d3baec149e6b428d81abfe37006'
-    
+    @merchant_id = 'mywvupjjs9xdnryxtplq'
+    @private_key = 'sk_92b25d3baec149e6b428d81abfe37006'
+
     #LOG.level=Logger::DEBUG
 
-    @openpay=OpenpayApi.new(@merchant_id, @private_key)
-    @customers=@openpay.create(:customers)
-    @cards=@openpay.create(:cards)
+    @openpay = OpenpayApi.new(@merchant_id, @private_key, "mx")
+    @customers = @openpay.create(:customers)
+    @cards = @openpay.create(:cards)
 
   end
 
   describe OpenpayException do
 
     it 'should raise an OpenpayException when a non given resource is passed to the api factory' do
-     expect { @openpay.create(:foo) }.to raise_exception OpenpayException
+      expect { @openpay.create(:foo) }.to raise_exception OpenpayException
     end
 
     it 'should raise an OpenpayException when the delete_all method is used on production' do
-      @openpayprod=OpenpayApi.new(@merchant_id,@private_key,true)
-      cust=@openpayprod.create(:customers)
+      @openpayprod = OpenpayApi.new(@merchant_id, @private_key, "mx")
+      cust = @openpayprod.create(:customers)
       expect { cust.delete_all }.to raise_exception OpenpayException
     end
 
@@ -33,7 +33,7 @@ describe 'Openpay Exceptions' do
 
     it 'should fail when an invalid field-value is passed in *email' do
       #invalid email format
-      email='foo'
+      email = 'foo'
       customer_hash = FactoryBot.build(:customer, email: email)
 
       #perform checks
@@ -49,10 +49,10 @@ describe 'Openpay Exceptions' do
       end
     end
 
-    it ' raise  an OpenpayTransactionException when trying to delete a non existing bank account '  do
+    it ' raise  an OpenpayTransactionException when trying to delete a non existing bank account ' do
       #non existing resource
       #perform checks
-      expect { @customers.delete('1111') }.to raise_exception  OpenpayTransactionException
+      expect { @customers.delete('1111') }.to raise_exception OpenpayTransactionException
       begin
         @customers.delete('1111')
       rescue OpenpayTransactionException => e
@@ -82,12 +82,12 @@ describe 'Openpay Exceptions' do
 
     it 'raise an OpenpayConnectionException when provided credentials are invalid' do
 
-      merchant_id='santa'
-      private_key='invalid'
+      merchant_id = 'santa'
+      private_key = 'invalid'
 
-      openpay=OpenpayApi.new(merchant_id, private_key)
-      customers=openpay.create(:customers)
-      expect { customers.delete('1111') }.to raise_exception  OpenpayConnectionException
+      openpay = OpenpayApi.new(merchant_id, private_key,"mx")
+      customers = openpay.create(:customers)
+      expect { customers.delete('1111') }.to raise_exception OpenpayConnectionException
 
       begin
         customers.delete('1111')

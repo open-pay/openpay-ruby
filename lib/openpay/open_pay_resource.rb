@@ -5,19 +5,20 @@ class OpenPayResource
 
   attr_accessor :api_hook
 
-  def initialize(merchant_id, private_key, production=false,timeout=90)
-    @merchant_id=merchant_id
-    @private_key=private_key
+  def initialize(merchant_id, private_key, production = false, timeout = 90, country)
+    @merchant_id = merchant_id
+    @private_key = private_key
     #assigns base url depending the requested env
-    @base_url=OpenpayApi::base_url(production)
-    @errors=false
-    @production=production
-    @timeout=timeout
+    @country = country
+    @base_url = OpenpayApi::base_url(production, country)
+    @errors = false
+    @production = production
+    @timeout = timeout
     #created resources should have a hook with the base class to keep control of created resources
-    @api_hook=nil
+    @api_hook = nil
   end
 
-#returns the env set
+  #returns the env set
   def env
     if @production
       :production
@@ -53,7 +54,7 @@ class OpenPayResource
 
   end
 
-  def get(args='')
+  def get(args = '')
 
     @errors = false
     terminated = true
@@ -67,23 +68,23 @@ class OpenPayResource
 
     LOG.debug("#{resource_name}:")
     LOG.debug("   GET Resource URL:#{url(args, terminated)}")
-    res=RestClient::Request.new(
-        :method => :get,
-        :url => strUrlAux,
-        :user => @private_key,
-        :timeout => @timeout,
-        :ssl_version => :TLSv1_2,
-        :headers => {:accept => :json,
-                     :content_type => :json,
-                     :user_agent => 'Openpay/v1  Ruby-API',
-        }
+    res = RestClient::Request.new(
+      :method => :get,
+      :url => strUrlAux,
+      :user => @private_key,
+      :timeout => @timeout,
+      :ssl_version => :TLSv1_2,
+      :headers => { :accept => :json,
+                    :content_type => :json,
+                    :user_agent => 'Openpay/v1  Ruby-API',
+      }
     )
-    json_out=nil
+    json_out = nil
     begin
-      json_out=res.execute
-        #exceptions
+      json_out = res.execute
+      #exceptions
     rescue Exception => e
-      @errors=true
+      @errors = true
       #will raise the appropriate exception and return
       OpenpayExceptionFactory::create(e)
     end
@@ -94,33 +95,32 @@ class OpenPayResource
 
   def delete(args)
 
-    @errors=false
+    @errors = false
 
-    
     strUrl = url(args)
     strUrlAux = delete_ending_slash(strUrl)
 
     LOG.debug("#{self.class.name.downcase}:")
     LOG.debug("    DELETE  URL:#{strUrlAux}")
 
-    res=''
-    req=RestClient::Request.new(
-        :method => :delete,
-        :url => strUrlAux,
-        :user => @private_key,
-        :timeout => @timeout,
-        :ssl_version => :TLSv1_2,
-        :headers => {:accept => :json,
-                     :content_type => :json,
-                     :user_agent => 'Openpay/v1  Ruby-API',
-        }
+    res = ''
+    req = RestClient::Request.new(
+      :method => :delete,
+      :url => strUrlAux,
+      :user => @private_key,
+      :timeout => @timeout,
+      :ssl_version => :TLSv1_2,
+      :headers => { :accept => :json,
+                    :content_type => :json,
+                    :user_agent => 'Openpay/v1  Ruby-API',
+      }
     )
 
     begin
-      res=req.execute
-        #exceptions
+      res = req.execute
+      #exceptions
     rescue Exception => e
-      @errors=true
+      @errors = true
       #will raise the appropriate exception and return
       OpenpayExceptionFactory::create(e)
     end
@@ -128,44 +128,43 @@ class OpenPayResource
     JSON[res] if not res.empty?
   end
 
-  def post(message, args='')
+  def post(message, args = '')
 
-    @errors=false
+    @errors = false
 
     if message.is_a?(Hash)
-      return_hash=true
-      json= hash2json message
+      return_hash = true
+      json = hash2json message
     else
-      json=message
-      return_hash=false
+      json = message
+      return_hash = false
     end
 
-    
     strUrl = url(args)
     strUrlAux = delete_ending_slash(strUrl)
 
     # LOG.debug("#{self.class.name.downcase}:")
-     LOG.debug "   POST URL:#{strUrlAux}"
-     LOG.debug "   json: #{json}"
+    LOG.debug "   POST URL:#{strUrlAux}"
+    LOG.debug "   json: #{json}"
 
     begin
       #request
-      res= RestClient::Request.new(
-          :method => :post,
-          :url => strUrlAux,
-          :user => @private_key,
-          :timeout => @timeout,
-          :ssl_version => :TLSv1_2,
-          :payload => json,
-          :headers => {:accept => :json,
-                       :content_type => :json,
-                       :user_agent => 'Openpay/v1  Ruby-API',
-                       :json => json}
+      res = RestClient::Request.new(
+        :method => :post,
+        :url => strUrlAux,
+        :user => @private_key,
+        :timeout => @timeout,
+        :ssl_version => :TLSv1_2,
+        :payload => json,
+        :headers => { :accept => :json,
+                      :content_type => :json,
+                      :user_agent => 'Openpay/v1  Ruby-API',
+                      :json => json }
       ).execute
 
-        #exceptions
+      #exceptions
     rescue Exception => e
-      @errors=true
+      @errors = true
       #will raise the appropriate exception and return
       OpenpayExceptionFactory::create(e)
     end
@@ -179,16 +178,16 @@ class OpenPayResource
 
   end
 
-  def put(message, args='')
+  def put(message, args = '')
 
-    return_hash=false
+    return_hash = false
 
     if message.is_a?(Hash)
-      return_hash=true
-      json= hash2json message
+      return_hash = true
+      json = hash2json message
     else
-      json=message
-      return_hash=false
+      json = message
+      return_hash = false
     end
 
     strUrl = url(args)
@@ -197,22 +196,22 @@ class OpenPayResource
     LOG.info "PUT URL:#{strUrlAux}"
     #LOG.info "   json: #{json}"
 
-    begin 
-      res= RestClient::Request.new(
-          :method => :put,
-          :url => strUrlAux,
-          :user => @private_key,
-          :timeout => @timeout,
-          :ssl_version => :TLSv1_2,
-          :payload => json,
-          :headers => {:accept => :json,
-                       :content_type => :json,
-                       :user_agent => 'Openpay/v1  Ruby-API',
-                       :json => json}
+    begin
+      res = RestClient::Request.new(
+        :method => :put,
+        :url => strUrlAux,
+        :user => @private_key,
+        :timeout => @timeout,
+        :ssl_version => :TLSv1_2,
+        :payload => json,
+        :headers => { :accept => :json,
+                      :content_type => :json,
+                      :user_agent => 'Openpay/v1  Ruby-API',
+                      :json => json }
       ).execute
     rescue RestClient::BadRequest => e
       warn e.http_body
-      @errors=true
+      @errors = true
       return JSON.parse e.http_body
     end
 
@@ -248,16 +247,16 @@ class OpenPayResource
   end
 
   def resource_name
-    self.class.name.to_s.downcase
+    self.class.name.downcase.gsub(@country, "")
   end
 
   def delete_ending_slash(url)
     slash = '/'
     strUrl = url
     strUrlAux = url
-    ending = strUrl.to_s[-1,1]
+    ending = strUrl.to_s[-1, 1]
     if ending == slash
-      strUrlAux = strUrl.to_s[0,strUrl.length - 1]
+      strUrlAux = strUrl.to_s[0, strUrl.length - 1]
     end
     strUrlAux
   end
@@ -265,7 +264,7 @@ class OpenPayResource
   def is_filter_string?(args)
     is_filter = false
     if args =~ /^\?/
-       is_filter = true
+      is_filter = true
     end
     is_filter
   end
