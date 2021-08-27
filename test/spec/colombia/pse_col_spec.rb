@@ -8,14 +8,14 @@ describe Charges do
     @openpay = OpenpayApi.new(@merchant_id, @private_key, "co")
     @customers = @openpay.create(:customers)
     #LOG.level=Logger::DEBUG
-    @charges = @openpay.create(:charges)
+    @pse = @openpay.create(:pse)
     @cards = @openpay.create(:cards)
 
   end
 
   it 'has all required methods' do
     %w(all each create get list delete).each do |meth|
-      expect(@charges).to respond_to(meth)
+      expect(@pse).to respond_to(meth)
     end
   end
 
@@ -25,23 +25,21 @@ describe Charges do
       #create card
       customer_hash = FactoryBot.build(:customer_col)
       customer = @customers.create(customer_hash)
-      charge_hash = FactoryBot.build(:charge_pse_col, amount: 101)
-      charge = @charges.create(charge_hash, customer['id'])
+      pse_hash = FactoryBot.build(:charge_pse_col, amount: 101)
+      pse = @pse.create(pse_hash, customer['id'])
       #perform check
-      spe_charge = @charges.get(charge['id'])
-      method = spe_charge['method']
-      payment_method = spe_charge['payment_method']
+      method = pse['method']
+      payment_method = pse['payment_method']
       expect(method).to eq('bank_account')
       expect(payment_method['type']).to eq('redirect')
     end
 
     it 'create charge SPE with new client ' do
       charge_hash = FactoryBot.build(:charge_pse_new_client_col, amount: 101)
-      charge = @charges.create(charge_hash)
+      pse = @pse.create(charge_hash)
       #perform check
-      spe_charge = @charges.get(charge['id'])
-      method = spe_charge['method']
-      payment_method = spe_charge['payment_method']
+      method = pse['method']
+      payment_method = pse['payment_method']
       expect(method).to eq('bank_account')
       expect(payment_method['type']).to eq('redirect')
     end

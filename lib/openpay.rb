@@ -33,6 +33,7 @@ module Openpay
   require 'openpay/colombia/subscriptions_co'
   require 'openpay/colombia/tokens_co'
   require 'openpay/colombia/webhooks_co'
+  require 'openpay/colombia/pse_co'
 
   #misc
   require 'openpay/utils/search_params'
