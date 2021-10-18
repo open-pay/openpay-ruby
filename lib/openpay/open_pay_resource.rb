@@ -55,17 +55,13 @@ class OpenPayResource
   end
 
   def get(args = '')
-
     @errors = false
     terminated = true
-
     if is_filter_string?(args)
       terminated = false
     end
-
     strUrl = url(args, terminated)
     strUrlAux = delete_ending_slash(strUrl)
-
     LOG.debug("#{resource_name}:")
     LOG.debug("   GET Resource URL:#{url(args, terminated)}")
     res = RestClient::Request.new(
@@ -88,9 +84,32 @@ class OpenPayResource
       #will raise the appropriate exception and return
       OpenpayExceptionFactory::create(e)
     end
-
     JSON[json_out]
+  end
 
+  def get_with_custom_url(url = '')
+    @errors = false
+    res = RestClient::Request.new(
+      :method => :get,
+      :url => url,
+      :user => @private_key,
+      :timeout => @timeout,
+      :ssl_version => :TLSv1_2,
+      :headers => { :accept => :json,
+                    :content_type => :json,
+                    :user_agent => 'Openpay/v1  Ruby-API',
+      }
+    )
+    json_out = nil
+    begin
+      json_out = res.execute
+      #exceptions
+    rescue Exception => e
+      @errors = true
+      #will raise the appropriate exception and return
+      OpenpayExceptionFactory::create(e)
+    end
+    JSON[json_out]
   end
 
   def delete(args)

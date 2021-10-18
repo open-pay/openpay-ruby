@@ -17,6 +17,8 @@ class OpenpayApi
   API_PROD = 'https://api.openpay.mx/v1/'
   API_DEV_CO = 'https://sandbox-api.openpay.co/v1/'
   API_PROD_CO = 'https://api.openpay.co/v1/'
+  API_DEV_PE = 'https://sandbox-api.openpay.pe/v1/'
+  API_PROD_PE = 'https://api.openpay.pe/v1/'
 
   # by default testing environment is used
   # country can take value 'mx' (Mexico) or 'co' Colombia
@@ -46,6 +48,12 @@ class OpenpayApi
         API_PROD_CO
       else
         API_DEV_CO
+      end
+    elsif country == "pe"
+      if production
+        API_PROD_PE
+      else
+        API_DEV_PE
       end
     else
       LOG.error "Country not found, only mx (México) or co (Colombia)"
