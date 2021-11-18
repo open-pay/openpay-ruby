@@ -35,6 +35,13 @@ module Openpay
   require 'openpay/colombia/webhooks_co'
   require 'openpay/colombia/pse_co'
 
+  require 'openpay/peru/customers_pe'
+  require 'openpay/peru/charges_pe'
+  require 'openpay/peru/cards_pe'
+  require 'openpay/peru/tokens_pe'
+  require 'openpay/peru/checkouts_pe'
+  require 'openpay/peru/webhooks_pe'
+
   #misc
   require 'openpay/utils/search_params'
 

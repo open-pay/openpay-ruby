@@ -368,4 +368,157 @@ FactoryBot.define do
     initialize_with { attributes }
   end
 
+  # Perú
+  factory :customer_pe, class: Hash do
+    name 'Guadalupe'
+    last_name 'Peru'
+    email 'peru@lemail.com'
+    requires_account false
+    phone_number '0180012345'
+    customer_address { {
+      department: 'department',
+      city: 'Peru',
+      additional: 'additional'
+    } }
+    initialize_with { attributes }
+
+  end
+
+  factory :valid_card_peru, class: Hash do
+    holder_name 'Vicente Olmos'
+    card_number '4111111111111111'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '25'
+    initialize_with { attributes }
+  end
+
+  factory :charge_redirect_peru, class: Hash do
+    add_attribute :method, "card"
+    amount 1000
+    currency "PEN"
+    description "Cargo con redireccionamiento"
+    confirm false
+    redirect_url "http://qrsof.com/test"
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      email: "juan.vazquez@empresa.co"
+    } }
+    initialize_with { attributes }
+  end
+
+  factory :charge_redirect_customer_peru, class: Hash do
+    add_attribute :method, "card"
+    amount 1000
+    currency "PEN"
+    description "Cargo con redireccionamiento"
+    confirm false
+    redirect_url "http://qrsof.com/test"
+    initialize_with { attributes }
+  end
+
+  factory :charge_store_peru_customer, class: Hash do
+    add_attribute :method, "store"
+    amount 1000
+    currency "PEN"
+    description "Cargo con store"
+    initialize_with { attributes }
+  end
+
+  factory :charge_store_peru_merchant, class: Hash do
+    add_attribute :method, "store"
+    amount 1000
+    currency "PEN"
+    description "Cargo con store"
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      email: "juan.vazquez@empresa.co"
+    } }
+    initialize_with { attributes }
+  end
+
+  factory :token_peru, class: Hash do
+    holder_name 'Vicente Olmos'
+    card_number '4111111111111111'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '30'
+    address { {
+      city: 'Peru',
+      country_code: 'PE',
+      postal_code: '12312',
+      line1: 'line1',
+      line2: 'line2',
+      line3: 'line3',
+      state: 'Lima'
+    } }
+    initialize_with { attributes }
+  end
+
+  factory :checkou_peru, class: Hash do
+    amount 1000
+    description 'Probando checkouts'
+    currency "PEN"
+    redirect_url "http://qrsof.com/test"
+    initialize_with { attributes }
+  end
+
+  factory :checkou_peru_merchant, class: Hash do
+    amount 1000
+    description 'Probando checkouts'
+    currency "PEN"
+    redirect_url "http://qrsof.com/test"
+    customer { {
+      name: "Cliente Colombia",
+      last_name: "Vazquez Juarez",
+      email: "juan.vazquez@empresa.co",
+      phone_number: "4448936475"
+    } }
+    initialize_with { attributes }
+  end
+
+  factory :webhook_peru, class: Hash do
+    url "https://webhook.site/4c73409c-8b7e-4e97-9448-654409859b00"
+    user 'user'
+    password "password"
+    event_types ["charge.refunded","charge.failed","charge.cancelled","charge.created","chargeback.accepted"]
+    initialize_with { attributes }
+  end
+
+  factory :valid_card2_pe, class: Hash do
+    holder_name 'Alma Olmos'
+    card_number '4242424242424242'
+    cvv2 '111'
+    expiration_month '09'
+    expiration_year '22'
+    initialize_with { attributes }
+  end
+
+  factory :charge_pe, class: Hash do
+    source_id 'source_id'
+    add_attribute :method, "card"
+    amount 716
+    currency 'PEN'
+    description 'Probando cargos'
+    device_session_id 'device_session_id'
+    initialize_with { attributes }
+  end
+
+  factory :charge_merchant_pe, class: Hash do
+    source_id 'source_id'
+    add_attribute :method, "card"
+    amount 716
+    currency 'PEN'
+    description 'Probando cargos'
+    device_session_id 'device_session_id'
+    customer { {
+      name: "Cliente peru",
+      email: "juan.vazquez@empresa.pe"
+    } }
+    initialize_with { attributes }
+  end
+
+
 end
