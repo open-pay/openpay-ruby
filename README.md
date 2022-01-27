@@ -1,4 +1,4 @@
-![Openpay Ruby](http://www.openpay.mx/img/github/ruby.jpg)
+![Openpay Ruby](https://www.openpay.mx/img/github/ruby.jpg)
 
 [![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/openpay-ruby)
 
